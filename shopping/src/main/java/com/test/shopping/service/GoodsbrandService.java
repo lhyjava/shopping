@@ -11,7 +11,7 @@ import com.test.shopping.mapper.GoodsbrandMapper;
 /**
  * 
  * @ClassName: GoodsbrandService
- * @Description: 
+ * @Description: 品牌管理
  * @Author lhy
  * @DateTime 2019年11月11日 下午2:37:57
  */
@@ -21,8 +21,8 @@ public class GoodsbrandService {
 	@Autowired
 	private GoodsbrandMapper dao;
 	
-	public List<Goodsbrand> findall()
-	{
+	public List<Goodsbrand> findall(){
+		
 		return dao.findall();
 	}
 	

@@ -1,5 +1,12 @@
 package com.test.shopping.entity;
 
+/**
+ * 
+ * @ClassName: Goodsbrand
+ * @Description: 品牌管理
+ * @Author lhy
+ * @DateTime 2019年11月11日 下午3:21:27
+ */
 public class Goodsbrand {
     private Integer id;
 

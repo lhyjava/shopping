@@ -14,6 +14,13 @@ import org.apache.ibatis.type.JdbcType;
 
 import com.test.shopping.entity.Goodsbrand;
 
+/**
+ * 
+ * @ClassName: GoodsbrandMapper
+ * @Description: 品牌管理
+ * @Author lhy
+ * @DateTime 2019年11月11日 下午3:19:21
+ */
 public interface GoodsbrandMapper {
     @Delete({
         "delete from goodsbrand",
