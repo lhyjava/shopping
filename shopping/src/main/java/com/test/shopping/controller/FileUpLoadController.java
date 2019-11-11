@@ -3,6 +3,8 @@ package com.test.shopping.controller;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -26,26 +28,37 @@ import com.alibaba.fastjson.JSONObject;
 @Controller
 public class FileUpLoadController {
 
-	@RequestMapping("/fileupload")
+	@RequestMapping("/upload")
 	public String fileupload() {
-		return "upload";
+		return "fileupload";
 	}
 	
 	private final static String filePath = "E://data/";
 	
-	@RequestMapping("/upload")
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/fileupload")
     public JSONObject upload(@RequestParam("file") MultipartFile file, HttpServletRequest request){
 
         JSONObject result = new JSONObject();
 
-        // 姓名
+        //姓名
         String name = request.getParameter("name");
-        System.out.println("姓名：" + name);
-
-        // 文件名
+        
+        //文件名
         String fileName = file.getOriginalFilename();
+        
+        //时间
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        
+        System.err.println("*******************************");
+        System.out.println("姓名：" + name);
         System.out.println("文件名： " + fileName);
+        System.out.println("上传时间：" + sdf.format(date));
+        System.err.println("*******************************");
 
+        /*
         // 文件后缀
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         System.out.println("文件后缀名： " + suffixName);
@@ -53,9 +66,10 @@ public class FileUpLoadController {
         // 重新生成唯一文件名，用于存储数据库
         String newFileName = UUID.randomUUID().toString()+suffixName;
         System.out.println("新的文件名： " + newFileName);
-
+		*/
+		
         //创建文件
-        File dest = new File(filePath + newFileName);
+        File dest = new File(filePath + fileName);
 
         Map map = new HashMap();
         map.put("filePath", dest.getAbsolutePath());
