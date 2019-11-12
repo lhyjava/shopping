@@ -158,7 +158,7 @@ function ajax_update(id,fieldName,obj){
         </tr>
         
         
-        <!-- add by yunan 11.11 begin-->
+        <!-- add by lhy 11.11 begin-->
         <c:forEach items="${requestScope.goodsbrandlist }" var="tmp">
         <tr>
           <td align="center"><input name="checkbox" type="checkbox" id="checkbox" value="28"></td>
