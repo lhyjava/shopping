@@ -26,4 +26,12 @@ public class GoodsbrandService {
 		return dao.findall();
 	}
 	
+	public int updateByPrimaryKeySelective(Goodsbrand record) {
+		return dao.updateByPrimaryKeySelective(record);
+	}
+	
+	public int insert(Goodsbrand record){
+		return dao.insert(record);
+	}
+	
 }
