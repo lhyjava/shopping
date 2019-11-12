@@ -34,4 +34,8 @@ public class GoodsbrandService {
 		return dao.insert(record);
 	}
 	
+	public int deleteByPrimaryKey(Integer id) {
+		return dao.deleteByPrimaryKey(id);
+	}
+	
 }

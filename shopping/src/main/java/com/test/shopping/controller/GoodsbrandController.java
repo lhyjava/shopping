@@ -135,4 +135,20 @@ public class GoodsbrandController {
 		return "redirect:/goodsbrandfindall.htm";
 	}
 	
+	/**
+	 * 
+	 * @Title: goodsbranddel
+	 * @Description: 品牌删除
+	 * @Author Administrator
+	 * @DateTime 2019年11月13日 上午7:15:22
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/goodsbranddel.htm")
+	public String goodsbranddel(Integer id) {
+		
+		int ret = service.deleteByPrimaryKey(id);
+		return "redirect:/goodsbrandfindall.htm";
+	}
+	
 }

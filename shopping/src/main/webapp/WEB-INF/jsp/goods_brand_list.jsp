@@ -176,7 +176,10 @@ function ajax_update(id,fieldName,obj){
           	<img onclick="ajax_update_img('${tmp.id }',this)" src="/img/false.png" width="25" height="21" border="0" style="cursor:pointer;" title="可编辑"> 
           </c:if>
           </td>
-          <td class="ac8" align="left"><a href="http://localhost:8080/admin/goods_brand_edit.htm?id=28">编辑</a>|<a href="http://localhost:8080/admin/goods_brand_del.htm?mulitId=28&amp;currentPage=1">删除</a></td>
+          <td class="ac8" align="left">
+          	<a href="http://localhost:8080/admin/goods_brand_edit.htm?id=28">编辑</a>|
+          	<a href="goodsbranddel.htm?id=${tmp.id }">删除</a>
+          </td>
         </tr>
         </c:forEach>
         <!-- add by lhy 11.11 end-->   
