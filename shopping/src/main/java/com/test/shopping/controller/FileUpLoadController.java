@@ -26,7 +26,7 @@ import com.alibaba.fastjson.JSONObject;
  * 
  * @ClassName: FileUpLoadController
  * @Description: 文件上传
- * @Author Administrator
+ * @Author lhy
  * @DateTime 2019年11月12日 上午5:25:23
  */
 @Controller
@@ -40,18 +40,16 @@ public class FileUpLoadController {
 	private final static String filePath = "E://data/";
 	private final static String logPath = "E://data/log.txt";
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/fileupload")
-    public JSONObject upload(@RequestParam("file") MultipartFile file, HttpServletRequest request){
-
-        JSONObject result = new JSONObject();
+    public String upload(@RequestParam("files") MultipartFile[] files, HttpServletRequest request){
 
         //姓名
         String name = request.getParameter("name");
-        
         //文件名
-        String fileName = file.getOriginalFilename();
-        
+        String fileName = "";
+        for (int i = 0; i < files.length; i++) {
+        	fileName += (files[i].getOriginalFilename() + ",");
+		}
         //时间
         Date date = new Date();
         String strDateFormat = "yyyy-MM-dd HH:mm:ss";
@@ -92,22 +90,27 @@ public class FileUpLoadController {
 		}
 
         /**
-         * 文件上传
+         * 文件批量上传
          */
-        File dest = new File(filePath + fileName);
-
-        Map map = new HashMap();
-        map.put("filePath", dest.getAbsolutePath());
-        map.put("name", name);
-        try {
-            file.transferTo(dest);
-            result.put("success", true);
-            result.put("data", map);
-            return result;
-        } catch (IOException e) {
-            e.printStackTrace();
+    	if (null == files && files.length == 0) {
+            return null;
         }
-        return (JSONObject) result.put("success", false);
+    	for (MultipartFile mf : files) {
+            //文件名称
+            String filename = mf.getOriginalFilename();
+           
+            File dir = new File(filePath + filename);
+
+            try {
+            	
+				mf.transferTo(dir);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+        return "redirect:/upload";
     }
 	
 }

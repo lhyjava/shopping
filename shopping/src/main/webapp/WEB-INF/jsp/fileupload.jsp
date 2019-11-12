@@ -26,7 +26,7 @@
 				</div>
 				<div class="form-group">
 					<label for="inputfile">文件输入</label>
-					<input type="file" id="inputfile" name="file" />
+					<input type="file" id="inputfile" name="files" multiple />
 				</div>
 		   		<input type="submit" value="上传" class="btn btn-success" />
 			</form>
