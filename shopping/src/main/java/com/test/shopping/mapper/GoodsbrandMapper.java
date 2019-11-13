@@ -3,11 +3,13 @@ package com.test.shopping.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
@@ -79,6 +81,25 @@ public interface GoodsbrandMapper {
     
     
     //add by lhy end 11.11
+    
+    //add by lhy begin 11.13
+    
+    @SelectProvider(type=GoodsbrandSqlProvider.class, method="selectByNameAndType")
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER),
+        @Result(column="firstchar", property="firstchar", jdbcType=JdbcType.VARCHAR),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
+        @Result(column="img", property="img", jdbcType=JdbcType.VARCHAR),
+        @Result(column="recommand", property="recommand", jdbcType=JdbcType.BIT)
+    })
+    List<Goodsbrand> selectByNameAndType(Goodsbrand gb);
+    
+    @DeleteProvider(type=GoodsbrandSqlProvider.class, method="deleteAll")
+    int deleteAll(String ids);
+    
+    //add by lhy end 11.13
 
     @UpdateProvider(type=GoodsbrandSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Goodsbrand record);

@@ -151,4 +151,69 @@ public class GoodsbrandController {
 		return "redirect:/goodsbrandfindall.htm";
 	}
 	
+	/**
+	 * 
+	 * @Title: goodsbrandedit
+	 * @Description: 品牌修改页面(页面中带有当前修改行的参数)
+	 * @Author lhy
+	 * @DateTime 2019年11月13日 上午10:46:14
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/goodsbrandedit.htm")
+	public String goodsbrandedit(Integer id) {
+		
+		return "goods_brand_list_edit";
+	}
+	
+	/**
+	 * 
+	 * @Title: goodsbrandeditsubmit
+	 * @Description: 品牌修改
+	 * @Author lhy
+	 * @DateTime 2019年11月13日 上午10:46:53
+	 * @param gb
+	 * @return
+	 */
+	@RequestMapping("/goodsbrandeditsubmit.htm")
+	public String goodsbrandeditsubmit(Goodsbrand gb) {
+		
+		int ret = service.updateByPrimaryKeySelective(gb);
+		return "redirect:/goodsbrandfindall.htm";
+	}
+	
+	/**
+	 * 
+	 * @Title: goodsbrandquery
+	 * @Description: 根据品牌名和品牌类别查找
+	 * @Author lhy
+	 * @DateTime 2019年11月13日 下午12:20:53
+	 * @param gb
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/goodsbrandquery.htm")
+	public String goodsbrandquery(Goodsbrand gb,HttpServletRequest req) {
+		
+		List<Goodsbrand> list = service.selectByNameAndType(gb);
+		req.setAttribute("goodsbrandlist", list);
+		return "goods_brand_list";
+	}
+	
+	/**
+	 * 
+	 * @Title: goodsbranddeleteAll
+	 * @Description: 批量删除
+	 * @Author lhy
+	 * @DateTime 2019年11月13日 下午12:42:59
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("/goodsbranddeleteall.htm")
+	public String goodsbranddeleteAll(String ids) {
+		
+		service.deleteAll(ids);
+		return "redirect:/goodsbrandfindall.htm";
+	}
+	
 }

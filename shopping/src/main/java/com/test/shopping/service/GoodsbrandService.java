@@ -38,4 +38,12 @@ public class GoodsbrandService {
 		return dao.deleteByPrimaryKey(id);
 	}
 	
+	public List<Goodsbrand> selectByNameAndType(Goodsbrand gb) {
+		return dao.selectByNameAndType(gb);
+	}
+	
+	public int deleteAll(String ids) {
+		return dao.deleteAll(ids);
+	}
+	
 }

@@ -72,4 +72,54 @@ public class GoodsbrandSqlProvider {
         
         return sql.toString();
     }
+    
+    //add by lhy begin 11.13
+    
+    /**
+     * 
+     * @Title: selectByNameAndType
+     * @Description: 根据品牌名和品牌类别查找
+     * @Author lhy
+     * @DateTime 2019年11月13日 下午12:06:47
+     * @param gb
+     * @return
+     */
+    public String selectByNameAndType(Goodsbrand gb) {
+    	
+    	StringBuffer sql = new StringBuffer();
+    	sql.append("select * from goodsbrand where 1=1 ");
+    	if(gb.getName() != null){
+    		sql.append("AND name LIKE '%");
+    		sql.append(gb.getName());
+    		sql.append("%' ");
+    	}
+    	
+    	if(gb.getType() != null){
+    		sql.append("AND type LIKE '%");
+    		sql.append(gb.getType());
+    		sql.append("%'");
+    	}
+    	
+    	return sql.toString();
+    }
+    
+    /**
+     * 
+     * @Title: deleteAll
+     * @Description: 批量删除
+     * @Author lhy
+     * @DateTime 2019年11月13日 下午12:28:44
+     * @param ids
+     * @return
+     */
+    public String deleteAll(String ids){
+    	
+    	StringBuilder sql = new StringBuilder();
+    	sql.append("DELETE FROM goodsbrand WHERE id in (");
+    	sql.append(ids);
+    	sql.append(")");
+    	return sql.toString();
+    }
+    
+    //add by lhy end 11.13
 }
