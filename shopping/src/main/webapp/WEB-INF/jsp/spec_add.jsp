@@ -60,7 +60,7 @@
 							
 							alert("规格名重复，请重输入");
 							
-							window.location.href='specadd.htm';
+							//window.location.href='specadd.htm';
 						}else{
 							
 							$("#specidforval").val(obj);
