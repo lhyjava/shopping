@@ -33,7 +33,7 @@ public interface SpecvalMapper {
     @InsertProvider(type=SpecvalSqlProvider.class, method="insertSelective")
     int insertSelective(Specval record);
     
-    //add by lhy 1114
+    //add by lhy 1114 begin
     
     /**
      * 
@@ -47,7 +47,25 @@ public interface SpecvalMapper {
     @InsertProvider(type=SpecvalSqlProvider.class, method="insertlist")
     int insertlist(List<Specval> list);
     
-    //add by lhy 1114
+    //add by lhy 1114 end
+    
+    //add by lhy 1115 begin
+    
+    @Select({
+        "select",
+        "id, specid, value, sort",
+        "from specval",
+        "where specid = #{specid,jdbcType=INTEGER}"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="specid", property="specid", jdbcType=JdbcType.INTEGER),
+        @Result(column="value", property="value", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
+    })
+    List<Specval> selectByspecid(Integer specid);
+    
+    //add bu lhy end
 
     @Select({
         "select",

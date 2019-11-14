@@ -17,4 +17,8 @@ public class SpecvalService {
 	public int insertlist(List<Specval> list) {
 		return dao.insertlist(list);
 	}
+	
+	public List<Specval> selectByspecid(Integer specid){
+		return dao.selectByspecid(specid);
+	}
 }

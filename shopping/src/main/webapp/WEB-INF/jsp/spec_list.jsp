@@ -104,7 +104,7 @@
 							          	</td>
 								        <td>${tmp.vals }</td>
 								        <td align="center" class="ac8">
-								        	<a href="http://192.168.1.3:8080/shopping/admin/goods_spec_edit.htm?id=32770&amp;currentPage=1">编辑</a>|
+								        	<a href="spacvaledit.htm?id=${tmp.id }&sort=${tmp.sort }&name=${tmp.name }">编辑</a>|
 								        	<a href="javascript:isDelete(${tmp.id });">删除</a>
 								        </td>
 							        </tr>

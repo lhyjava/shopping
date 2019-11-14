@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0081)http://192.168.1.3:8080/shopping/admin/goods_spec_edit.htm?id=32770&currentPage=1 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -99,7 +100,7 @@
 				    <li><strong class="sred">*</strong>规格名称</li>
 				    <li>
 				    	<span class="pxnum">
-				      		<input name="name" type="text" id="specname" value="" />
+				      		<input name="name" type="text" id="specname" value="${param.name }" />
 				      	</span>
 				      	<span id="nothis">
 				      		<strong class="q"></strong>
@@ -112,7 +113,7 @@
 			    	<li>排序</li>
 			   		<li>
 			   			<span class="pxnum">
-			   				<input name="sort" type="text" id="specsort" value="" />
+			   				<input name="sort" type="text" id="specsort" value="${param.sort }" />
 			      		</span>
 			      		<span id="nothis">
 			      			<strong class="q"></strong>
@@ -153,7 +154,7 @@
 		<form action="specandvalinsert.htm" method="post" id="valform" name="valform">
      			<input type="hidden" name="specid" id="specidforval" />
      			<div class="specification">
-       			<h2>新增规格值</h2>
+       			<h2>规格值</h2>
        			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addsx_table">
        				<tbody>
        					<tr id="goods_spec_">
@@ -162,29 +163,23 @@
 							<td width="558"><strong><span id="goods_spec_property_img_" style="display:none;">规格图片</span></strong></td>
 							<td align="center">操作</td>
 						</tr>
-	  		  		    <tr id="goods_spec_property">
-							<td width="82">
-								<span class="pxnum size5">
-									<input name="valsort" type="text" id="sequence_1" value="" />
-								</span>
-							</td>
-							<td>
-								<span class="pxnum size7">
-									<input name="valname" type="text" id="value_1" value="" />
-								</span>
-							</td>
-							<td width="116" align="center" class="ac8">
-								<a href="javascript:void(0);" onclick="remove_goods_spec_property(this.parentNode.parentNode,'32832')">删除</a>
-							</td>
-						</tr>
-	  		            <tr>
-           					<td colspan="3">
-           						<span class="newclass">
-           							<a href="javascript:void(0);" onclick="add_goods_spec_property();">新增规格值</a>
-            					</span>
-            				</td>
-           					<td>&nbsp;</td>
-        					</tr>
+						<c:forEach items="${requestScope.specvals }" var="tmp">
+		  		  		    <tr id="goods_spec_property">
+								<td width="82">
+									<span class="pxnum size5">
+										<input name="valsort" type="text" id="sequence_1" value="${tmp.sort }" />
+									</span>
+								</td>
+								<td>
+									<span class="pxnum size7">
+										<input name="valname" type="text" id="value_1" value="${tmp.value }" />
+									</span>
+								</td>
+								<td width="116" align="center" class="ac8">
+									<a href="javascript:void(0);" onclick="remove_goods_spec_property(this.parentNode.parentNode,'32832')">删除</a>
+								</td>
+							</tr>
+	 					</c:forEach>
        				</tbody>
        			</table>
      		</div>

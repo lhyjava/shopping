@@ -3,6 +3,8 @@ package com.test.shopping.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,5 +45,22 @@ public class SpecvalController {
 		int ret = service.insertlist(list);
 		
 		return "redirect:/specfindall.htm";
+	}
+	
+	/**
+	 * 
+	 * @Title: spacvaledit
+	 * @Description: 修改(带参跳转)
+	 * @Author lhy
+	 * @DateTime 2019年11月15日 上午7:14:32
+	 * @return
+	 */
+	@RequestMapping("/spacvaledit.htm")
+	public String spacvaledit(Integer id,Integer sort,String name,HttpServletRequest req) {
+		
+		List<Specval> list = service.selectByspecid(id);
+		req.setAttribute("specvals", list);
+		
+		return "spec_edit";
 	}
 }
