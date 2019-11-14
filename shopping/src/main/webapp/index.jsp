@@ -113,7 +113,7 @@
 							<li><a href="goodsbrandfindall.htm" target="main_workspace" class="">品牌管理</a></li>
 							<li><a href="javascript:void(0);" id="goods_manage_op" onclick="openURL('url','http://localhost:8080/admin/goods_list.htm','main_workspace','goods_manage_op')" class="">商品管理</a></li>
 							<li><a href="javascript:void(0);" id="goods_type_op" onclick="openURL('url','http://localhost:8080/admin/goods_type_list.htm','main_workspace','goods_type_op')" class="">类型管理</a></li>
-							<li><a href="javascript:void(0);" id="goods_spec_op" onclick="openURL('url','http://localhost:8080/admin/goods_spec_list.htm','main_workspace','goods_spec_op')" class="">规格管理</a></li>
+							<li><a href="specfindall.htm" target="main_workspace" class="">规格管理</a></li>
 							<li><a href="javascript:void(0);" id="goods_floor_op" onclick="openURL('url','http://localhost:8080/admin/goods_floor_list.htm','main_workspace','goods_floor_op')" class="">首页楼层</a></li>
 							<li><a href="upload" target="main_workspace" class="">文件上传</a></li>
 						</ul>
