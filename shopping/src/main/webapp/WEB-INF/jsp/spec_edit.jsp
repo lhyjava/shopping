@@ -45,26 +45,26 @@
 				提交表单，通过ajax提交"添加规格表单"，设置ajax同步，成功后提交"添加规格值表单"
 			*/
 			function saveForm(){
-			 	var specname = $("#specname").val();
+			 	
+				var specname = $("#specname").val();
 				var specsort = $("#specsort").val();
+				var specid = ${param.id };
 				$.ajax({
-					url:'specinsert.htm',
+					url:'specupdating.htm',
 					type:'post',
 					async:false,
 					data:{
 						name:specname,
-						sort:specsort
+						sort:specsort,
+						id:specid
 					},
 					success:function(obj){
 						
 						if(obj == "error"){
 							
-							alert("规格名重复，请重输入");
-							
-							//window.location.href='specadd.htm';
 						}else{
 							
-							$("#specidforval").val(obj);
+							$("#specidforval").val();
 							
 							jQuery("#valform").submit();
 						}
@@ -85,12 +85,13 @@
 		</style>
 	</head>
 	<body>
-		<form action="specinsert.htm" method="post" id="specform" name="specform">
+		<form action="specupdating.htm" method="post" id="specform" name="specform">
+			<input type="hidden" name="id" value="${param.id }" />
 	    	<h1 class="seth1">规格管理</h1>
 		    <div class="settab">
 		    	<span class="tab-one"></span>
 		    	<span class="tabs">
-		    		<a href="http://192.168.1.3:8080/shopping/admin/goods_spec_add.htm">新增</a>
+		    		<a href="">新增</a>
 		    		<a href="javascript:void(0);" class="this">编辑</a>
 			  	</span>
 			  	<span class="tab-two"></span>
@@ -151,13 +152,13 @@
 				}
 			}
 		</script>
-		<form action="specandvalinsert.htm" method="post" id="valform" name="valform">
-     			<input type="hidden" name="specid" id="specidforval" />
-     			<div class="specification">
-       			<h2>规格值</h2>
-       			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addsx_table">
-       				<tbody>
-       					<tr id="goods_spec_">
+		<form action="specvalupdating.htm" method="post" id="valform" name="valform">
+   			<input type="hidden" name="id" id="specidforval" value="${param.id }" />
+   			<div class="specification">
+      			<h2>规格值</h2>
+      			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addsx_table">
+      				<tbody>
+	      				<tr id="goods_spec_">
 							<td width="82"><strong>排序</strong></td>
 							<td width="271"><strong>规格值</strong></td>
 							<td width="558"><strong><span id="goods_spec_property_img_" style="display:none;">规格图片</span></strong></td>
@@ -175,14 +176,36 @@
 										<input name="valname" type="text" id="value_1" value="${tmp.value }" />
 									</span>
 								</td>
+								<td width="558" class="liul">
+									<span class="size13" id="goods_spec_property_img_" style="display:none;">
+		              					<input name="textfield_1" type="text" id="textfield_1" />
+		            				</span>
+		            				<span class="filebtn" id="goods_spec_property_img_" style="display:none;">
+		              					<input name="button" type="button" id="button1" value="" />
+		             	 			</span>
+		             	 			<span id="goods_spec_property_img_" style="float:left;" class="file">
+		              					<input name="specImage_1" type="file" id="specImage_1" onchange="change_img(this);" size="30" />
+		              				</span> 
+		     						<span id="goods_spec_property_img_" class="pic_spe" style="display:none;">
+		     							<img id="image_1" name="image_1" src="./loader02.jpg" width="16" height="16" />
+		     						</span>
+		     					</td>
 								<td width="116" align="center" class="ac8">
 									<a href="javascript:void(0);" onclick="remove_goods_spec_property(this.parentNode.parentNode,'32832')">删除</a>
 								</td>
 							</tr>
 	 					</c:forEach>
-       				</tbody>
-       			</table>
-     		</div>
+	 					<tr>
+	           				<td colspan="3">
+	           					<span class="newclass">
+	           						<a href="javascript:void(0);" onclick="add_goods_spec_property();">新增规格值</a>
+	            				</span>
+	            			</td>
+	           				<td>&nbsp;</td>
+	        			</tr>
+      				</tbody>
+      			</table>
+    		</div>
 		</form>
 		<div class="submit">
 			<input name="" type="button" value="提交" onclick="saveForm();" />

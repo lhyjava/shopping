@@ -21,4 +21,8 @@ public class SpecvalService {
 	public List<Specval> selectByspecid(Integer specid){
 		return dao.selectByspecid(specid);
 	}
+	
+	public int deleteBySpecid(Integer specid) {
+		return dao.deleteBySpecid(specid);
+	}
 }

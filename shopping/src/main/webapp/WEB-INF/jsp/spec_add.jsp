@@ -173,6 +173,20 @@
 									<input name="valname" type="text" id="value_1" value="" />
 								</span>
 							</td>
+							<td width="558" class="liul">
+								<span class="size13" id="goods_spec_property_img_" style="display:none;">
+	              					<input name="textfield_1" type="text" id="textfield_1" />
+	            				</span>
+	            				<span class="filebtn" id="goods_spec_property_img_" style="display:none;">
+	              					<input name="button" type="button" id="button1" value="" />
+	             	 			</span>
+	             	 			<span id="goods_spec_property_img_" style="float:left;" class="file">
+	              					<input name="specImage_1" type="file" id="specImage_1" onchange="change_img(this);" size="30" />
+	              				</span> 
+	     						<span id="goods_spec_property_img_" class="pic_spe" style="display:none;">
+	     							<img id="image_1" name="image_1" src="./loader02.jpg" width="16" height="16" />
+	     						</span>
+	     					</td>
 							<td width="116" align="center" class="ac8">
 								<a href="javascript:void(0);" onclick="remove_goods_spec_property(this.parentNode.parentNode,'32832')">删除</a>
 							</td>
@@ -184,7 +198,7 @@
             					</span>
             				</td>
            					<td>&nbsp;</td>
-        					</tr>
+        				</tr>
        				</tbody>
        			</table>
      		</div>

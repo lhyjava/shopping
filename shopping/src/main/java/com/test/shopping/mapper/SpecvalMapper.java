@@ -65,6 +65,12 @@ public interface SpecvalMapper {
     })
     List<Specval> selectByspecid(Integer specid);
     
+    @Delete({
+        "delete from specval",
+        "where specid = #{specid,jdbcType=INTEGER}"
+    })
+    int deleteBySpecid(Integer specid);
+    
     //add bu lhy end
 
     @Select({

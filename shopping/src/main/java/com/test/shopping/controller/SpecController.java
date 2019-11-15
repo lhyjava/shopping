@@ -151,4 +151,12 @@ public class SpecController {
 		return "redirect:/specfindall.htm";
 	}
 	
+	@RequestMapping("/specupdating.htm")
+	@ResponseBody
+	public String specupdate(Spec spec) {
+		
+		service.updateByPrimaryKeySelective(spec);
+		return "succsee";
+	}
+	
 }
