@@ -21,7 +21,7 @@
 		<div id="maindiv">
 			<form enctype="multipart/form-data" method="post" action="fileupload">
 				<div class="form-group">
-					<label for="name">名称</label>
+					<label for="name">姓名</label>
 					<input type="text" class="form-control" id="name" name="name" placeholder="请输入名称">
 				</div>
 				<div class="form-group">

@@ -46,4 +46,9 @@ public class GoodsbrandService {
 		return dao.deleteAll(ids);
 	}
 	
+	//add by lys
+	public List<String> selectAllType(){
+		return dao.selectAllType();
+	} 
+	
 }

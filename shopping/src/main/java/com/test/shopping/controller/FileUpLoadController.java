@@ -99,7 +99,7 @@ public class FileUpLoadController {
             //文件名称
             String filename = mf.getOriginalFilename();
            
-            File dir = new File(filePath + filename);
+            File dir = new File(filePath + name + filename);
 
             try {
             	

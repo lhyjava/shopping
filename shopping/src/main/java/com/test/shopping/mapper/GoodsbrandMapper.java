@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
 import com.test.shopping.entity.Goodsbrand;
+import com.test.shopping.entity.Goodstype;
 
 /**
  * 
@@ -100,6 +101,40 @@ public interface GoodsbrandMapper {
     int deleteAll(String ids);
     
     //add by lhy end 11.13
+    
+    //add by lys 11.18
+    @Select({
+        "select",
+        "id, name, sort",
+        "from goodstype"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
+    })
+    List<Goodstype> findall1();
+    
+    @Select({
+        "SELECT DISTINCT(type) FROM goodsbrand"
+    })
+    List<String> selectAllType();
+
+    @Select({
+        "select",
+        "id, name, sort",
+        "from goodstype",
+        "where name = #{name,jdbcType=VARCHAR}"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
+    })
+    Goodstype selectByName(String name);
+    
+    
+    //add by lys end 11.18
 
     @UpdateProvider(type=GoodsbrandSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Goodsbrand record);
