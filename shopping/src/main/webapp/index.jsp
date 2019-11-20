@@ -53,7 +53,7 @@
 					<ul>
 						<li><a href="javascript:void(0);" class="" id="common_operation_menu" onclick="openURL('show','common_operation')">首页</a></li>
 						<li><a href="javascript:void(0);" class="active" id="base_set_menu" onclick="openURL('show','base_set')">设置</a></li>
-						<li><a href="javascript:void(0);" class="active this" id="about_goods_menu" onclick="openURL('show','about_goods')">商品</a></li>
+						<li><a href="javascript:void(0);" class="active" id="about_goods_menu" onclick="openURL('show','about_goods')">商品</a></li>
 						<li><a href="javascript:void(0);" class="active" id="about_sparegoods_menu" onclick="openURL('show','about_sparegoods')">闲置</a></li>
 						<li><a href="javascript:void(0);" class="active" id="about_store_menu" onclick="openURL('show','about_store')">店铺</a></li>
 						<li><a href="javascript:void(0);" class="active" id="about_member_menu" onclick="openURL('show','about_member')">会员</a></li>
