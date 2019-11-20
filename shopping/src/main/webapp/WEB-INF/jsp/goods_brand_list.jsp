@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0048)http://localhost:8080/admin/goods_brand_list.htm -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -116,6 +117,9 @@
 		</script>
 		<style id="poshytip-css-tip-skyblue" type="text/css">
 			div.tip-skyblue{visibility:hidden;position:absolute;top:0;left:0;}div.tip-skyblue table, div.tip-skyblue td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-skyblue td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-skyblue td.tip-right{background-position:100% 0;}div.tip-skyblue td.tip-bottom{background-position:100% 100%;}div.tip-skyblue td.tip-left{background-position:0 100%;}div.tip-skyblue div.tip-inner{background-position:-10px -10px;}div.tip-skyblue div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
+			.pageindex{
+				font-size:14px;
+			}
 		</style>
 	</head>
 	<body>
@@ -159,78 +163,111 @@
 			</div>
 			<form name="ListForm" id="ListForm" action="http://localhost:8080/admin/goods_brand_list.htm" method="post">
 		    	<div class="brandtable">
-		    		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="brand_table">
-		        		<tbody>
-		        			<tr style="background:  #2A7AD2       ; height:30px; color:#FFF">
-		          				<td width="45">&nbsp;</td>
-						        <td width="60">排序</td>
-						        <td width="80">首字母</td>
-						        <td width="203">品牌名称</td>
-						        <td width="194">类别</td>
-						        <td width="183">品牌图片标识</td>
-						        <td width="121" align="center">推荐</td>
-						        <td width="217" align="left">操作</td>
-		        			</tr>
-					        <!-- add by lhy 11.11 begin-->
-					        <c:forEach items="${requestScope.goodsbrandlist }" var="tmp">
+		    		<pg:pager url="/goodsbrandfindall.htm" maxPageItems="5" maxIndexPages="5"
+							export="offset,currentPageNumber=pageNumber" isOffset="false"
+							index="center">
+			    		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="brand_table">
+			        		<tbody>
+			        			<tr style="background:  #2A7AD2       ; height:30px; color:#FFF">
+			          				<td width="45">&nbsp;</td>
+							        <td width="60">排序</td>
+							        <td width="80">首字母</td>
+							        <td width="203">品牌名称</td>
+							        <td width="194">类别</td>
+							        <td width="183">品牌图片标识</td>
+							        <td width="121" align="center">推荐</td>
+							        <td width="217" align="left">操作</td>
+			        			</tr>
+						        <!-- add by lhy 11.11 begin-->
+						        <c:forEach items="${requestScope.goodsbrandlist }" var="tmp">
+							        <pg:item>
+										<tr>
+											<td align="center">
+												<input class="cbclass" name="checkbox" type="checkbox" id="checkbox" value="${tmp.id }" />
+											</td>
+											<td>
+												<span class="pxnum size5">
+													<input type="text" name="0" id="0" value="${tmp.sort }" onchange="ajax_update('${tmp.id }','sort',this)" title="可编辑" />
+												</span>
+											</td>
+											<td>
+												<span class="pxnum size5">
+													<input type="text" name="N" id="N" value="${tmp.firstchar }" onchange="ajax_update('${tmp.id }','firstchar',this)" title="可编辑" />
+												</span>
+											</td>
+											<td>
+												<span class="pxnum size8">
+													<input name="Nutrilon" type="text" id="Nutrilon" onchange="ajax_update('${tmp.id }','name',this)" value="${tmp.name }" title="可编辑" />
+												</span>
+											</td>
+											<td>
+												<span class="pxnum size8"> ${tmp.type }</span>
+											</td>
+											<td>
+												<img src="/img/${tmp.img }" width="88px" height="44px" />
+											</td>
+											<td align="center">
+											<c:if test="${tmp.recommand }">
+												<img onclick="ajax_update_img('${tmp.id }',this)" src="/img/true.png" width="25" height="21" border="0" style="cursor:pointer;" title="可编辑" /> 
+											</c:if>
+											<c:if test="${!tmp.recommand }">
+												<img onclick="ajax_update_img('${tmp.id }',this)" src="/img/false.png" width="25" height="21" border="0" style="cursor:pointer;" title="可编辑" /> 
+											</c:if>
+											</td>
+											<td class="ac8" align="left">
+												<a href="goodsbrandedit.htm?id=${tmp.id }&name=${tmp.name }&firstchar=${tmp.firstchar }&sort=${tmp.sort }&type=${tmp.type }&img=${tmp.img }&recommand=${tmp.recommand }">编辑</a>|
+												<a href="javascript:isDelete(${tmp.id });">删除</a>
+											</td>
+										</tr>
+									</pg:item>
+						        </c:forEach>
+						        <!-- add by lhy 11.11 end-->
 								<tr>
 									<td align="center">
-										<input class="cbclass" name="checkbox" type="checkbox" id="checkbox" value="${tmp.id }" />
+										<input type="checkbox" name="all" id="all" value="" onclick="selectAll(this)" />
 									</td>
-									<td>
-										<span class="pxnum size5">
-											<input type="text" name="0" id="0" value="${tmp.sort }" onchange="ajax_update('${tmp.id }','sort',this)" title="可编辑" />
+									<td colspan="2" class="bdel">
+										<span class="sp1">全部</span>
+										<span class="sp2">
+											<div class="shop_btn_del shopbtn">
+												<input type="button" style="cursor:pointer;" value="删除" onclick="deleteAll(this);" />
+											</div>
 										</span>
 									</td>
-									<td>
-										<span class="pxnum size5">
-											<input type="text" name="N" id="N" value="${tmp.firstchar }" onchange="ajax_update('${tmp.id }','firstchar',this)" title="可编辑" />
-										</span>
-									</td>
-									<td>
-										<span class="pxnum size8">
-											<input name="Nutrilon" type="text" id="Nutrilon" onchange="ajax_update('${tmp.id }','name',this)" value="${tmp.name }" title="可编辑" />
-										</span>
-									</td>
-									<td>
-										<span class="pxnum size8"> ${tmp.type }</span>
-									</td>
-									<td>
-										<img src="/img/${tmp.img }" width="88px" height="44px" />
-									</td>
-									<td align="center">
-									<c:if test="${tmp.recommand }">
-										<img onclick="ajax_update_img('${tmp.id }',this)" src="/img/true.png" width="25" height="21" border="0" style="cursor:pointer;" title="可编辑" /> 
-									</c:if>
-									<c:if test="${!tmp.recommand }">
-										<img onclick="ajax_update_img('${tmp.id }',this)" src="/img/false.png" width="25" height="21" border="0" style="cursor:pointer;" title="可编辑" /> 
-									</c:if>
-									</td>
-									<td class="ac8" align="left">
-										<a href="goodsbrandedit.htm?id=${tmp.id }&name=${tmp.name }&firstchar=${tmp.firstchar }&sort=${tmp.sort }&type=${tmp.type }&img=${tmp.img }&recommand=${tmp.recommand }">编辑</a>|
-										<a href="javascript:isDelete(${tmp.id });">删除</a>
-									</td>
+									<td colspan="4"></td>
 								</tr>
-					        </c:forEach>
-					        <!-- add by lhy 11.11 end-->
-							<tr>
-								<td align="center">
-									<input type="checkbox" name="all" id="all" value="" onclick="selectAll(this)" />
-								</td>
-								<td colspan="2" class="bdel">
-									<span class="sp1">全部</span>
-									<span class="sp2">
-										<div class="shop_btn_del shopbtn">
-											<input type="button" style="cursor:pointer;" value="删除" onclick="deleteAll(this);" />
-										</div>
-									</span>
-								</td>
-								<td colspan="4"></td>
-							</tr>
-		    			</tbody>
-		    		</table>
+			    			</tbody>
+			    		</table>
+			    		<pg:index>
+							<pg:first>
+								<a class="pageindex" href="${pageUrl}">首页</a>
+							</pg:first>
+							<pg:prev>
+								<a class="pageindex" href="${pageUrl }">上一页</a>
+							</pg:prev>
+							<pg:pages>
+								<c:choose>
+									<%--当循环页码是当前页码，则该页码不可以导航，并显示为红色--%>
+									<c:when test="${currentPageNumber eq pageNumber}">
+										<font color="red">[${pageNumber }]</font>
+									</c:when>
+				
+									<%-- 当循环页码不是当前页码，则该页码可以导航 --%>
+									<c:otherwise>
+										<a class="pageindex" href="${pageUrl }">[${pageNumber }]</a>
+									</c:otherwise>
+								</c:choose>
+							</pg:pages>
+							<pg:next>
+								<a class="pageindex" href="${pageUrl }">下一页</a>
+							</pg:next>
+							<pg:last>
+								<a class="pageindex" href="${pageUrl }">尾页</a>
+							</pg:last>
+						</pg:index>
+		    		</pg:pager>
 		    		<!-- 分页 -->
-					<div class="fenye" align="right" id="queryCondition">
+					<!-- <div class="fenye" align="right" id="queryCondition">
 						<input name="category" type="hidden" id="category" value="" />
 						<input name="name" type="hidden" id="name" value="" />
 						<input name="mulitId" type="hidden" id="mulitId" />
@@ -239,7 +276,7 @@
 						<a href="javascript:void(0);" onclick="return gotoPage(1)">首页</a> 第　
 						<a class="this" href="javascript:void(0);" onclick="return gotoPage(1)">1</a> 页　
 						<a href="javascript:void(0);" onclick="return gotoPage(1)">末页</a> 	  
-					</div>
+					</div> -->
 				</div>
 			</form>
 		</div>

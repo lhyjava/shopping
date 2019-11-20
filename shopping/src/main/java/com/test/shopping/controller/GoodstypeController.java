@@ -121,7 +121,6 @@ public class GoodstypeController {
 	@RequestMapping("/goodstypeadd.htm")
 	public String goodstypeadd(HttpServletRequest req) {
 		// 查询所有规格
-
 		List<Specplus> list = specService.findall();
 		req.setAttribute("specpluslistfortype", list);
 		// 查询所有品牌

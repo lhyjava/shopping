@@ -37,10 +37,6 @@ public class GoodstypeService {
 	}
 	
 	//add by lys
-	public List<Goodstype> findall(){
-		return dao.findall();
-	}
-	
 	public Goodstype selectByName(String name){
 		return dao.selectByName(name);
 	}

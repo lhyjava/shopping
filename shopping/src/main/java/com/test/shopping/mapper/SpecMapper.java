@@ -54,7 +54,7 @@ public interface SpecMapper {
         "select s.*, GROUP_CONCAT(v.value) vals",
         "FROM spec s, specval v",
         "WHERE s.id = v.specid",
-        "GROUP BY s.id"
+        "GROUP BY s.id  order by sort"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),

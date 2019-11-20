@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0058)http://192.168.1.3:8080/shopping/admin/goods_spec_list.htm -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -59,6 +60,9 @@
 		</script>
 		<style id="poshytip-css-tip-skyblue" type="text/css">
 			div.tip-skyblue{visibility:hidden;position:absolute;top:0;left:0;}div.tip-skyblue table, div.tip-skyblue td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-skyblue td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-skyblue td.tip-right{background-position:100% 0;}div.tip-skyblue td.tip-bottom{background-position:100% 100%;}div.tip-skyblue td.tip-left{background-position:0 100%;}div.tip-skyblue div.tip-inner{background-position:-10px -10px;}div.tip-skyblue div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
+			.pageindex{
+				font-size:14px;
+			}
 		</style>
 	</head>
 	<body>
@@ -75,57 +79,90 @@
 	  		<form name="ListForm" id="ListForm" action="http://192.168.1.3:8080/shopping/admin/goods_spec_list.htm" method="post">
 	  			<div id="list">
 	    			<div class="typemanager">
-	      				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="specific_table">
-	        				<tbody>
-	        					<tr style="background:  #2A7AD2       ; height:30px; color:#FFF">
-						        	<td width="5%">&nbsp;</td>
-						          	<td width="10%">排序</td>
-						          	<td width="20%">规格名称</td>
-						          	<td width="40%">规格值</td>
-						          	<td align="center">操作</td>
-						        </tr>
-	        					<!-- add by lhy 1114 begin  -->
-	        					<c:forEach items="${requestScope.specpluslist }" var="tmp">
-	        						<tr>
-							        	<td align="center">
-							        		<input class="cbclass" name="id" type="checkbox" id="id" value="${tmp.id }" />
-							        	</td>
-							          	<td>
-							          		<span class="pxnum size5">
-							            		<input type="text" name="1" id="1" value="${tmp.sort }" onchange="ajax_update('${tmp.id }','sort',this)" title="可编辑" />
-							          		</span>
-							          	</td>
-							          	<td>
-							          		<span class="pxnum size7">
-							          			<span class="pxnum size5">
-							           				<input type="text" name="颜色分类" id="颜色分类" value="${tmp.name }" onchange="ajax_update('${tmp.id }','name',this)" title="可编辑" />
-							          			</span>
-							          		</span>
-							          	</td>
-								        <td>${tmp.vals }</td>
-								        <td align="center" class="ac8">
-								        	<a href="spacvaledit.htm?id=${tmp.id }&sort=${tmp.sort }&name=${tmp.name }">编辑</a>|
-								        	<a href="javascript:isDelete(${tmp.id });">删除</a>
-								        </td>
+	    				<pg:pager url="/specfindall.htm" maxPageItems="5" maxIndexPages="5"
+							export="offset,currentPageNumber=pageNumber" isOffset="false"
+							index="center">
+		      				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="specific_table">
+		        				<tbody>
+		        					<tr style="background:#2A7AD2; height:30px; color:#FFF">
+							        	<td width="5%">&nbsp;</td>
+							          	<td width="10%">排序</td>
+							          	<td width="20%">规格名称</td>
+							          	<td width="40%">规格值</td>
+							          	<td align="center">操作</td>
 							        </tr>
-	        					</c:forEach>
-	        					<!-- add by lhy 1114 end  -->
-	                			<tr>
-	          						<td align="center">
-	          							<input type="checkbox" name="all" id="all" value="" onclick="selectAll(this)" />
-	          						</td>
-	          						<td colspan="2" class="bdel">
-		          						<span class="sp1">全部</span>
-		          						<span class="sp2">
-		            						<div class="shop_btn_del shopbtn">
-							              		<input type="button" value="删除" onclick="deleteAll(this);" style="cursor:pointer;" />
-							            	</div>
-	          							</span>
-	          						</td>
-	          						<td colspan="4"></td>
-	        					</tr>
-	      					</tbody>
-	      				</table>
+		        					<!-- add by lhy 1114 begin  -->
+		        					<c:forEach items="${requestScope.specpluslist }" var="tmp">
+		        						<pg:item>
+			        						<tr>
+									        	<td align="center">
+									        		<input class="cbclass" name="id" type="checkbox" id="id" value="${tmp.id }" />
+									        	</td>
+									          	<td>
+									          		<span class="pxnum size5">
+									            		<input type="text" name="1" id="1" value="${tmp.sort }" onchange="ajax_update('${tmp.id }','sort',this)" title="可编辑" />
+									          		</span>
+									          	</td>
+									          	<td>
+									          		<span class="pxnum size7">
+									          			<span class="pxnum size5">
+									           				<input type="text" name="颜色分类" id="颜色分类" value="${tmp.name }" onchange="ajax_update('${tmp.id }','name',this)" title="可编辑" />
+									          			</span>
+									          		</span>
+									          	</td>
+										        <td>${tmp.vals }</td>
+										        <td align="center" class="ac8">
+										        	<a href="spacvaledit.htm?id=${tmp.id }&sort=${tmp.sort }&name=${tmp.name }">编辑</a>|
+										        	<a href="javascript:isDelete(${tmp.id });">删除</a>
+										        </td>
+									        </tr>
+								        </pg:item>
+		        					</c:forEach>
+		        					<!-- add by lhy 1114 end  -->
+		                			<tr>
+		          						<td align="center">
+		          							<input type="checkbox" name="all" id="all" value="" onclick="selectAll(this)" />
+		          						</td>
+		          						<td colspan="2" class="bdel">
+			          						<span class="sp1">全部</span>
+			          						<span class="sp2">
+			            						<div class="shop_btn_del shopbtn">
+								              		<input type="button" value="删除" onclick="deleteAll(this);" style="cursor:pointer;" />
+								            	</div>
+		          							</span>
+		          						</td>
+		          						<td colspan="4"></td>
+		        					</tr>
+		      					</tbody>
+		      				</table>
+		      				<pg:index>
+								<pg:first>
+									<a class="pageindex" href="${pageUrl}">首页</a>
+								</pg:first>
+								<pg:prev>
+									<a class="pageindex" href="${pageUrl }">上一页</a>
+								</pg:prev>
+								<pg:pages>
+									<c:choose>
+										<%--当循环页码是当前页码，则该页码不可以导航，并显示为红色--%>
+										<c:when test="${currentPageNumber eq pageNumber}">
+											<font color="red">[${pageNumber }]</font>
+										</c:when>
+					
+										<%-- 当循环页码不是当前页码，则该页码可以导航 --%>
+										<c:otherwise>
+											<a class="pageindex" href="${pageUrl }">[${pageNumber }]</a>
+										</c:otherwise>
+									</c:choose>
+								</pg:pages>
+								<pg:next>
+									<a class="pageindex" href="${pageUrl }">下一页</a>
+								</pg:next>
+								<pg:last>
+									<a class="pageindex" href="${pageUrl }">尾页</a>
+								</pg:last>
+							</pg:index>
+	      				</pg:pager>
 	    			</div>
 	    			<div class="fenye">
 				    	<input name="currentPage" type="hidden" id="currentPage" value="1" />

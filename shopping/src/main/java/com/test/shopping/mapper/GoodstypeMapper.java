@@ -50,19 +50,6 @@ public interface GoodstypeMapper {
     @Select({
         "select",
         "id, name, sort",
-        "from goodstype"
-    })
-    @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
-    })
-	List<Goodstype> findall();
-    
-    
-    @Select({
-        "select",
-        "id, name, sort",
         "from goodstype",
         "where name = #{name,jdbcType=VARCHAR}"
     })
@@ -80,7 +67,7 @@ public interface GoodstypeMapper {
     @Select({
         "select",
         "id, name, sort",
-        "from goodstype"
+        "from goodstype order by sort"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),

@@ -67,7 +67,7 @@ public interface GoodsbrandMapper {
     @Select({
         "select",
         "id, sort, firstchar, name, type, img, recommand",
-        "from goodsbrand"
+        "from goodsbrand order by sort"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),

@@ -55,7 +55,7 @@ public interface SpecvalMapper {
         "select",
         "id, specid, value, sort",
         "from specval",
-        "where specid = #{specid,jdbcType=INTEGER}"
+        "where specid = #{specid,jdbcType=INTEGER}  order by sort"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
