@@ -82,6 +82,18 @@ public interface SpecMapper {
     
     //add by lhy 1114 end
     
+    //add by lhy 1120 begin
+    
+    @Select({
+        "select",
+        "name",
+        "from spec",
+        "where name = #{name,jdbcType=VARCHAR}"
+    })
+    String selectByNameValidate(String name);
+    
+    //add by lhy 1120 end
+    
     @UpdateProvider(type=SpecSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Spec record);
 

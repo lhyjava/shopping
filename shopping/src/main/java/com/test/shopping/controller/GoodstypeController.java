@@ -108,6 +108,30 @@ public class GoodstypeController {
 
 		return "redirect:/goodstypefindall.htm";
 	}
+	
+	/**
+	 * 
+	 * @Title: goodstype
+	 * @Description: 表单验证，名称存在时不允许提交
+	 * @Author lhy
+	 * @DateTime 2019年11月20日 下午3:14:18
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping("goodstype.htm")
+	@ResponseBody
+	public String goodstype(String name) {
+		
+		String n = service.selectByNameValidate(name);
+		
+		if(n == null){
+			//用户名不存在
+			return "true";
+		}else{
+			return "false";
+		}
+	}
+	
 
 	/**
 	 * 

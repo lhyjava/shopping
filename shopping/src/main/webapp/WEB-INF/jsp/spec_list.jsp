@@ -71,7 +71,7 @@
 	  		<div class="settab">
 	  			<span class="tab-one"></span>
 	  			<span class="tabs">
-	  				<a href="http://192.168.1.3:8080/shopping/admin/goods_spec_list.htm" class="this">管理</a> | 
+	  				<a href="javascript:void(0);" class="this">管理</a> | 
 	  				<a href="specadd.htm">新增</a>
 	  			</span>
 	  			<span class="tab-two"></span>

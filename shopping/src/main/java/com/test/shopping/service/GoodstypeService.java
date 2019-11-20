@@ -36,6 +36,10 @@ public class GoodstypeService {
 		return ret;
 	}
 	
+	public String selectByNameValidate(String name) {
+		return dao.selectByNameValidate(name);
+	}
+	
 	//add by lys
 	public Goodstype selectByName(String name){
 		return dao.selectByName(name);

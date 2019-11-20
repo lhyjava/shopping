@@ -66,11 +66,6 @@ public class SpecController {
 		//插入规格
 		int ret = service.insert(spec);
 		
-		//插入失败返回error
-		if(ret != 1) {
-			return "error";
-		}
-		
 		//插入成功，查询该条记录的id
 		Spec s = service.selectByName(spec.getName());
 		
@@ -157,6 +152,29 @@ public class SpecController {
 		
 		service.updateByPrimaryKeySelective(spec);
 		return "succsee";
+	}
+	
+	/**
+	 * 
+	 * @Title: goodstype
+	 * @Description: 表单验证，名称存在时不允许提交
+	 * @Author lhy
+	 * @DateTime 2019年11月20日 下午3:14:18
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping("/specvalidate.htm")
+	@ResponseBody
+	public String specvalidate(String name) {
+		
+		String n = service.selectByNameValidate(name);
+		
+		if(n == null){
+			//用户名不存在
+			return "true";
+		}else{
+			return "false";
+		}
 	}
 	
 }

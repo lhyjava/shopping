@@ -97,9 +97,10 @@
 	    		<div class="settab">
 		    		<span class="tab-one"></span> 
 		    		<span class="tabs"> 
-		    			<a href="http://localhost:8080/admin/goods_type_list.htm" class="this">列表</a> | 
-		    			<a href="goodstypeadd.htm">新增</a> </span> <span class="tab-two">
+		    			<a href="javascript:void(0);" class="this">管理</a> | 
+		    			<a href="goodstypeadd.htm">新增</a>
 		    		</span>
+		    		<span class="tab-two"></span>
 	    		</div>
 	    		<div class="typemanager">
 	    			<pg:pager url="/goodstypefindall.htm" maxPageItems="5" maxIndexPages="5"
@@ -107,7 +108,7 @@
 							index="center">
 		      			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="type_manager">
 		        			<tbody>
-		        				<tr style="background:  #2A7AD2       ; height:30px; color:#FFF">
+		        				<tr style="background:#2A7AD2; height:30px; color:#FFF">
 						          	<td width="5%">&nbsp;</td>
 						          	<td width="10%">排序</td>
 						          	<td width="60%">类型名称</td>

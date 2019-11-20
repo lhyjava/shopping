@@ -12,34 +12,8 @@
 		<script src="/js/jquery.shop.common.js"></script>
 		<script src="/js/jquery.validate.min.js"></script>
 		<script src="/js/jquery.poshytip.min.js"></script>
-		<script>
-			jQuery(document).ready(function(){
-			  /* jQuery("#theForm").validate({
-			    rules:{
-				  name:{
-				    required :true,
-				     remote:{
-					    url: "http://192.168.1.3:8080/shopping/admin/goods_spec_verify.htm",     //后台处理程序
-			            type: "post",               //数据发送方式
-			            dataType: "json",           //接受数据格式   
-			            data: {                     //要传递的数据
-			                  "name": function(){return jQuery("#name").val();},
-							  "id":function(){return jQuery("#id").val()}
-					     }
-						}
-				  }
-				 },
-				messages:{
-				  name:{required:"规格名称不能为空",remote:"该规格已经存在"}
-				}
-			  });
-			     var type="text";
-			   if(type=="text"){
-			     jQuery("#type1").attr("checked",true);
-			   }else{
-			     jQuery("#type2").attr("checked",true);
-			   }*/
-			}); 
+		<script src="/js/spec_validate.js"></script>
+		<script> 
 			/* 
 				提交表单，通过ajax提交"添加规格表单"，设置ajax同步，成功后提交"添加规格值表单"
 			*/
@@ -89,8 +63,8 @@
 		    <div class="settab">
 		    	<span class="tab-one"></span>
 		    	<span class="tabs">
-		    		<a href="http://192.168.1.3:8080/shopping/admin/goods_spec_add.htm">新增</a>
-		    		<a href="javascript:void(0);" class="this">编辑</a>
+		    		<a href="/specfindall.htm">管理</a> |
+		    		<a href="javascript:void(0);" class="this">新增</a>
 			  	</span>
 			  	<span class="tab-two"></span>
 			</div>

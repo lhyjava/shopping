@@ -13,35 +13,8 @@
 		<script src="/js/jquery-ui-1.8.21.js"></script>
 		<script src="/js/jquery.shop.common.js"></script>
 		<script src="/js/jquery.validate.min.js"></script>
+		<script src="/js/goods_type_validate.js"></script>
 		<script>
-			jQuery(document).ready(function(){
-				/* jQuery("#theForm").validate({
-			    	rules:{
-				  		name:{
-				    		required :true,
-				     		remote:{
-					    		url: "http://localhost:8080/admin/goods_type_verify.htm",     //后台处理程序
-			            		type: "post",               //数据发送方式
-			           			dataType: "json",           //接受数据格式   
-			            		data: {                     //要传递的数据
-			                  		"name": function(){
-			                  				return jQuery("#name").val();
-			                  		},
-							  		"id":function(){
-							  			return jQuery("#id").val();
-							  		}
-					     		}
-							}
-						}
-					},
-					messages:{
-				  		name:{
-				  				required:"类型名称不能为空",
-				  				remote:"该类型已经存在"
-				  			}
-					}
-				}); */
-			});
 			function saveForm(){
 				var gss="";
 				var gbs="";
@@ -59,14 +32,14 @@
 		</script>
 	</head>
 	<body>
-		<form action="goodstypeaddsubmit.htm" method="post">
+		<form id="myForm" action="goodstypeaddsubmit.htm" method="post">
 			<div class="cont">
 		    	<h1 class="seth1">类型管理</h1>
 		    	<div class="settab">
 		    		<span class="tab-one"></span>
 		    		<span class="tabs">
-		    			<a href="http://localhost:8080/admin/goods_type_list.htm">列表</a> | 
-		    			<a href="http://localhost:8080/admin/goods_type_add.htm" class="this">新增</a>
+		    			<a href="/goodstypefindall.htm">管理</a> | 
+		    			<a href="javascript:void(0);" class="this">新增</a>
 		    		</span>
 		    		<span class="tab-two"></span>
 		    	</div>
@@ -106,7 +79,7 @@
 								<c:forEach items="${requestScope.specpluslistfortype }" var="tmp">
 									<tr>
 										<td align="center">
-										<input name="specid" type="checkbox" id="specid" value="${tmp.id }" />
+											<input name="specid" type="checkbox" id="specid" value="${tmp.id }" />
 										</td>
 										<td>${tmp.name }</td>
 										<td>${tmp.vals }</td>

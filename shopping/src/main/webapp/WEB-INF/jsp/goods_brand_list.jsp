@@ -128,7 +128,7 @@
 		  	<div class="settab"> 
 				<span class="tab-one"></span>
 				<span class="tabs"> 
-					<a href="http://localhost:8080/admin/goods_brand_list.htm" class="this">管理</a> | 
+					<a href="javascript:void(0);" class="this">管理</a> | 
 					<a href="goodsbrandadd.htm">新增</a>
 				</span> 
 				<span class="tab-two"></span>

@@ -9,6 +9,7 @@
 		<link href="/css/template.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.6.2.js"></script>
 		<script src="/js/jquery.validate.min.js"></script>
+		<script src="/js/goods_brand_validate.js"></script>
 		<script>
 			jQuery(document).ready(function(){
 				//改变系统提示的样式
@@ -42,28 +43,6 @@
 				jQuery("#brandLogo").change(function(){
 					jQuery("#textfield1").val(jQuery("#brandLogo").val());
 				})
-				/* jQuery("#theForm").validate({
-				    rules:{
-					  name:{
-					    required :true,
-					     remote:{
-						    url: "http://localhost:8080/admin/goods_brand_verify.htm",     //后台处理程序
-				            type: "post",               //数据发送方式
-				            dataType: "json",           //接受数据格式   
-				            data: {                     //要传递的数据
-				                  "name": function(){return jQuery("#name").val();},
-								  "id":function(){return jQuery("#id").val()}
-						     }
-							}
-					  }  ,
-					  brandLogo:{
-					   required :true,
-					    accept:"gif|jpg|png"
-					  }	 },
-					messages:{
-					  name:{required:"品牌名称不能为空",remote:"该品牌已经存在"}  ,
-					  brandLogo:{required :"品牌图片不能为空",accept:"系统不允许的文件类型"}	}
-				  }); */
 				//编辑
 				jQuery("#cid").val('');
 			//结束
@@ -89,16 +68,15 @@
 		</script>
 	</head>
 	<body>
-		<form action="goodsbrandeditsubmit.htm" method="post">
+		<form id="myForm" action="goodsbrandeditsubmit.htm" method="post">
 			<input type="hidden" name="id" value="${param.id }" /> 
 			<div class="cont">
 			    <h1 class="seth1">品牌管理</h1>
 			    <div class="settab"> 
 					<span class="tab-one"></span>
 					<span class="tabs">
-				    	<a href="http://localhost:8080/admin/goods_brand_list.htm">管理</a> | 
-						<a class="this" href="http://localhost:8080/admin/goods_brand_add.htm">修改</a> |
-				    	<a href="http://localhost:8080/admin/goods_brand_audit.htm">申请列表</a> 
+				    	<a href="/goodsbrandfindall.htm">管理</a> | 
+						<a href="javascript:void(0);" class="this">修改</a>
 					</span> 
 					<span class="tab-two"></span>
 				</div>

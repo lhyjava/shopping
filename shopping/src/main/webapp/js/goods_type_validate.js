@@ -1,0 +1,47 @@
+$(function(){
+	$("#myForm").validate({
+		rules:{
+			name:{
+				required:true,
+				remote:{
+					url:'goodstype.htm',
+					type:'post',
+					data:{
+						name:function(){
+							var u = $("#name").val();
+							return u;
+						}
+					}
+				}
+			},
+			sort:{
+				required:true,
+				digits:true
+			},
+			specid:{
+				required:true,
+		        minlength:1
+			},
+			brandid:{
+				required:true,
+				minlength:1
+			}
+		},
+		messages:{
+			name:{
+				required:'类型名不能为空',
+				remote:'类型名重复'
+			},
+			sort:{
+				required:'排序不能为空',
+				digits:'只能是整数'
+			},
+			specid:{
+				required:'规格必选'
+			},
+			brandid:{
+				required:'品牌必选'
+			}
+		}
+	});
+});

@@ -92,4 +92,16 @@ public interface GoodstypeMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Goodstype record);
+    
+    //add by lhy 1120 begin
+    
+    @Select({
+        "select",
+        "name",
+        "from goodstype",
+        "where name = #{name,jdbcType=VARCHAR}"
+    })
+	String selectByNameValidate(String name);
+    
+    //add by lhy 1120 end
 }
