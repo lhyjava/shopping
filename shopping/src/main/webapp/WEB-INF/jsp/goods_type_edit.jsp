@@ -61,19 +61,21 @@
 								</tr>
 								<!-- 所有规格信息 -->
 								<c:forEach items="${requestScope.specpluslistfortype }" var="tmp">
-									<tr>
-										<td align="center">
-											<input name="specid" type="checkbox" id="specid" value="${tmp.id }" />
-										</td>
-										<td>${tmp.name }</td>
-										<td>${tmp.vals }</td>
-									</tr>
 									<!-- 相关联的规格信息，默认选中 -->
 									<c:forEach items="${requestScope.findBySpec }" var="tmp1">
 										<c:if test="${tmp.id == tmp1.id }">
 											<tr>
 												<td align="center">
 													<input name="specid" type="checkbox" id="specid" value="${tmp.id }" checked="checked" />
+												</td>
+												<td>${tmp.name }</td>
+												<td>${tmp.vals }</td>
+											</tr>
+										</c:if>
+										<c:if test="${tmp.id != tmp1.id }">
+											<tr>
+												<td align="center">
+													<input name="specid" type="checkbox" id="specid" value="${tmp.id }" />
 												</td>
 												<td>${tmp.name }</td>
 												<td>${tmp.vals }</td>
@@ -91,13 +93,6 @@
 		         				<h3>${tmp }</h3>
 		         				<!-- 所有品牌信息 -->
 		         				<c:forEach items="${requestScope.brandlistforgoodstype }" var="tmp1">
-		         					<c:if test="${tmp == tmp1.type }">
-					            		<li>
-					            			<span class="span1">
-						            			<input name="brandid" type="checkbox" id="gb_28" value="${tmp1.id }" />${tmp1.name }
-						            		</span> 
-					            		</li> 
-			            			</c:if>
 		         					<!-- 相关联的品牌信息 -->
 		         					<c:forEach items="${requestScope.findByGoodsBrand }" var="tmp2">
 				            			<c:if test="${tmp1.id == tmp2.id }">
@@ -105,6 +100,15 @@
 							            		<li>
 							            			<span class="span1">
 								            			<input name="brandid" type="checkbox" id="gb_28" value="${tmp1.id }" checked="checked" />${tmp1.name }
+								            		</span> 
+							            		</li> 
+					            			</c:if>
+		         						</c:if>
+		         						<c:if test="${tmp1.id != tmp2.id }">
+		         							<c:if test="${tmp == tmp1.type }">
+							            		<li>
+							            			<span class="span1">
+								            			<input name="brandid" type="checkbox" id="gb_28" value="${tmp1.id }" />${tmp1.name }
 								            		</span> 
 							            		</li> 
 					            			</c:if>
