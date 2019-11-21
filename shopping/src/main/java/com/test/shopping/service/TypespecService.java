@@ -19,4 +19,8 @@ public class TypespecService {
 		
 		return dao.insertByTypeid(list);
 	}
+	
+	public int deleteByTypeId(Integer id) {
+		return dao.deleteByTypeId(id);
+	}
 }

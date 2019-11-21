@@ -17,4 +17,8 @@ public class TypebrandService {
 	public int insertByTypeid(List<Typebrand> list) {
 		return dao.insertByTypeid(list);
 	}
+	
+	public int deleteByTypeId(Integer id) {
+		return dao.deleteByTypeId(id);
+	}
 }

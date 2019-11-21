@@ -48,6 +48,16 @@ public interface TypebrandMapper {
     int insertByTypeid(List<Typebrand> list);
     
     //add by lhy 1118 end
+    
+    //add by lhy 1121 begin
+    
+    @Delete({
+        "delete from typebrand",
+        "where typeid = #{id,jdbcType=INTEGER}"
+    })
+    int deleteByTypeId(Integer id);
+    
+    //add by lhy 1121 end
 
     @Select({
         "select",

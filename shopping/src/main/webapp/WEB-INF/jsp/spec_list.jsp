@@ -168,13 +168,13 @@
 							</pg:index>
 	      				</pg:pager>
 	    			</div>
-	    			<div class="fenye">
+	    			<!-- <div class="fenye">
 				    	<input name="currentPage" type="hidden" id="currentPage" value="1" />
 					  	<input name="mulitId" type="hidden" id="mulitId" />
 				      	<a href="javascript:void(0);" onclick="return gotoPage(1)">首页</a> 第　
 				      	<a class="this" href="javascript:void(0);" onclick="return gotoPage(1)">1</a> 页　
 				      	<a href="javascript:void(0);" onclick="return gotoPage(1)">末页</a>
-					</div>
+					</div> -->
 				</div>
 			</form>
 		</div>

@@ -13,29 +13,9 @@
 		<script src="/js/jquery-ui-1.8.21.js"></script>
 		<script src="/js/jquery.shop.common.js"></script>
 		<script src="/js/jquery.validate.min.js"></script>
-		<script src="/js/goods_type_validate.js"></script>
-		<script>
-			$(function(){
-				var id = ${param.id };
-				$.ajax({
-			   		type:'POST',
-			        url:'checkedById.htm',
-					data:{
-						"id":id
-					},
-				   	success:function(data){
-				   		if(data=="success"){
-						  	alert(1);
-					 	}else{
-					   
-					 	}
-					}
-			   });
-			});
-		</script>
 	</head>
 	<body>
-		<form id="myForm" action="goodstypeaddsubmit.htm" method="post">
+		<form id="myForm" action="goodstypeeditsubmit.htm" method="post">
 			<div class="cont">
 		    	<h1 class="seth1">类型管理</h1>
 		    	<div class="settab">
@@ -79,7 +59,8 @@
 									<td width="150"><strong>规格名称</strong></td>
 									<td><strong>规格值</strong></td>
 								</tr>
-								<c:forEach items="${requestScope.findbyspeclist }" var="tmp">
+								<!-- 所有规格信息 -->
+								<c:forEach items="${requestScope.specpluslistfortype }" var="tmp">
 									<tr>
 										<td align="center">
 											<input name="specid" type="checkbox" id="specid" value="${tmp.id }" />
@@ -87,23 +68,48 @@
 										<td>${tmp.name }</td>
 										<td>${tmp.vals }</td>
 									</tr>
+									<!-- 相关联的规格信息，默认选中 -->
+									<c:forEach items="${requestScope.findBySpec }" var="tmp1">
+										<c:if test="${tmp.id == tmp1.id }">
+											<tr>
+												<td align="center">
+													<input name="specid" type="checkbox" id="specid" value="${tmp.id }" checked="checked" />
+												</td>
+												<td>${tmp.name }</td>
+												<td>${tmp.vals }</td>
+											</tr>
+										</c:if>
+									</c:forEach>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 		      		<div class="specification">
 		        		<h2>选择关联品牌</h2>
-		       			<c:forEach items="${requestScope.findbybrandtype }" var="tmp">
+		       			<c:forEach items="${requestScope.typelistforgoodstype }" var="tmp">
 		       				<ul class="spec_sports">
 		         				<h3>${tmp }</h3>
-		         				<c:forEach items="${requestScope.findbybrandname }" var="tmp1">
-			            			<c:if test="${tmp==tmp1.type }">
+		         				<!-- 所有品牌信息 -->
+		         				<c:forEach items="${requestScope.brandlistforgoodstype }" var="tmp1">
+		         					<c:if test="${tmp == tmp1.type }">
 					            		<li>
 					            			<span class="span1">
 						            			<input name="brandid" type="checkbox" id="gb_28" value="${tmp1.id }" />${tmp1.name }
 						            		</span> 
 					            		</li> 
-			            			</c:if> 
+			            			</c:if>
+		         					<!-- 相关联的品牌信息 -->
+		         					<c:forEach items="${requestScope.findByGoodsBrand }" var="tmp2">
+				            			<c:if test="${tmp1.id == tmp2.id }">
+		         							<c:if test="${tmp == tmp1.type }">
+							            		<li>
+							            			<span class="span1">
+								            			<input name="brandid" type="checkbox" id="gb_28" value="${tmp1.id }" checked="checked" />${tmp1.name }
+								            		</span> 
+							            		</li> 
+					            			</c:if>
+		         						</c:if>
+			            			</c:forEach>
 		            			</c:forEach>               
 		       				</ul>
 		       			</c:forEach>

@@ -50,7 +50,7 @@ public class SpecvalController {
 	/**
 	 * 
 	 * @Title: spacvaledit
-	 * @Description: 修改(带参跳转)
+	 * @Description: 修改页面(带参跳转)
 	 * @Author lhy
 	 * @DateTime 2019年11月15日 上午7:14:32
 	 * @return
@@ -64,6 +64,17 @@ public class SpecvalController {
 		return "spec_edit";
 	}
 
+	/**
+	 * 
+	 * @Title: specvalupdating
+	 * @Description: 修改
+	 * @Author Administrator
+	 * @DateTime 2019年11月21日 下午6:35:25
+	 * @param id
+	 * @param valsort
+	 * @param valname
+	 * @return
+	 */
 	@RequestMapping("/specvalupdating.htm")
 	public String specvalupdating(Integer id, Integer[] valsort, String[] valname) {
 

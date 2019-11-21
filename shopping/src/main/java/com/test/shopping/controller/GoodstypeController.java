@@ -108,7 +108,7 @@ public class GoodstypeController {
 
 		return "redirect:/goodstypefindall.htm";
 	}
-	
+
 	/**
 	 * 
 	 * @Title: GoodsTypeEdit
@@ -121,36 +121,76 @@ public class GoodstypeController {
 	 * @return
 	 */
 	@RequestMapping("/goodstypeedit.htm")
-	public String GoodsTypeEdit(Integer id,String name,Integer sort,HttpServletRequest req) {
-		
-		//所有规格信息
+	public String GoodsTypeEdit(Integer id, String name, Integer sort, HttpServletRequest req) {
+
+		// 所有规格信息
 		List<Specplus> specsList = specService.findall();
-		req.setAttribute("findbyspeclist", specsList);
-		//所有品牌类型
+		req.setAttribute("specpluslistfortype", specsList);
+		// 所有品牌类型
 		List<String> brandTypeList = goodsbrandservice.selectAllType();
-		req.setAttribute("findbybrandtype", brandTypeList);
-		//所有品牌名
+		req.setAttribute("typelistforgoodstype", brandTypeList);
+		// 所有品牌名
 		List<Goodsbrand> brandNameList = goodsbrandservice.findall();
-		req.setAttribute("findbybrandname", brandNameList);
+		req.setAttribute("brandlistforgoodstype", brandNameList);
+
+		// 关联的规格信息
+		List<Specplus> specRelevanceList = service.selectBySpecplus(id);
+		req.setAttribute("findBySpec", specRelevanceList);
+		// 关联的品牌名
+		List<Goodsbrand> goodsBrandRelevanceList = service.selectByBrandName(id);
+		req.setAttribute("findByGoodsBrand", goodsBrandRelevanceList);
+		
 		return "goods_type_edit";
 	}
-	
-	@RequestMapping("/checkedById.htm")
-	@ResponseBody
-	public String checkedById(Integer id) {
+
+	/**
+	 * 
+	 * @Title: checkedById
+	 * @Description: 修改
+	 * @Author Administrator
+	 * @DateTime 2019年11月21日 下午6:04:07
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/goodstypeeditsubmit.htm")
+	public String goodsTypeEditSubmit(Goodstype gt, Integer[] specid, Integer[] brandid) {
+
+		// 修改类型名
+		service.updateByPrimaryKeySelective(gt);
+
+		// 删除所有规格信息和品牌信息
+		typespecService.deleteByTypeId(gt.getId());
+		typebrandService.deleteByTypeId(gt.getId());
 		
-		List<Integer> ids = new ArrayList<Integer>();
-		
-		//所有规格信息
-		List<Specplus> specsList = service.selectBySpecplus(id);
-		//所有品牌类型
-		List<String> brandTypeList = goodsbrandservice.selectAllType();
-		
-		
-		
-		return "success";
+		// 根据类别查找对应的id
+		Goodstype gt1 = service.selectByName(gt.getName());
+		Integer typeid = gt1.getId();
+
+		// 添加类别规格
+		List<Typespec> speclist = new ArrayList<Typespec>();
+		for (int i = 0; i < specid.length; i++) {
+
+			Typespec ts = new Typespec();
+			ts.setTypeid(typeid);
+			ts.setSpecid(specid[i]);
+			speclist.add(ts);
+		}
+		//typespecService.insertByTypeid(speclist);
+
+		// 添加类别品牌
+		List<Typebrand> brandlist = new ArrayList<Typebrand>();
+		for (int i = 0; i < brandid.length; i++) {
+
+			Typebrand tb = new Typebrand();
+			tb.setTypeid(typeid);
+			tb.setBrandid(brandid[i]);
+			brandlist.add(tb);
+		}
+		//typebrandService.insertByTypeid(brandlist);
+
+		return "redirect:/goodstypefindall.htm";
 	}
-	
+
 	/**
 	 * 
 	 * @Title: goodstype
@@ -163,17 +203,17 @@ public class GoodstypeController {
 	@RequestMapping("goodstype.htm")
 	@ResponseBody
 	public String goodstype(String name) {
-		
+
 		String n = service.selectByNameValidate(name);
-		
-		if(n == null){
-			//用户名不存在
+
+		if (n == null) {
+			// 用户名不存在
 			return "true";
-		}else{
+		} else {
 			return "false";
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @Title: goodstypeadd
@@ -195,7 +235,7 @@ public class GoodstypeController {
 		req.setAttribute("brandlistforgoodstype", brandlist);
 		return "goods_type_add";
 	}
-	
+
 	/**
 	 * 
 	 * @Title: goodstypeupdate
@@ -209,51 +249,52 @@ public class GoodstypeController {
 	 */
 	@RequestMapping("/goodstypeupdate.htm")
 	@ResponseBody
-	public String goodstypeupdate(Integer id,String fieldName,String value) {
-		
+	public String goodstypeupdate(Integer id, String fieldName, String value) {
+
 		Goodstype gt = new Goodstype();
 		gt.setId(id);
-		
-		if("sort".equals(fieldName)){
+
+		if ("sort".equals(fieldName)) {
 			gt.setSort(Integer.parseInt(value));
-		}else{
-			gt.setName(value);;
+		} else {
+			gt.setName(value);
+			;
 		}
-		
+
 		int ret = service.updateByPrimaryKeySelective(gt);
-		if(ret == 1){
-			//更新成功
+		if (ret == 1) {
+			// 更新成功
 			return "success";
-		}else {
-			//更新失败
-			return"error";
+		} else {
+			// 更新失败
+			return "error";
 		}
-		
+
 	}
-	
-	//add by zy
+
+	// add by zy
 	@RequestMapping("/goodstypefindall.htm")
 	public String goodstypefindall(HttpServletRequest req) {
 		List<Goodstype> list = service.goodstypefindall();
 		req.setAttribute("goodstypelist", list);
 		return "goods_type_list";
 	}
-	
+
 	@RequestMapping("/deletegoodstype.htm")
 	@ResponseBody
 	public String deletegoodstype(Integer id) {
 		int ret = service.deleteByPrimaryKey(id);
-		if(ret == 1) {
+		if (ret == 1) {
 			return "success";
-		}else {
+		} else {
 			return "error";
 		}
 	}
-	
+
 	@RequestMapping("/deletegoodstypes.htm")
 	public String deletegoodstypes(String values) {
 		int ret = service.goodstypedeleteall(values);
 		return "redirect:/goodstypefindall.htm";
-		
+
 	}
 }

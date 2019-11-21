@@ -146,6 +146,15 @@ public class SpecController {
 		return "redirect:/specfindall.htm";
 	}
 	
+	/**
+	 * 
+	 * @Title: specupdate
+	 * @Description: 规格名修改
+	 * @Author Administrator
+	 * @DateTime 2019年11月21日 下午6:34:34
+	 * @param spec
+	 * @return
+	 */
 	@RequestMapping("/specupdating.htm")
 	@ResponseBody
 	public String specupdate(Spec spec) {

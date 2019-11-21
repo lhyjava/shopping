@@ -47,6 +47,16 @@ public interface TypespecMapper {
     int insertByTypeid(List<Typespec> list);
     
     //add by lhy 1118 end
+    
+    //add by lhy 1121 begin
+    
+    @Delete({
+        "delete from typespec",
+        "where typeid = #{id,jdbcType=INTEGER}"
+    })
+    int deleteByTypeId(Integer id);
+    
+    //add by lhy 1121 end
 
     @Select({
         "select",
