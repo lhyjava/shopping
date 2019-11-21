@@ -111,6 +111,48 @@ public class GoodstypeController {
 	
 	/**
 	 * 
+	 * @Title: GoodsTypeEdit
+	 * @Description: 修改页面
+	 * @Author lhy
+	 * @DateTime 2019年11月21日 下午2:28:43
+	 * @param id
+	 * @param name
+	 * @param sort
+	 * @return
+	 */
+	@RequestMapping("/goodstypeedit.htm")
+	public String GoodsTypeEdit(Integer id,String name,Integer sort,HttpServletRequest req) {
+		
+		//所有规格信息
+		List<Specplus> specsList = specService.findall();
+		req.setAttribute("findbyspeclist", specsList);
+		//所有品牌类型
+		List<String> brandTypeList = goodsbrandservice.selectAllType();
+		req.setAttribute("findbybrandtype", brandTypeList);
+		//所有品牌名
+		List<Goodsbrand> brandNameList = goodsbrandservice.findall();
+		req.setAttribute("findbybrandname", brandNameList);
+		return "goods_type_edit";
+	}
+	
+	@RequestMapping("/checkedById.htm")
+	@ResponseBody
+	public String checkedById(Integer id) {
+		
+		List<Integer> ids = new ArrayList<Integer>();
+		
+		//所有规格信息
+		List<Specplus> specsList = service.selectBySpecplus(id);
+		//所有品牌类型
+		List<String> brandTypeList = goodsbrandservice.selectAllType();
+		
+		
+		
+		return "success";
+	}
+	
+	/**
+	 * 
 	 * @Title: goodstype
 	 * @Description: 表单验证，名称存在时不允许提交
 	 * @Author lhy
@@ -132,7 +174,6 @@ public class GoodstypeController {
 		}
 	}
 	
-
 	/**
 	 * 
 	 * @Title: goodstypeadd

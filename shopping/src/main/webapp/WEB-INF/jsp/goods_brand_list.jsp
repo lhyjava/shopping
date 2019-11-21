@@ -54,6 +54,10 @@
 						str += ",";
 					}
 				}
+				var f = confirm('是否确认删除');
+				if (!f) {
+					return ;
+				}
 				window.location.href="goodsbranddeleteall.htm?ids="+str;
 			}
 			//修改旗

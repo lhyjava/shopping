@@ -108,8 +108,8 @@
 						</ul>
 						<ul class="ulleft" style="" id="about_goods">
 							<!-- 左侧菜单 -->
-							<div class="leftone">商品相关</div>
-							<li><a href="javascript:void(0);" class="" id="goods_class_op" onclick="openURL('url','http://localhost:8080/admin/goods_class_list.htm','main_workspace','goods_class_op')">分类管理</a> </li>
+							<div class="leftone" target="main_workspace" class="">商品相关</div>
+							<li><a href="goodsclassfindall.htm" target="main_workspace" class="">分类管理</a> </li>
 							<li><a href="goodsbrandfindall.htm" target="main_workspace" class="">品牌管理</a></li>
 							<li><a href="javascript:void(0);" id="goods_manage_op" onclick="openURL('url','http://localhost:8080/admin/goods_list.htm','main_workspace','goods_manage_op')" class="">商品管理</a></li>
 							<li><a href="goodstypefindall.htm" target="main_workspace" class="">类型管理</a></li>

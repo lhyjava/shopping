@@ -56,6 +56,10 @@
 			}
 			//单行删除 
 			function deletegoodstype(obj,id){
+				var f = confirm('是否确认删除');
+				if (!f) {
+					return ;
+				}
 				$.ajax({
 					url:"deletegoodstype.htm",
 					type:"post",
@@ -79,6 +83,10 @@
 					if(i != arr.length-1){
 						values += ",";
 					}
+				}
+				var f = confirm('是否确认删除');
+				if (!f) {
+					return ;
 				}
 				window.location.href="deletegoodstypes.htm?values="+values;
 			}
@@ -131,7 +139,7 @@
 				            					</span>
 				            				</td>
 				          					<td align="center" class="ac8">
-				          						<a href="http://localhost:8080/admin/goods_type_edit.htm?id=7">编辑</a>|
+				          						<a href="goodstypeedit.htm?id=${tmp.id }&name=${tmp.name }&sort=${tmp.sort }">编辑</a>|
 				          						<a href="javascript:void(0)" onclick = "deletegoodstype(this,${tmp.id });">删除</a>
 				          					</td>
 				        				</tr>
