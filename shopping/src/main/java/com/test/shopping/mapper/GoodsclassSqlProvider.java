@@ -80,4 +80,35 @@ public class GoodsclassSqlProvider {
         
         return sql.toString();
     }
+    
+    // add by zhaoyu 1122 begin
+    
+    /**
+     * 
+     * @param ids 所有的id值拼接的字符串
+     * @return 返回sql语句
+     */
+    public String deletegoodsclassById(String ids) {
+    	
+    	StringBuilder sql = new StringBuilder();
+    	sql.append("DELETE FROM goodsclass WHERE id in (");
+    	sql.append(ids);
+    	sql.append(")");
+    	return sql.toString();
+    }
+    
+    // add by zhaoyu 1122 end
+    
+    //add by lhy 1124 begin
+    
+	public String deleteAll(String ids){
+	    	
+		StringBuilder sql = new StringBuilder();
+    	sql.append("DELETE FROM goodsclass WHERE id in (");
+    	sql.append(ids);
+    	sql.append(")");
+    	return sql.toString();
+    }
+    
+    //add by lhy 1124 end
 }

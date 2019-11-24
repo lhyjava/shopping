@@ -12,6 +12,7 @@
 		<script src="/js/jquery.shop.common.js"></script>
 		<script src="/js/jquery.poshytip.min.js"></script>
 		<script>
+			//分类列表控制
 			function addorsubtract(obj,id){
 				
 				//得到当前点击图片的cls属性，属性值为：add/jian
@@ -48,44 +49,208 @@
 		  			}
 				}
 			}
+			
+			//add by zhaoyu 1122 begin
+			
+			//删除方法
+			var panduan;
+			function delet(ids){
+				
+				if(confirm("是否确定删除（若此类型下还有级别，也会随之删除）？")){
+					$.ajax({
+						url:"deletegoodsclass.htm",
+						type:"post",
+						async:false,
+						data:{
+							ids:ids
+						},
+						success:function(data){
+							if(data == "success"){
+								 panduan = true;
+							}else{
+								panduan = false;
+							}
+						}
+					});
+				}
+				return panduan;
+			}
+			//单行点击删除事件
+			function delgoodsclasscurrent(obj){
+				var third = $(obj).attr("del");
+				//三级菜单情况下
+				if(third == "del3"){	
+					var ids = $(obj).parent().parent().attr("id");
+					//调用删除方法
+					var panduan = delet(ids);
+					//判断删除是否成功
+					if(panduan){
+						$(obj).parent().parent().remove();
+					}
+				}else{
+					//二级菜单的情况下
+					if(third == "del2"){
+						var currid = $(obj).parent().parent().attr("id");
+						var arr = $("tr[parent="+currid+"]");
+						
+						for(var i = 0;i < arr.length ;i++){
+							d += "," + $(arr[i]).attr("id");
+						}
+						
+						var ids = currid;
+						//调用删除方法
+						var panduan = delet(ids);
+						//判断删除是否成功
+						if(panduan){
+							$(obj).parent().parent().remove();
+							for(var i = 0;i < arr.length ;i++){
+								$(arr[i]).remove();
+							}
+						}
+						
+					}else{
+						//一级菜单的情况下
+						var currid = $(obj).parent().parent().attr("id");
+						var arr = $("tr[level=child_"+currid+"]");
+						for(var i = 0;i < arr.length ;i++){
+							currid += "," + $(arr[i]).attr("id");
+						}
+						var ids = currid;
+						//调用删除方法
+						var panduan = delet(ids);
+						//判断删除是否成功
+						if(panduan){
+							$(obj).parent().parent().remove();
+							for(var i = 0;i < arr.length ;i++){
+								$(arr[i]).remove();
+							
+							}
+						}
+					}
+				}
+			}
+			//add by zhaoyu 1122 end
+			
+			//add by xdx 11.22 begin
+			
 			//页面内修改
 			function ajax_update(id,fieldName,obj){
-				var valreal;
   				var val=$(obj).val();
-			    if(val == "" && fieldName == "display" ){
-					valreal = $(obj).attr("mydisplay");
-			    }else if(val == "" && fieldName == "recommend" ){
-					valreal = $(obj).attr("myrecommend");
-			    }
    				$.ajax({
 			    	type:'POST',
-				    url:'GoodsclassController_goodsclassupdata',
+				    url:'goodsclassupdata.htm',
 					data:{
 							"id":id,
 							"fieldName":fieldName,
-							"value":valreal
+							"value":val
 					},
 					success:function(data){
-						if(val == "" && fieldName == "recommend"){
-							if(valreal=="true"){
-								$(obj).attr("src","/img/false.png");
-								$(obj).attr("myrecommend", "false");
-							}else{
-								$(obj).attr("src","/img/true.png");
-								$(obj).attr("myrecommend", "true");
-							}
-						}else if(val == "" && fieldName == "display"){
-							if(valreal=="true"){
-								$(obj).attr("src","/img/false.png");
-								$(obj).attr("mydisplay", "false");
-							}else{
-								$(obj).attr("src","/img/true.png");
-								$(obj).attr("mydisplay", "true");
-							}
+						if(data == "success"){
+							
+						}else{
+							window.location.href='goodsclassfindall.htm';
 						}      
-         				}
+         			}
     			});
 			}
+			
+			//推荐修改
+			function ajax_update_img(id,obj){
+				var src = $(obj).attr("src");
+				var b = true;
+				if('/img/true.png' == src){
+					b = true;
+					alert(b);
+				}else{
+					b = false;
+					alert(b);
+				}
+				$.ajax({
+					type:'post',
+					url:'goodsclassupdateimg.htm',
+					async:true,
+					data:{
+						id:id,
+						recommend:b
+					},
+					success:function(data){
+						if(data == "success"){
+							if(b){
+								$(obj).attr("src","/img/false.png");
+							}else{
+								$(obj).attr("src","/img/true.png");
+							}
+						}else{
+							
+						}
+					}
+				});
+			}
+			
+			//显示修改
+			function ajax_update_xs(id,obj){
+				var src = $(obj).attr("src");
+				var b = true;
+				if('/img/true.png' == src){
+					b = true;
+					alert(b);
+				}else{
+					b = false;
+					alert(b);
+				}
+				$.ajax({
+					type:'post',
+					url:'goodsclassupdatexs.htm',
+					async:true,
+					data:{
+						id:id,
+						display:b
+					},
+					success:function(data){
+						if(data == "success"){
+							if(b){
+								$(obj).attr("src","/img/false.png");
+							}else{
+								$(obj).attr("src","/img/true.png");
+							}
+						}else{
+							
+						}
+					}
+				});
+			}
+			
+			//add by xdx 11.22 end
+			
+			//add by lhy 1124 begin 
+			
+			//多选删除
+			function deleteall(obj){
+				
+				if(confirm("是否确定删除（若此类型下还有级别，也会随之删除）？")){
+					
+					for(var i=0;i< $(".cbclass:checked").size();i++){
+						var level = $(".cbclass:checked").eq(i).attr("level");
+						var id = $(".cbclass:checked").eq(i).val();
+						if(level==0){
+							 $("tr[level=child_"+id+"] td:nth-child(1)").children(".cbclass").attr("checked",true);
+						}else if(level==1){
+							$("tr[parent="+id+"] td:nth-child(1)").children(".cbclass").attr("checked",true);
+						}
+					}
+					var arr = $(".cbclass:checked");
+					var str = "";
+					for(var i=0; i<arr.length; i++){
+						str += $(arr[i]).val();
+						if(i!=arr.length-1){
+							str += ",";
+						}
+					}	
+					window.location.href="goodsclassdeleteall.htm?ids="+str;
+				}
+		}
+			//add by lhy 1124 end
+		
 		</script>
 		<style id="poshytip-css-tip-skyblue" type="text/css">
 			div.tip-skyblue{visibility:hidden;position:absolute;top:0;left:0;}div.tip-skyblue table, div.tip-skyblue td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-skyblue td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-skyblue td.tip-right{background-position:100% 0;}div.tip-skyblue td.tip-bottom{background-position:100% 100%;}div.tip-skyblue td.tip-left{background-position:0 100%;}div.tip-skyblue div.tip-inner{background-position:-10px -10px;}div.tip-skyblue div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}
@@ -98,7 +263,7 @@
   				<span class="tab-one"></span>
   				<span class="tabs">
   					<a href="javascript:void(0);" class="this">管理</a> | 
-  					<a href="">新增</a>
+  					<a href="goodsclassadd.htm">新增</a>
   				</span>
   				<span class="tab-two"></span>
   			</div>
@@ -124,9 +289,9 @@
       						</tr>    
 							<!-- level 1 begin -->
 							<c:forEach items="${requestScope.goodsclasslist }" var="tmp">
-								<tr id="1" parent="${tmp.id }">
+								<tr id="${tmp.id }" parent="${tmp.id }">
 									<td align="center">
-										<input name="ids" id="ids" type="checkbox" value="1" />
+										<input class='cbclass' level='${tmp.level }' name="id" id="ids" type="checkbox" value="${tmp.id }" />
 									</td>
 									<td colspan="2" align="center">
 										<ul class="addclass">
@@ -136,36 +301,46 @@
 											</li>
 											<li class="ac2">
 												<span class="num">
-													<input type="text" name="2" id="2" value="2" onblur="ajax_update('1','sequence',this)" title="可编辑" />
+													<input type="text" name="2" id="2" value="${tmp.sort }" onchange="ajax_update('${tmp.id }','sort',this)" title="可编辑" />
 												</span>
 											</li>
 											<li class="ac3">
 												<span class="classies">
-													<input type="text" name="1" id="1" value="${tmp.name }" onblur="ajax_update('1','className',this)" title="可编辑" />  
+													<input type="text" name="1" id="1" value="${tmp.name }" onchange="ajax_update('${tmp.id }','name',this)" title="可编辑" />  
 												</span>
 												<span class="newclass">
-													<a href="http://localhost:8080/goodsclassService_ADDdinate?name=%E7%94%B5%E5%AD%90">新增下级</a>
+													<a href="goodsClassAddJunior.htm?id=${tmp.id }&name=${tmp.name }&display=${tmp.display }&level=${tmp.level }&recommend=${tmp.recommend }&sort=${tmp.sort }&typeid=${tmp.typeid }&parentid=${tmp.parentid }">新增下级</a>
 												</span>
 											</li>
 										</ul>
 									</td>
 							        <td align="center"></td>
 							        <td align="center">
-										<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update('1','display',this)" style="cursor:pointer;" title="可编辑" />
+							        	<c:if test="${tmp.display }">
+											<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_xs('${tmp.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
+							        	<c:if test="${!tmp.display }">
+											<img mydisplay="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_xs('${tmp.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
 									</td>
 							        <td align="center">
-										<img myrecommend="true" src="/img/true.png" width="21" height="23" onclick="ajax_update('1','recommend',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	<c:if test="${tmp.recommend }">
+											<img myrecommend="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_img('${tmp.id }',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
+							        	<c:if test="${!tmp.recommend }">
+											<img myrecommend="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_img('${tmp.id }',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
 									</td>
 							        <td align="left" class="ac8">
-										<a href="http://localhost:8080/tiaozhuanadd?id=1&amp;display=true&amp;recommend=true&amp;sort=1">编辑</a>|
-										<a href="javascript:void(0);" onclick="if(confirm('删除分类会同时删除该分类的所有下级，是否继续?'))window.location.href='GoodsclassController_showshanchu?id=1'">删除</a>
+										<a href="goodsClassEdit.htm?id=${tmp.id }&name=${tmp.name }&display=${tmp.display }&level=${tmp.level }&recommend=${tmp.recommend }&sort=${tmp.sort }&typeid=${tmp.typeid }&parentid=${tmp.parentid }">编辑</a>|
+										<a href="javascript:void(0);" onclick="delgoodsclasscurrent(this)">删除</a>
 									</td>
 							    </tr>
 							<!-- level 2 begin --> 
 							<c:forEach items="${tmp.list }" var="tmp1">
-								<tr id="2" parent="${tmp.id }" level="child_${tmp.id }" style="display: none;">
+								<tr id="${tmp1.id }" parent="${tmp.id }" level="child_${tmp.id }" style="display: none;">
 							 		<td align="center">
-										<input name="ids" id="ids" type="checkbox" value="2" />
+										<input class='cbclass' level='${tmp1.level }' name="id" id="ids" type="checkbox" value="${tmp1.id }" />
 									</td>
 									<td colspan="2" align="center">
 										<ul class="addclass">
@@ -174,36 +349,46 @@
 											</li>
 											<li class="ac2">
 												<span class="num">
-													<input type="text" name="0" id="0" value="0" onblur="ajax_update('2','sequence',this)" title="可编辑" />
+													<input type="text" name="0" id="0" value="${tmp1.sort }" onchange="ajax_update('${tmp1.id }','sort',this)" title="可编辑" />
 												</span>
 											</li>
 											<li class="acc3">
 												<span class="classies">
-													<input type="text" name="家电" id="家电" value="${tmp1.name }" onblur="ajax_update('2','className',this)" title="可编辑" />
+													<input type="text" name="家电" id="家电" value="${tmp1.name }" onchange="ajax_update('${tmp1.id }','name',this)" title="可编辑" />
 												</span>
 												<span class="newclass" style="$sty">
-													<a href="http://localhost:8080/goodsclassService_ADDdinate?name=%E5%AE%B6%E7%94%B5">新增下级</a>
+													<a href="goodsClassAddJunior.htm?id=${tmp1.id }&name=${tmp1.name }&display=${tmp1.display }&level=${tmp1.level }&recommend=${tmp1.recommend }&sort=${tmp1.sort }&typeid=${tmp1.typeid }&parentid=${tmp1.parentid }">新增下级</a>
 												</span>
 											</li>
 										</ul>    
 									</td>
 									<td align="center"></td>
 									<td align="center">
-										<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update('2','display',this)" style="cursor:pointer;" title="可编辑" />
+							        	<c:if test="${tmp1.display }">
+											<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_xs('${tmp1.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
+							        	<c:if test="${!tmp1.display }">
+											<img mydisplay="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_xs('${tmp1.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
 									</td>
-									<td align="center">
-										<img myrecommend="false" src="/img/true.png" width="21" height="23" onclick="ajax_update('2','recommend',this)" style="cursor:pointer;" title="可编辑" />
+							        <td align="center">
+							        	<c:if test="${tmp1.recommend }">
+											<img myrecommend="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_img('${tmp1.id }',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
+							        	<c:if test="${!tmp1.recommend }">
+											<img myrecommend="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_img('${tmp1.id }',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
 									</td>
 									<td align="left" class="ac8">
-										<a href="http://localhost:8080/tiaozhuanadd?id=2&amp;name=%E5%AE%B6%E7%94%B5&amp;display=true&amp;recommend=false&amp;sort=1&amp;parentid=1">编辑</a>|
-										<a href="javascript:void(0);" onclick="if(confirm('删除分类会同时删除该分类的所有下级，是否继续?'))window.location.href='GoodsclassController_showshanchu?id=2'">删除</a>
+										<a href="goodsClassEdit.htm?id=${tmp1.id }&name=${tmp1.name }&display=${tmp1.display }&level=${tmp1.level }&recommend=${tmp1.recommend }&sort=${tmp1.sort }&typeid=${tmp1.typeid }&parentid=${tmp1.parentid }">编辑</a>|
+										<a href="javascript:void(0);" onclick="delgoodsclasscurrent(this)" del="del2">删除</a>
 									</td>
 								</tr>
 							<!-- level 3 begin -->
 							<c:forEach items="${tmp1.list }" var="tmp2">
-								<tr id="4" parent="${tmp1.id }" level="child_${tmp.id }" style="display: none;">
+								<tr id="${tmp2.id }" parent="${tmp1.id }" level="child_${tmp.id }" style="display: none;">
 								 	<td align="center">
-										<input name="ids" id="ids" type="checkbox" value="4" />
+										<input class='cbclass' level='${tmp2.level }' name="id" id="ids" type="checkbox" value="${tmp2.id }" />
 									</td>
 								 	<td colspan="2" align="center">
 									 	<ul class="addclass">
@@ -212,29 +397,44 @@
 											</li>
 											<li class="ac2">
 												<span class="num">
-													<input type="text" name="0" id="0" value="0" onblur="ajax_update('4','sequence',this)" title="可编辑" />
+													<input type="text" name="0" id="0" value="${tmp2.sort }" onchange="ajax_update('${tmp2.id}','sort',this)" title="可编辑" />
 												</span>
 											</li>
 											<li class="accc3">
 												<span class="classies">
-													<input type="text" name="电视" id="电视" value="${tmp2.name }" onblur="ajax_update('4','className',this)" title="可编辑" />
+													<input type="text" name="电视" id="电视" value="${tmp2.name }" onchange="ajax_update('${tmp2.id}','name',this)" title="可编辑" />
 												</span>
 												<span class="newclass" style="display:none">
-													<a href="http://localhost:8080/admin/goods_class_add.htm?pid=65759">新增下级</a>
+													<a href="JavaScript:void(0);">新增下级</a>
 												</span>
 											</li>
 									 	</ul>   
 								 	</td>
-								    <td align="center">电视</td>
+								 	<!-- 类型(只有三级分类存在类型) -->
+								 	<c:forEach items="${requestScope.goodsclasstypelist }" var="tmp3">
+								 		<c:if test="${tmp2.typeid == tmp3.id }">
+								 			<td align="center">${tmp3.name }</td>
+								 		</c:if>
+								    </c:forEach>
 								    <td align="center">
-										<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update('4','display',this)" style="cursor:pointer;" title="可编辑" />
+							        	<c:if test="${tmp2.display }">
+											<img mydisplay="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_xs('${tmp2.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
+							        	<c:if test="${!tmp2.display }">
+											<img mydisplay="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_xs('${tmp2.id }',this)" style="cursor:pointer;" title="可编辑" />
+							        	</c:if>
 									</td>
-								    <td align="center">
-										<img myrecommend="true" src="/img/true.png" width="21" height="23" onclick="ajax_update('4','recommend',this)" style="cursor:pointer;" title="可编辑" />
+							        <td align="center">
+							        	<c:if test="${tmp2.recommend }">
+											<img myrecommend="true" src="/img/true.png" width="21" height="23" onclick="ajax_update_img('${tmp2.id}',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
+							        	<c:if test="${!tmp2.recommend }">
+											<img myrecommend="false" src="/img/false.png" width="21" height="23" onclick="ajax_update_img('${tmp2.id}',this)" style="cursor:pointer;" title="推荐后会在首页楼层显示" />
+							        	</c:if>
 									</td>
 								    <td align="left" class="ac8">
-										<a href="http://localhost:8080/tiaozhuanadd?id=4&amp;name=%E7%94%B5%E8%A7%86&amp;display=true&amp;recommend=true&amp;sort=1&amp;parentid=2&amp;typeid=2">编辑</a>|
-										<a href="javascript:void(0);" onclick="if(confirm('删除分类会同时删除该分类的所有下级，是否继续?'))window.location.href='GoodsclassController_showshanchu?id=4'">删除</a>
+										<a href="goodsClassEdit.htm?id=${tmp2.id }&name=${tmp2.name }&display=${tmp2.display }&level=${tmp2.level }&recommend=${tmp2.recommend }&sort=${tmp2.sort }&typeid=${tmp2.typeid }&parentid=${tmp2.parentid }">编辑</a>|
+										<a href="javascript:void(0);" onclick="delgoodsclasscurrent(this)">删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -250,7 +450,7 @@
 						        <td colspan="2" align="center" class="sall">
 						        	<span class="classall">全部</span>
 						        	<span class="shop_btn_del" id="alldel">
-						          		<input name="input" type="button" value="删除" style="cursor:pointer;" onclick="cmd('http://localhost:8080/admin/goods_class_del.htm')" />
+						          		<input name="input" type="button" value="删除" style="cursor:pointer;" onclick="deleteall(this);" />
 						          	</span>
 						          	<span class="shop_btn_del" id="alldel">
 						            	<input name="input" type="button" value="推荐" style="cursor:pointer;" onclick="cmd('http://localhost:8080/admin/goods_class_recommend.htm')" />

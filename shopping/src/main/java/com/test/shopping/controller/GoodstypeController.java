@@ -145,7 +145,7 @@ public class GoodstypeController {
 
 	/**
 	 * 
-	 * @Title: checkedById
+	 * @Title: goodsTypeEditSubmit
 	 * @Description: 修改
 	 * @Author Administrator
 	 * @DateTime 2019年11月21日 下午6:04:07
@@ -164,7 +164,10 @@ public class GoodstypeController {
 		
 		// 根据类别查找对应的id
 		Goodstype gt1 = service.selectByName(gt.getName());
+		System.err.println(gt1.getId() + gt1.getSort() + gt1.getName());
 		Integer typeid = gt1.getId();
+		
+		System.err.println(typeid);
 
 		// 添加类别规格
 		List<Typespec> speclist = new ArrayList<Typespec>();
@@ -175,7 +178,7 @@ public class GoodstypeController {
 			ts.setSpecid(specid[i]);
 			speclist.add(ts);
 		}
-		//typespecService.insertByTypeid(speclist);
+		typespecService.insertByTypeid(speclist);
 
 		// 添加类别品牌
 		List<Typebrand> brandlist = new ArrayList<Typebrand>();
@@ -186,7 +189,7 @@ public class GoodstypeController {
 			tb.setBrandid(brandid[i]);
 			brandlist.add(tb);
 		}
-		//typebrandService.insertByTypeid(brandlist);
+		typebrandService.insertByTypeid(brandlist);
 
 		return "redirect:/goodstypefindall.htm";
 	}
