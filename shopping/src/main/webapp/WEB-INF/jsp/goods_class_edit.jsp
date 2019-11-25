@@ -112,7 +112,7 @@
  					<span class="tab-one"></span>
      				<span class="tabs">
 					<a href="goodsclassfindall.htm">管理</a> |
-					<a href="#" class="this">修改</a>	   
+					<a href="javascript:void(0);" class="this">修改</a>	   
       	   			</span>
      				<span class="tab-two"></span>
      			</div>

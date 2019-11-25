@@ -465,7 +465,7 @@
     				</table>
 					<input type="hidden" name="currentPage" id="currentPage" value="1" />
 					<input name="mulitId" type="hidden" id="mulitId" />
-	  				<div class="fenye" > <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=1">首页</a> 第　<a class="this" href="http://localhost:8080/admin/goods_class_list.htm?currentPage=1">1</a> <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">2</a> 页　<a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">下一页</a> <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">末页</a> </div>	 
+	  				<!-- <div class="fenye" > <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=1">首页</a> 第　<a class="this" href="http://localhost:8080/admin/goods_class_list.htm?currentPage=1">1</a> <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">2</a> 页　<a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">下一页</a> <a href="http://localhost:8080/admin/goods_class_list.htm?currentPage=2">末页</a> </div> -->	 
    				</form>
   			</div>  
 		</div>

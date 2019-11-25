@@ -119,7 +119,7 @@
 			<div class="settab"><span class="tab-one"></span>
 				<span class="tabs">
 				    <a href="goodsclassfindall.htm">管理</a> |
-				    <a href="#http://localhost:8080/admin/goods_class_add.htm" class="this">新增</a>	   
+				    <a href="javascript:void(0);" class="this">新增</a>	   
 			    </span>
 			    <span class="tab-two"></span>
 			</div>

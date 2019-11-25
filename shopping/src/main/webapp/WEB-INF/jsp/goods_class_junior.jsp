@@ -112,11 +112,11 @@
  					<span class="tab-one"></span>
      				<span class="tabs">
 					<a href="goodsclassfindall.htm">管理</a> |
-					<a href="#" class="this">修改</a>	   
+					<a href="javascript:void(0);" class="this">新增下级</a>	   
       	   			</span>
      				<span class="tab-two"></span>
      			</div>
-				<form  action="goodsclassaddjuniorsubmit.htm" method="post" >
+				<form action="goodsclassaddjuniorsubmit.htm" method="post" >
  					<div class="setcont">
    					<ul class="set1">
 						<li><strong class="orange fontsize20">*</strong>分类名称</li>
