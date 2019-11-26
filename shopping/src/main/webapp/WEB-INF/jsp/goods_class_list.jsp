@@ -160,10 +160,8 @@
 				var b = true;
 				if('/img/true.png' == src){
 					b = true;
-					alert(b);
 				}else{
 					b = false;
-					alert(b);
 				}
 				$.ajax({
 					type:'post',
@@ -193,10 +191,8 @@
 				var b = true;
 				if('/img/true.png' == src){
 					b = true;
-					alert(b);
 				}else{
 					b = false;
-					alert(b);
 				}
 				$.ajax({
 					type:'post',
