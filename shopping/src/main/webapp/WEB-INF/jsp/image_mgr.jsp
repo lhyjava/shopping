@@ -45,10 +45,6 @@
 				$(".imgDiv").mouseleave(function(){
 					$(this).find(".delete").hide();
 				});
-				//点击隐藏
-				$("#bigimg").click(function(){
-					$(this).parent().hide();
-				});
 				$(".delete").click(function(){
 					
 					var f = confirm('是否确认删除');
