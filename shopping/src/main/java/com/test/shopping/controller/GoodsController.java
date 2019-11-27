@@ -40,13 +40,11 @@ public class GoodsController {
 	public String goodsadd(HttpServletRequest req) {
 		
 		//商品图片列表
-		File dirfile = new File("D:\\image");
-		String[] fnames = dirfile.list();
-		List<String> imgList = new ArrayList<>();
-		for (String string : fnames) {
-			imgList.add(string);
-		}
-		req.setAttribute("imagelist", imgList);
+		/*
+		 * File dirfile = new File("D:\\image"); String[] fnames = dirfile.list();
+		 * List<String> imgList = new ArrayList<>(); for (String string : fnames) {
+		 * imgList.add(string); } req.setAttribute("imagelist", imgList);
+		 */
 		//三级分类列表
 		List<Goodsclassplus> classList = goodsClassService.GoodsClassFindAllByLevel(0);
 		req.setAttribute("goodsclasslist", classList);

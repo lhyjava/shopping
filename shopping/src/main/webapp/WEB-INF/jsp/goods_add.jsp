@@ -54,6 +54,21 @@
 			//设置默认状态以及判断初始显示状态
 			jQuery(document).ready(function(){
 				
+				//add by lhy 1127 begin
+				
+				$("#sortId").change(function(){
+					var level = $(this).find("option:selected").attr("level");
+					
+					for(var i=0;i< $(".brandname").size();i++){
+						var parent = $(".brandname").eq(i).attr("parent");
+
+						if(parent[i] == level){
+							$(".brandname").show();
+						}
+					}
+				});
+				
+				//add by lhy 1127 end
 				//判断规格值是否相同
 				$("#specnameId2").blur(function(){
 					var nn1 = $("#specnameId1").val();
@@ -437,12 +452,13 @@
 					           	<select id="sortId" name="goodsclassid" class="form-control m-b" style="height:30px;">
            							<option value="" selected="selected">请选择</option>	
            							
+           							<!-- 三级分类列表 -->
            							<c:forEach items="${requestScope.goodsclasslist }" var="tmp">
            								<option disabled="" value="" typeid="1">${tmp.name }</option>
            							<c:forEach items="${tmp.list }" var="tmp1">
            								<option disabled="" value="" typeid="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tmp1.name }</option>
            							<c:forEach items="${tmp1.list }" var="tmp2">
-           								<option value="4,2" typeid="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tmp2.name }</option>
+           								<option level="${tmp2.id }" value="${tmp2.id }" typeid="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tmp2.name }</option>
            							</c:forEach>
            							</c:forEach>
            							</c:forEach>
@@ -458,8 +474,9 @@
 		  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  		  
 		  						<select name="brandid" id="brandId">                   	
 		      						<option value="" selected="selected">请选择</option>
+		      						<!-- 品牌名称列表 -->
 		      						<c:forEach items="${requestScope.brandList }" var="tmp">
-			      						<option value="1">${tmp.brandname }</option>
+			      						<option class="brandname" parent="${tmp.classid }" value="1">${tmp.brandname }</option>
 			      					</c:forEach>
 		       					</select>
 							</span>	
