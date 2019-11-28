@@ -246,8 +246,7 @@
 		      		&nbsp;&nbsp;&nbsp;<input type="button" value="刷新" onclick="JavaScript:window.location.reload()"><br>			
 	  			</span> 
  			</div>
- 			<form name="theForm" id="theForm" action="http://localhost:8080/goodsaddsubmit" method="post" enctype="multipart/form-data" novalidate="novalidate">
-  				<input name="id" type="hidden" id="id" value="">
+ 			<form action="goodsaddsubmit.htm" method="post">
   				<div class="setcont">
     				<ul class="set1">
       					<li><strong class="orange fontsize20">*</strong>商品名称</li>
@@ -293,7 +292,7 @@
 	      				<li><strong class="orange fontsize20">*</strong>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</li>
 	      				<li>
 							<span class="webname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="text" id="stock" name="stock" value="" size="40" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+								<input type="text" id="stock" name="stock" size="40" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 							</span>
 							<span id="nothis"></span>	      		
 	      				</li>     
@@ -363,7 +362,7 @@
 		    			<li>
 		  					<span class="webnamesec sizese" id="one_stage" style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		    
 			    				<span>
-			    					<select name="goodsspecid1" id="specnameId1" onchange="ajaxChangeSK(this);" class="form-control m-b">	   
+			    					<select name="goodsspecid" id="specnameId1" onchange="ajaxChangeSK(this);" class="form-control m-b">	   
 										<option value="" selected="selected">请选择规格一</option>
 										<!-- 规格名1 -->
 										<c:forEach items="${requestScope.speclistforgoodsadd }" var="tmp">
@@ -433,7 +432,7 @@
 					<!-- <input type="button" value="保存" id="save" onclick="save()" /> -->
 	 				</div>
 	   			</div>
-				<input name="" type="submit" value="提交">
+				<input type="submit" value="提交">
 	  		</form>
 		</div>
 	</body>

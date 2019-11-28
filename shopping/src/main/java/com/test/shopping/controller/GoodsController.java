@@ -1,5 +1,6 @@
 package com.test.shopping.controller;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -121,6 +122,13 @@ public class GoodsController {
 		JSONObject jo = new JSONObject();
 		jo.put("brandlist", list);
 		return jo.toString();
+	}
+	
+	@RequestMapping("goodsaddsubmit.htm")
+	public String goodsaddsubmit(Goods goods) {
+		
+		service.insertSelective(goods);
+		return "redirect:/goodsfindall.htm";
 	}
 
 	@RequestMapping("/goodsfindall.htm")

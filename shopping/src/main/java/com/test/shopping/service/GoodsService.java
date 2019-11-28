@@ -57,5 +57,9 @@ public class GoodsService {
 		return dao.selectBrandByClassId(classid);
 	}
 	
+	public int insertSelective(Goods record) {
+		return dao.insertSelective(record);
+	}
+	
 	//add by lhy 1128 end
 }
