@@ -128,4 +128,36 @@ public class GoodsSqlProvider {
         
         return sql.toString();
     }
+    
+//add by zhaoyu 1128 begin 
+    
+    public String selectbynameAndClassnameAndBrandname(Goods goods){
+    	StringBuffer sql = new StringBuffer();
+    	sql.append("select * from goods where 1=1 ");
+    	if(!goods.getName().equals("")) {
+    		sql.append("AND name LIKE '%");
+    		sql.append(goods.getName());
+    		sql.append("%' ");
+    	}
+    	
+    	if(goods.getGoodsclassid() != null) {
+    		sql.append("AND goodsclassid LIKE '%");
+    		sql.append(goods.getGoodsclassid());
+    		sql.append("%' ");
+    	}
+    	
+    	if(goods.getBrandid() != null) {
+    		sql.append("AND brandid LIKE '%");
+    		sql.append(goods.getBrandid());
+    		sql.append("%' ");
+    	}
+    	
+    	if(goods.getRecommend() != null) {
+    		sql.append("AND recommend = ");
+    		sql.append(goods.getRecommend());
+    	}
+    	return sql.toString();
+    }
+    
+    //add by zhaoyu 1128 end
 }
