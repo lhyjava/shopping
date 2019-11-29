@@ -41,9 +41,9 @@ public class GoodsSqlProvider {
             sql.VALUES("brandid", "#{brandid,jdbcType=INTEGER}");
         }
         
-        if (record.getTypeid() != null) {
-            sql.VALUES("typeid", "#{typeid,jdbcType=INTEGER}");
-        }
+        //为typeid设置默认值
+        sql.VALUES("typeid", "1");
+        
         
         if (record.getGoodsspecid() != null) {
             sql.VALUES("goodsspecid", "#{goodsspecid,jdbcType=INTEGER}");

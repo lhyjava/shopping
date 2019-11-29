@@ -1,6 +1,5 @@
 package com.test.shopping.controller;
 
-import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.test.shopping.entity.BrandBySpec;
 import com.test.shopping.entity.Goods;
 import com.test.shopping.entity.Goodsbrand;
 import com.test.shopping.entity.Goodsbrandplus;
@@ -38,131 +36,139 @@ public class GoodsController {
 	private GoodsclassService goodsClassService;
 
 	/**
-	 *	品牌 
+	 * 	品牌
 	 */
 	@Autowired
 	private GoodsbrandService goodsbrandservice;
-	
+
 	/**
 	 * 	规格
 	 */
 	@Autowired
 	private SpecService specservice;
-	
+
 	/**
-	 * 	规格值
+	 *	 规格值
 	 */
 	@Autowired
 	private SpecvalService specvalservice;
+	
+	// add by lhy 1129 begin
 
 	/**
 	 * 
 	 * @Title: goodsadd
-	 * @Description: 商品管理添加页面
+	 * @Description: 商品添加页面
 	 * @Author lhy
-	 * @DateTime 2019年11月28日 下午12:16:19
+	 * @DateTime 2019年11月29日 下午1:58:54
 	 * @param req
 	 * @return
 	 */
 	@RequestMapping("/goodsadd.htm")
 	public String goodsadd(HttpServletRequest req) {
-
-		// 商品图片列表
-		/*
-		 * File dirfile = new File("D:\\image"); String[] fnames = dirfile.list();
-		 * List<String> imgList = new ArrayList<>(); for (String string : fnames) {
-		 * imgList.add(string); } req.setAttribute("imagelist", imgList);
-		 */
-		// 三级分类列表
-		List<Goodsclassplus> classList = goodsClassService.GoodsClassFindAllByLevel(0);
-		req.setAttribute("goodsclasslist", classList);
-		//品牌列表
+		
+		//三级分类列表
+		List<Goodsclassplus> classlist = goodsClassService.GoodsClassFindAllByLevel(0);
+		req.setAttribute("classlistforgoodsadd", classlist);
+		//所有品牌列表
 		List<Goodsbrand> brandlist = goodsbrandservice.findall();
 		req.setAttribute("brandlistforgoodsadd", brandlist);
-		//规格列表
+		//所有规格列表
 		List<Specplus> speclist = specservice.findall();
 		req.setAttribute("speclistforgoodsadd", speclist);
-
+		for (Specplus specplus : speclist) {
+			System.out.println(specplus.getId());
+		}
+		
 		return "goods_list_add";
 	}
-	
+
 	/**
 	 * 
 	 * @Title: findspecval
-	 * @Description: 根据规格名，显示对应的规格值
+	 * @Description: 根据规格展示相应的规格值
 	 * @Author lhy
-	 * @DateTime 2019年11月28日 下午12:47:30
+	 * @DateTime 2019年11月29日 下午1:59:09
 	 * @param specid
 	 * @return
 	 */
 	@RequestMapping("/findspecval.htm")
 	@ResponseBody
-	public String findspecval(Integer specid){
+	public String findspecval(Integer specid) {
+		
 		List<Specval> list = specvalservice.selectByspecid(specid);
 		JSONObject jo = new JSONObject();
 		jo.put("specvallist", list);
-		return jo.toString();
-	}
-	
-	@RequestMapping("/findspec.htm")
-	@ResponseBody
-	public String findspec(Integer brandid) {
 		
-		List<BrandBySpec> list = service.selectSpecByBrandName(brandid);
-		JSONObject jo = new JSONObject();
-		jo.put("speclist", list);
 		return jo.toString();
 	}
-	
-	@RequestMapping("/findbrand.htm")
+
+	/**
+	 * 
+	 * @Title: getbrandbyclassid
+	 * @Description: 根据类型展示相应的品牌
+	 * @Author lhy
+	 * @DateTime 2019年11月29日 下午1:59:48
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/getbrandbytypeid.htm")
 	@ResponseBody
-	public String findbrand(Integer brandid) {
+	public String getbrandbyclassid(Integer typeid) {
 		
-		List<Goodsbrandplus> list = service.selectBrandByClassId(brandid);
+		List<Goodsbrandplus> brandlist = service.selectBrandByClassId(typeid);
+		
 		JSONObject jo = new JSONObject();
-		jo.put("brandlist", list);
+		jo.put("brandlist", brandlist);
+
 		return jo.toString();
 	}
+
+	// add by lhy 1129 end
+
+	@RequestMapping("/goodsfindall.htm")
+	public String goodsfindall(HttpServletRequest req) {
+
+		List<Goodsplus> list = service.findAll();
+		req.setAttribute("goodslist", list);
+
+		// add by zy
+
+		List<Goodsbrand> goodslist = goodsbrandservice.findall();
+		List<Goodsclassplus> listgoods = goodsClassService.GoodsClassFindAllByLevel(0);
+		req.setAttribute("goodsbrandbygoods", goodslist);
+		req.setAttribute("goodsbrandbygoodsclassplus", listgoods);
+
+		// add by zy
+
+		return "goods_list";
+	}
+
+	// add by zhaoyu 1128 begin
+
+	@RequestMapping("/selectgoods.htm")
+	public String selectgoods(Goods goods, HttpServletRequest req) {
+		List<Goodsplus> list = service.selectbynameAndClassnameAndBrandname(goods);
+		req.setAttribute("goodslist", list);
+
+		List<Goodsbrand> goodslist = goodsbrandservice.findall();
+		List<Goodsclassplus> listgoods = goodsClassService.GoodsClassFindAllByLevel(0);
+		req.setAttribute("goodsbrandbygoods", goodslist);
+		req.setAttribute("goodsbrandbygoodsclassplus", listgoods);
+		return "goods_list";
+	}
+
+	// add by zhaoyu 1128 end
 	
-	@RequestMapping("goodsaddsubmit.htm")
+	//add by lhy 1129 begin
+	
+	@RequestMapping("/goodsaddsubmit.htm")
 	public String goodsaddsubmit(Goods goods) {
 		
 		service.insertSelective(goods);
 		return "redirect:/goodsfindall.htm";
 	}
-
-	@RequestMapping("/goodsfindall.htm")
-	public String goodsfindall(HttpServletRequest req) {
-		
-		List<Goodsplus> list = service.findAll();		
-		req.setAttribute("goodslist", list);
-		
-		//add by zy
-		
-		List<Goodsbrand> goodslist =goodsbrandservice.findall();
-		List<Goodsclassplus> listgoods = goodsClassService.GoodsClassFindAllByLevel(0);
-		req.setAttribute("goodsbrandbygoods", goodslist);
-		req.setAttribute("goodsbrandbygoodsclassplus", listgoods);
-		
-		//add by zy
-		
-		return"goods_list";
-	}
 	
-		//add by zhaoyu 1128 begin
-		
-		@RequestMapping("/selectgoods.htm")
-		public String selectgoods(Goods goods,HttpServletRequest req) {
-			List<Goodsplus> list = service.selectbynameAndClassnameAndBrandname(goods);
-			req.setAttribute("goodslist", list);
-			
-			List<Goodsbrand> goodslist =goodsbrandservice.findall();
-			List<Goodsclassplus> listgoods = goodsClassService.GoodsClassFindAllByLevel(0);
-			req.setAttribute("goodsbrandbygoods", goodslist);
-			req.setAttribute("goodsbrandbygoodsclassplus", listgoods);
-			return "goods_list";
-		}
-		
-		//add by zhaoyu 1128 end
+	//add by lhy 1129 end
 
 }

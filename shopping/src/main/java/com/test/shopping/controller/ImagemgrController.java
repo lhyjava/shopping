@@ -123,7 +123,6 @@ public class ImagemgrController {
 	 * @return
 	 */
 	@RequestMapping("/imgdel.htm")
-	@ResponseBody
 	public String imgdel(String name){
 		
 		//文件路径、文件名
@@ -140,10 +139,6 @@ public class ImagemgrController {
 			System.out.println("删除文件异常");
 		}
 		
-		if(ret){
-			return "success";
-		}else{
-			return "error";
-		}
+		return "redirect:/showimgmgr.htm";
 	}
 }

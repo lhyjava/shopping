@@ -150,4 +150,14 @@ public interface GoodsbrandMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Goodsbrand record);
+    
+    //add by lhy 1129 begin
+    
+    @Select({
+        "SELECT distinct b.id, b.sort, b.firstchar, b.name, b.type, b.img, b.recommand from typebrand t, goodsbrand b",
+        "where t.brandid = b.id AND t.typeid = #{typeid,jdbcType=INTEGER}"
+    })
+    List<Goodsbrand> selectByTypeid(Integer typeid);
+    
+    //add by lhy 1129 end
 }

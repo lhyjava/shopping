@@ -4,98 +4,99 @@
 <%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0031)http://localhost:8080/showgoods -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品管理</title>
-<link href="/css/template.css" rel="stylesheet" type="text/css">
-<script src="/js/jquery-1.6.2.js"></script>
-<script src="/js/jquery.shop.common.js"></script>
-<script src="/js/jquery.poshytip.min.js"></script>
-<script type="text/javascript">
-//ajax页面修改商品名
-function ajax_updategoodsname(id, obj){
-// 	debugger;
-	var val = $(obj).val();
-	var secondval = $(obj).attr('cls');
-	if(val != secondval){
-		$.ajax({
-			type:"Post",
-			url:"/goods/updateGoodsName",
-			data:{"id":id, "value":val},
-			success:function(data){
-				if(data == "repeat"){
-					alert("该商品名已存在！");
-					$(obj).attr("value",secondval);
-				}
-				if(data == "namenull"){
-					alert("修改的商品名不能为空！");
-					$(obj).attr("value",secondval);
-				}
-			}		
-		}); 
-	}
-}
-//ajax修改商品是否推荐状态
-function ajax_updategoodsrecommend(id,obj){
-	var val = $(obj).hasClass('yes');
-	$.ajax({
-		type:"Post",
-		url:"/goods/updateGoodsRecommend",
-		data:{"id":id},
-		success:function(data){
-			if(val){
-				$(obj).attr("src","/image/no.png");
-				$(obj).removeClass('yes');
-			}else{
-				$(obj).attr("src","/images/yes.png");
-				$(obj).addClass('yes');
-			}			
-		}
-	});	
-}
-//ajax删除一个商品
-function ajax_deletegoodsone(obj){
-// 	debugger;
-	var model = $(obj).parent().parent();
-	if(model.children("input[type='hidden']").length>0){
-		var id = model.find("input[name='ids']")[0].value;
-		if(!confirm("确定删除么")){
-			return;
-		}
-		$.ajax({
-			type:"Post",
-			url:"/goods/deleteGoodsOne",
-			data:{"id":id},
-			success:function(data){
-				if(data == "1"){
-					model.remove();
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>商品管理</title>
+		<link href="/css/template.css" rel="stylesheet" type="text/css" />
+		<script src="/js/jquery-1.6.2.js" />
+		<script src="/js/jquery.shop.common.js" />
+		<script src="/js/jquery.poshytip.min.js" />
+		<script type="text/javascript">
+			//ajax页面修改商品名
+			function ajax_updategoodsname(id, obj){
+				var val = $(obj).val();
+				var secondval = $(obj).attr('cls');
+				if(val != secondval){
+					$.ajax({
+						type:"Post",
+						url:"/goods/updateGoodsName",
+						data:{"id":id, "value":val},
+						success:function(data){
+							if(data == "repeat"){
+								alert("该商品名已存在！");
+								$(obj).attr("value",secondval);
+							}
+							if(data == "namenull"){
+								alert("修改的商品名不能为空！");
+								$(obj).attr("value",secondval);
+							}
+						}		
+					}); 
 				}
 			}
-		});
-		return;
-	}
-}
-
-	//by zhaoyu 1127 begin
-	$(function(){
-		$("#sortId").change(function(){
+			//ajax修改商品是否推荐状态
+			function ajax_updategoodsrecommend(id,obj){
+				var val = $(obj).hasClass('yes');
+				$.ajax({
+					type:"Post",
+					url:"/goods/updateGoodsRecommend",
+					data:{"id":id},
+					success:function(data){
+						if(val){
+							$(obj).attr("src","/image/no.png");
+							$(obj).removeClass('yes');
+						}else{
+							$(obj).attr("src","/images/yes.png");
+							$(obj).addClass('yes');
+						}			
+					}
+				});	
+			}
+			//ajax删除一个商品
+			function ajax_deletegoodsone(obj){
+			// 	debugger;
+				var model = $(obj).parent().parent();
+				if(model.children("input[type='hidden']").length>0){
+					var id = model.find("input[name='ids']")[0].value;
+					if(!confirm("确定删除么")){
+						return;
+					}
+					$.ajax({
+						type:"Post",
+						url:"/goods/deleteGoodsOne",
+						data:{"id":id},
+						success:function(data){
+							if(data == "1"){
+								model.remove();
+							}
+						}
+					});
+					return;
+				}
+			}
 			
-			if($("option:selected").val() == "请选择"){
-				$("option[class=show]").hide();
-			}else{
-				var level = $("option:selected").attr("level");
-				if(level != 2){
-					$("#brandid option:eq(0)").attr("selected",true);
-				}else{
-					var s = $(this).find("option:selected").attr("tid");
-					$("option[class=show]").hide();
-					$("option[typeid="+s+"]").show();
-				}
-			}
-		});
-	});
-	//by zhaoyu 1127 end
-
-</script>
+				//by zhaoyu 1127 begin
+				$(function(){
+					$("#sortId").change(function(){
+						
+						if($("option:selected").val() == "请选择"){
+							$("option[class=show]").hide();
+						}else{
+							var level = $("option:selected").attr("level");
+							if(level != 2){
+								$("#brandid option:eq(0)").attr("selected",true);
+							}else{
+								var s = $(this).find("option:selected").attr("tid");
+								$("option[class=show]").hide();
+								$("option[typeid="+s+"]").show();
+							}
+						}
+					});
+				});
+				//by zhaoyu 1127 end
+			
+		</script>
 <style id="poshytip-css-tip-skyblue" type="text/css">div.tip-skyblue{visibility:hidden;position:absolute;top:0;left:0;}div.tip-skyblue table, div.tip-skyblue td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-skyblue td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-skyblue td.tip-right{background-position:100% 0;}div.tip-skyblue td.tip-bottom{background-position:100% 100%;}div.tip-skyblue td.tip-left{background-position:0 100%;}div.tip-skyblue div.tip-inner{background-position:-10px -10px;}div.tip-skyblue div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}</style></head>
 <body style="">
 <div class="cont">

@@ -181,4 +181,10 @@ public interface GoodsclassMapper {
     int deletegoodsclassById(String ids);
     
     //add by zhaoyu 1122 end
+    
+    //add by lhy 1129 begin
+    
+    
+    
+    //add by lhy 1129 end 
 }

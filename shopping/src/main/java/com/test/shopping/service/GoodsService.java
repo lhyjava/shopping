@@ -19,18 +19,6 @@ public class GoodsService {
 	@Autowired
 	private GoodsMapper dao;
 
-	//add by lhy 1127 begin
-	
-	public List<ClassForBrand> selectForBrand() {
-		return dao.selectForBrand();
-	}
-
-	public List<ClassForSpec> selectForSpec() {
-		return dao.selectForSpec();
-	}
-	
-	//add by lhy 1127 end
-
 	// add by xdx 1127 begin
 
 	public List<Goodsplus> findAll(){
@@ -47,11 +35,7 @@ public class GoodsService {
 	
 	//add by zhaoyu end
 	
-	//add by lhy 1128 begin
-	
-	public List<BrandBySpec> selectSpecByBrandName(Integer brandid){
-		return dao.selectSpecByBrandName(brandid);
-	}
+	//add by lhy 1129 begin
 	
 	public List<Goodsbrandplus> selectBrandByClassId(Integer classid){
 		return dao.selectBrandByClassId(classid);
@@ -61,5 +45,6 @@ public class GoodsService {
 		return dao.insertSelective(record);
 	}
 	
-	//add by lhy 1128 end
+	//add by lhy 1129 end
+	
 }

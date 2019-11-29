@@ -45,19 +45,25 @@
 				$(".imgDiv").mouseleave(function(){
 					$(this).find(".delete").hide();
 				});
-				$(".delete").click(function(){
+				//删除事件
+				$('.delete').click(function(){
 					
 					var f = confirm('是否确认删除');
 					if (!f) {
+						
+						window.location.reload();
 						return ;
 					}
 					
 					//当前图片名
 					var name = $(this).parent().find("img").attr("src");
+					
+					window.location.href="imgdel.htm?name="+name;
+					
 					//图片所在的父级div
-					var deldiv = $(this).parent();
+					//var deldiv = $(this).parent();
 
-					$.ajax({
+					/* $.ajax({
 						url:'imgdel.htm',
 						type:'post',
 						async:true,
@@ -74,7 +80,7 @@
 						error:function(obj){
 							alert("删除失败");
 						}
-					});
+					}); */
 				});
 			});
 		</script>

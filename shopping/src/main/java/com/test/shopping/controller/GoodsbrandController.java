@@ -1,15 +1,17 @@
 package com.test.shopping.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.shopping.entity.Goodsbrand;
 import com.test.shopping.service.GoodsbrandService;
 
@@ -214,6 +216,34 @@ public class GoodsbrandController {
 		
 		service.deleteAll(ids);
 		return "redirect:/goodsbrandfindall.htm";
+	}
+	
+	/**
+	 * 
+	 * @Title: getallimgforajax
+	 * @Description: 品牌添加页面选择图片列表
+	 * @Author lhy
+	 * @DateTime 2019年11月29日 下午2:55:31
+	 * @return
+	 */
+	@RequestMapping("/getallimageforajax.htm")
+	@ResponseBody
+	public String getallimgforajax() {
+		
+		File  dirfile = new File("D:\\image");
+		
+		String[] fname = dirfile.list();
+		
+		List<String> list = new ArrayList<>();
+		
+		for (String string : fname) {
+			list.add(string);
+		}
+		
+		JSONObject jo = new JSONObject();
+		jo.put("imagelist",list);
+		
+		return jo.toString();
 	}
 	
 }

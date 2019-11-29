@@ -51,5 +51,12 @@ public class GoodsbrandService {
 		return dao.selectAllType();
 	}
 	
+	// add by lhy 1129 begin
+
+	public List<Goodsbrand> selectByTypeid(Integer typeid) {
+		return dao.selectByTypeid(typeid);
+	}
+
+	// add by lhy 1129 end
 	
 }
