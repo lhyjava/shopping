@@ -92,7 +92,7 @@
 		<div class="baguetteBoxOne gallery">
 			<c:forEach items="${requestScope.imagelist }" var="tmp">
 				<a href="${tmp }" class="img imgDiv">
-		        	<img src="${tmp }" class="img">
+		        	<img src="img1/${tmp }" class="img">
 		        	<span class="delete">x</span>
 		        </a>
 			</c:forEach>

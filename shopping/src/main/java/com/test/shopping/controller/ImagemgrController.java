@@ -31,7 +31,7 @@ public class ImagemgrController {
 	@RequestMapping("/showimgmgr.htm")
 	public String showimagemgr(HttpServletRequest req){
 		
-		File dirfile = new File("D:\\image");
+		File dirfile = new File("D:\\uploads\\img1");
 		String[] fnames = dirfile.list();
 		
 		List<String> list = new ArrayList<>();
@@ -83,7 +83,7 @@ public class ImagemgrController {
 			
 			String newname = sdate+"_"+rand+"."+kzm;
 			
-			String filename = "D:\\image\\"+newname;
+			String filename = "D:\\uploads\\img1\\"+newname;
 			
 			try {
 				
@@ -124,17 +124,20 @@ public class ImagemgrController {
 	 */
 	@RequestMapping("/imgdel.htm")
 	public String imgdel(String name){
+		System.out.println(name);
 		
 		//文件路径、文件名
-		String dirpath = "D:\\image\\";
+		String dirpath = "D:\\uploads\\";
 		String filepath = dirpath+name;
 		
 		File file = new File(filepath);
+		System.out.println(file);
 		
 		boolean ret = false;
 		
 		try {
 			ret = file.delete();
+			System.out.println("删除");
 		} catch (Exception e) {
 			System.out.println("删除文件异常");
 		}
