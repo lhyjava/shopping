@@ -118,19 +118,6 @@
 			 		</ul>
 					<ul class="set1">
 						<li>品牌图片</li>
-					    <!-- <li>
-						  	<span class="preview">
-						  		<input name="img" type="text" id="brandLogo" size="30" />
-						  	</span>
-						  	<span id="nothis">
-						  		<strong class="q"></strong>
-						  		<strong class="w">最佳尺寸93*33，支持格式gif,jpg,jpeg,png</strong>
-						  		<strong class="c"></strong>
-						  	</span>
-						  	<div class="bigimgpre" id="brandImg" style="display:none;">
-						  		<img src="./saved_resource" />
-						  	</div>
-						</li> -->
 						<li>
 	  						<input onclick="imgselect(this);" readonly name="img" type="text" id="brandLogo" size="30" />
 							<span class="preview"></span>

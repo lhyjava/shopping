@@ -230,7 +230,7 @@ public class GoodsbrandController {
 	@ResponseBody
 	public String getallimgforajax() {
 		
-		File  dirfile = new File("D:\\image");
+		File  dirfile = new File("D:\\uploads\\img1\\");
 		
 		String[] fname = dirfile.list();
 		

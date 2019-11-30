@@ -125,8 +125,8 @@
 			}
 		</script>
 		<form action="specandvalinsert.htm" method="post" id="valform" name="valform">
-     			<input type="hidden" name="specid" id="specidforval" />
-     			<div class="specification">
+    		<input type="hidden" name="specid" id="specidforval" />
+    		<div class="specification">
        			<h2>新增规格值</h2>
        			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addsx_table">
        				<tbody>

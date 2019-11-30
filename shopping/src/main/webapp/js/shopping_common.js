@@ -30,7 +30,7 @@ function imgselect(obj) {
 			var arr = retobj.imagelist;
 			for (var i = 0; i < arr.length; i++) {
 				var img = $("<img onclick='simgclick(this);'></img>");
-				img.attr("src", arr[i]);
+				img.attr("src", "img1/"+arr[i]);
 				img.css("width", "200px");
 				img.css("height", "200px");
 				img.css("padding", "3px");

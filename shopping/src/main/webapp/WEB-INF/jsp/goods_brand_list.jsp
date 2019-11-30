@@ -270,17 +270,6 @@
 							</pg:last>
 						</pg:index>
 		    		</pg:pager>
-		    		<!-- 分页 -->
-					<!-- <div class="fenye" align="right" id="queryCondition">
-						<input name="category" type="hidden" id="category" value="" />
-						<input name="name" type="hidden" id="name" value="" />
-						<input name="mulitId" type="hidden" id="mulitId" />
-						<input name="currentPage" type="hidden" id="currentPage" value="1" />
-						
-						<a href="javascript:void(0);" onclick="return gotoPage(1)">首页</a> 第　
-						<a class="this" href="javascript:void(0);" onclick="return gotoPage(1)">1</a> 页　
-						<a href="javascript:void(0);" onclick="return gotoPage(1)">末页</a> 	  
-					</div> -->
 				</div>
 			</form>
 		</div>

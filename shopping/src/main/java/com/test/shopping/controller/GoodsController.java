@@ -76,9 +76,6 @@ public class GoodsController {
 		//所有规格列表
 		List<Specplus> speclist = specservice.findall();
 		req.setAttribute("speclistforgoodsadd", speclist);
-		for (Specplus specplus : speclist) {
-			System.out.println(specplus.getId());
-		}
 		
 		return "goods_list_add";
 	}
