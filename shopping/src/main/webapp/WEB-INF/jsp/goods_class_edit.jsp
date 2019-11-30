@@ -177,7 +177,7 @@
      						</span>
      						<span id="nothis">
      							<strong class="q"></strong>
-     							<strong class="w">如果当前下拉选项中没有适合的类型，可以去<a href="javascript:void(0);" onclick="window.parent.openURL('url','http://localhost:8080/admin/goods_type_list.htm','main_workspace','goods_type_op','about_goods')" style="color:#fff; background-color:#FF6600; padding:2px 4px; border-radius:4px 4px 4px 4px;">类型管理</a>功能中新增新的类型</strong>
+     							<strong class="w">如果当前下拉选项中没有适合的类型，可以去<a href="javascript:void(0);" onclick="window.parent.openURL('url','goodstypeadd.htm','main_workspace','goods_type_op','about_goods')" style="color:#fff; background-color:#FF6600; padding:2px 4px; border-radius:4px 4px 4px 4px;">类型管理</a>功能中新增新的类型</strong>
      						</span>
      					</li>
 					</ul>
