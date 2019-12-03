@@ -9,6 +9,7 @@ import com.test.shopping.entity.BrandBySpec;
 import com.test.shopping.entity.ClassForBrand;
 import com.test.shopping.entity.ClassForSpec;
 import com.test.shopping.entity.Goods;
+import com.test.shopping.entity.GoodsDetails;
 import com.test.shopping.entity.Goodsbrandplus;
 import com.test.shopping.entity.Goodsplus;
 import com.test.shopping.mapper.GoodsMapper;
@@ -47,4 +48,11 @@ public class GoodsService {
 	
 	//add by lhy 1129 end
 	
+	//add by lhy 1202 gegin
+	
+	public Goods selectByPrimaryKey(Integer id) {
+		return dao.selectByPrimaryKey(id);
+	}
+	
+	//add by lhy 1202 end
 }

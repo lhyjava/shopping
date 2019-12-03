@@ -20,7 +20,7 @@
 	margin-top:-60px;
 	width: 404px;
 	background-color:none;
-	z-index:10000004;
+	z-index:10000000000;
 	overflow: auto;
 }
 .content_load{
@@ -35,7 +35,7 @@
 .white_close {
 	background:url(../images/close.jpg) no-repeat center right; width:14px; height:14px;
 	float:right;
-	right:-477px;
+	right:15px;
 	top:10px;
 	display:block;
 	position:absolute;
@@ -96,19 +96,19 @@
 }
 .message_white_content {
 	position: absolute;
-	top: 30%;
-	left:25%;
+	top: 40%;
+	left:55%;
 	margin-left:-300px;
 	_margin-left:-100px;
 	width: 400px;
 	background-color:none;
 	z-index:10000005;
-/*	overflow: auto;*/
+	overflow: auto;
 }
 .message_white_iframe {
 	border:1px solid #CCCCCC;
 	width:392px;
-	margin-left:500px;
+	margin-left:auto;
 	margin-right:auto;
 	height:150px;
 	background:#fff;

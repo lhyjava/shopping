@@ -9,9 +9,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>商品管理</title>
 		<link href="/css/template.css" rel="stylesheet" type="text/css" />
-		<script src="/js/jquery-1.6.2.js" />
-		<script src="/js/jquery.shop.common.js" />
-		<script src="/js/jquery.poshytip.min.js" />
+		<script src="/js/jquery-1.6.2.js"></script>
+		<script src="/js/jquery.shop.common.js"></script>
+		<script src="/js/jquery.poshytip.min.js"></script>
 		<script type="text/javascript">
 			//ajax页面修改商品名
 			function ajax_updategoodsname(id, obj){

@@ -17,6 +17,7 @@ import com.test.shopping.entity.BrandBySpec;
 import com.test.shopping.entity.ClassForBrand;
 import com.test.shopping.entity.ClassForSpec;
 import com.test.shopping.entity.Goods;
+import com.test.shopping.entity.GoodsDetails;
 import com.test.shopping.entity.Goodsbrandplus;
 import com.test.shopping.entity.Goodsplus;
 
