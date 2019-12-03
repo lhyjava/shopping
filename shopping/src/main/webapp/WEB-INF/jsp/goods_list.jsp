@@ -76,6 +76,25 @@
 			}
 			
 			//by zhaoyu 1127 begin
+			/* $(function(){
+				$("#sortId").change(function(){
+					
+					if($("option:selected").val() == "请选择"){
+						$("option[class=show]").hide();
+					}else{
+						var level = $("option:selected").attr("level");
+						if(level != 2){
+							$("#brandid option:eq(0)").attr("selected",true);
+						}else{
+							var s = $(this).find("option:selected").attr("tid");
+							$("option[class=show]").hide();
+							$("option[typeid="+s+"]").show();
+						}
+					}
+				});
+			}); */
+			
+			//by zhaoyu 1127 begin
 			$(function(){
 				$("#sortId").change(function(){
 					
