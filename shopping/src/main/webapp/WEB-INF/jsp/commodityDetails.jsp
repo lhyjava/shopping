@@ -533,7 +533,7 @@
 					  	<div class="photopro">              
 							<a href="./商品详情_files/9f90d29c-c17a-4d6d-bb30-5d730ae3407e.jpg" class="jqzoom" rel="gal1" title="" style="outline-style: none; text-decoration: none;">
 						   		<div class="zoomPad">
-						   			<img ng-src="/img/{{ goods.img }}" title="商品细节图" id="main_img" width="300" height="300" style="border: 1px solid rgb(102, 102, 102); opacity: 1;" />
+						   			<img ng-src="{{ goods.img }}" title="商品细节图" id="main_img" width="300" height="300" style="border: 1px solid rgb(102, 102, 102); opacity: 1;" />
 						   			<div class="zoomPup" style="display: none;"></div>
 						   			<div class="zoomWindow" style="position: absolute; display: none; z-index: 5001; left: 312px; top: 0px;">
 						   				<div class="zoomWrapper" style="width: 480px;">
@@ -551,14 +551,14 @@
 						  		<ul>
 									<li>
 										<span class="detbt">商品原价：</span>
-										<span class="through">{{ goods.opice }}</span>
+										<span class="through">{{ goods.pice }}</span>
 									</li>
 									<li>
 										<span class="detbt">店铺价格：</span>
 										<span class="pricedata">
-											<strong class="orange" id="store_price">{{ goods.pice }}</strong>
+											<strong class="orange" id="store_price">{{ goods.opice }}</strong>
 										</span>
-										<span class="greenp">(节省：<b id="rest" style="font-weight:normal;">¥{{ goods.opice-goods.pice }}</b>)</span>
+										<span class="greenp">(节省：<b id="rest" style="font-weight:normal;">¥{{ goods.pice-goods.opice }}</b>)</span>
 									</li>
 						  		</ul>
 							</div>
