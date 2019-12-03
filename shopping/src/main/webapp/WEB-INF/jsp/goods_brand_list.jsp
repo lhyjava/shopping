@@ -208,7 +208,7 @@
 												<span class="pxnum size8"> ${tmp.type }</span>
 											</td>
 											<td>
-												<img src="/img/${tmp.img }" width="88px" height="44px" />
+												<img src="${tmp.img }" width="88px" height="44px" />
 											</td>
 											<td align="center">
 											<c:if test="${tmp.recommand }">

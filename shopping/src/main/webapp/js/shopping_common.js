@@ -31,8 +31,8 @@ function imgselect(obj) {
 			for (var i = 0; i < arr.length; i++) {
 				var img = $("<img onclick='simgclick(this);'></img>");
 				img.attr("src", "img1/"+arr[i]);
-				img.css("width", "200px");
-				img.css("height", "200px");
+				img.css("width", "80px");
+				img.css("height", "80px");
 				img.css("padding", "3px");
 				div.append(img);
 			}

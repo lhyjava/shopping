@@ -206,7 +206,7 @@
 												<input type="text" id="26" name="26" value="${tmp.name }" cls="vivovoii" title="可编辑" onblur="ajax_updategoodsname('26',this)" />
 											</td>
 											<td align="center">  
-												<img src="/img/${tmp.img }" width="55px" height="60px" />	
+												<img src="${tmp.img }" width="55px" height="60px" />	
 											</td>
 											<td align="center">${tmp.opice }</td>
 											<td align="center">${tmp.pice }</td>
