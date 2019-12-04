@@ -164,11 +164,8 @@ public class GoodstypeController {
 		
 		// 根据类别查找对应的id
 		Goodstype gt1 = service.selectByName(gt.getName());
-		System.err.println(gt1.getId() + gt1.getSort() + gt1.getName());
 		Integer typeid = gt1.getId();
 		
-		System.err.println(typeid);
-
 		// 添加类别规格
 		List<Typespec> speclist = new ArrayList<Typespec>();
 		for (int i = 0; i < specid.length; i++) {

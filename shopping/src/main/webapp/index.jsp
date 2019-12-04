@@ -132,17 +132,17 @@
 							<li><a href="javascript:void(0);" id="store_grade_op" onclick="openURL('url','http://localhost:8080/admin/storegrade_list.htm','main_workspace','store_grade_op')">店铺等级</a></li>
 							<li><a href="javascript:void(0);" id="store_class_op" onclick="openURL('url','http://localhost:8080/admin/storeclass_list.htm','main_workspace','store_class_op')">店铺分类</a></li>
 						</ul>
-						<ul class="ulleft" id="about_member"  style="display:none;">
+						<ul class="ulleft" id="about_member">
 							<div class="leftone">会员相关</div>
-							<li><a href="#" target="main_workspace" class="" title="功能待开发">会员管理</a> </li>
-							<li><a href="javascript:void(0);" class="" id="user_creditrule_op" onclick="openURL('url','http://localhost:8080/admin/user_creditrule.htm','main_workspace','user_creditrule_op')">会员信用</a> </li>
-							<li><a href="javascript:void(0);" id="user_msg_op" onclick="openURL('url','http://localhost:8080/admin/user_msg.htm','main_workspace','user_msg_op')">会员通知</a></li>
-							<li><a href="javascript:void(0);" id="user_integral_op" onclick="openURL('url','http://localhost:8080/admin/user_integral.htm','main_workspace','user_integral_op')">积分管理</a></li>
-							<li><a href="javascript:void(0);" id="integrallog_list_op" onclick="openURL('url','http://localhost:8080/admin/integrallog_list.htm','main_workspace','integrallog_list_op')">积分明细</a></li>
-							<li><a href="javascript:void(0);" id="predeposit_list_op" onclick="openURL('url','http://localhost:8080/admin/predeposit_list.htm','main_workspace','predeposit_list_op')">预存款管理</a></li>
-							<li><a href="javascript:void(0);" id="predepositlog_list_op" onclick="openURL('url','http://localhost:8080/admin/predepositlog_list.htm','main_workspace','predepositlog_list_op')">预存款明细</a></li>
-							<li><a href="javascript:void(0);" id="img_op" onclick="openURL('url','http://localhost:8080/admin/user_photo_list.htm','main_workspace','img_op')">图片管理</a></li> 
-							<li><a href="javascript:void(0);" id="complex_sns" suffix="sns_"><img id="sns_img" src="./品牌管理_files/contract.jpg" width="13" height="13">SNS管理</a> 
+							<li><a href="goodsuserfindall.htm" target="main_workspace" class="">会员管理</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" class="" id="user_creditrule_op" onclick="openURL('url','http://localhost:8080/admin/user_creditrule.htm','main_workspace','user_creditrule_op')">会员信用</a> </li>
+							<li style="display:none;"><a href="javascript:void(0);" id="user_msg_op" onclick="openURL('url','http://localhost:8080/admin/user_msg.htm','main_workspace','user_msg_op')">会员通知</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" id="user_integral_op" onclick="openURL('url','http://localhost:8080/admin/user_integral.htm','main_workspace','user_integral_op')">积分管理</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" id="integrallog_list_op" onclick="openURL('url','http://localhost:8080/admin/integrallog_list.htm','main_workspace','integrallog_list_op')">积分明细</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" id="predeposit_list_op" onclick="openURL('url','http://localhost:8080/admin/predeposit_list.htm','main_workspace','predeposit_list_op')">预存款管理</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" id="predepositlog_list_op" onclick="openURL('url','http://localhost:8080/admin/predepositlog_list.htm','main_workspace','predepositlog_list_op')">预存款明细</a></li>
+							<li style="display:none;"><a href="javascript:void(0);" id="img_op" onclick="openURL('url','http://localhost:8080/admin/user_photo_list.htm','main_workspace','img_op')">图片管理</a></li> 
+							<li style="display:none;"><a href="javascript:void(0);" id="complex_sns" suffix="sns_"><img id="sns_img" src="./品牌管理_files/contract.jpg" width="13" height="13">SNS管理</a> 
 								<ul id="sns_info">
 									<li><a id="user_sns_op" href="javascript:void(0);" onclick="openURL('url','http://localhost:8080/admin/sns_user.htm','main_workspace','user_sns_op')">会员动态</a></li>
 									<li><a href="javascript:void(0);" id="store_sns_op" onclick="openURL('url','http://localhost:8080/admin/sns_store.htm','main_workspace','store_sns_op')">店铺动态</a></li>
