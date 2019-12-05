@@ -163,6 +163,7 @@ public class ShoppingController {
 		req.setAttribute("goodslist", list);
 		
 		return "qiantaishangpin_list";
+		////
 	}
 	//add by zhaoyu 1203 end
 }
