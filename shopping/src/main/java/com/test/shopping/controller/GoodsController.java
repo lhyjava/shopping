@@ -167,5 +167,49 @@ public class GoodsController {
 	}
 	
 	//add by lhy 1129 end
+	
+	//add by lhy 1205 begin
+	
+	/**
+	 * 
+	 * @Title: goodsajaxupdat
+	 * @Description: 页面ajax修改
+	 * @Author lhy
+	 * @DateTime 2019年12月5日 下午2:01:34
+	 * @param id
+	 * @param value
+	 * @return
+	 */
+	@RequestMapping("/goodsajaxupdate.htm")
+	@ResponseBody
+	public String goodsajaxupdat(Integer id,String value) {
+		
+		Goods goods = new Goods();
+		goods.setId(id);
+		goods.setName(value);
+		
+		int ret = service.updateByPrimaryKeySelective(goods);
+		
+		if(ret == 1) {
+			return "success";
+		}else {
+			return "error";
+		}
+	}
+	
+	@RequestMapping("/deletegoods_ajax.htm")
+	@ResponseBody
+	public String deletegoods_ajax(Integer id) {
+		
+		int ret = service.deleteByPrimaryKey(id);
+		
+		if(ret == 1) {
+			return "success";
+		}else {
+			return "error";
+		}
+	}
+	
+	//add by lhy 1205 end
 
 }

@@ -55,4 +55,25 @@ public class GoodsService {
 	}
 	
 	//add by lhy 1202 end
+	
+	//add by lhy 1205 gegin
+	
+	public int updateByPrimaryKeySelective(Goods record) {
+		return dao.updateByPrimaryKeySelective(record);
+	}
+	
+	public int deleteByPrimaryKey(Integer id) {
+		return dao.deleteByPrimaryKey(id);
+	}
+	
+	//add by lhy 1205 end
+	
+	//add by lys 1204 begin 
+	
+	public List<Goods> selectBygoodsname(String keyword)
+	{
+		return dao.selectBygoodsname(keyword);
+	}
+	
+	//add by lys 1204 end
 }

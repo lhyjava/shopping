@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0041)http://localhost:8080/admin/user_list.htm -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -71,7 +72,7 @@ jQuery(document).ready(function(){
           <td width="6%" align="center">登录次数</td>
           <td width="15%" align="center">最后登录</td>
           <td width="6%" align="center">预存款</td>
-          <td width="15%" align="center">店铺</td>
+          <!-- <td width="15%" align="center">店铺</td> -->
           <td align="center">操作</td>
         </tr>
         <c:forEach items="${requestScope.goodsuserlist }" var="tmp">
@@ -79,8 +80,8 @@ jQuery(document).ready(function(){
           <td align="left"><input name="id" type="checkbox" id="id" style="width:16px; border:none;" value="32905"></td>
           <td align="left"><span class="memimg"><img src="/img/default_user_photo.gif" width="45" height="49"></span> <span class="mem_detail">
             <ul>
-              <li class="mem_font">${tmp.username }<i>(真实姓名：)</i></li>
-              <li>注册时间：${tmp.addtime }</li>
+              <li class="mem_font">${tmp.username }<i>(真实姓名：${tmp.name })</i></li>
+              <li>注册时间：<fmt:formatDate type="both" value="${tmp.addtime }"/></li>
               <li class="open"><span class="email"><a href="mailto:17889843751@163.com" title="用户邮箱:${tmp.mail }"><img src="/img/mail.jpg" width="15" height="11"></a></span> <span><a href="javascr0ipt:void(0);" title="${tmp.qq }"><img src="/img/qq.jpg" width="19" height="20"></a></span> <span><a href="javascript:void(0);" title=" ${tmp.wangwang }"><img src="/img/ww.jpg" width="17" height="17" border="0"></a></span> <span><a href="javascript:void(0);" title=" ${tmp.msn } "><img src="/img/hotm.jpg" width="20" height="17" border="0"></a></span> </li>
             </ul>
             </span></td>
@@ -95,7 +96,7 @@ jQuery(document).ready(function(){
               <li>可用：<strong> ${tmp.money } 元</strong></li>
               <li>冻结：<strong> ${tmp.moneyfreeze } 元</strong></li>
             </ul></td>
-          <td class="blue" align="center">
+          <!-- <td class="blue" align="center"> -->
           <%-- <c:if test="${tmp.power } == 0"> 
           	<span style="color:#F00">未开店</span></td>
           </c:if>

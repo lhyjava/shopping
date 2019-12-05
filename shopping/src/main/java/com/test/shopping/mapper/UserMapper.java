@@ -222,4 +222,16 @@ public interface UserMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
+    
+    //add by lys 1204 begin 
+    
+    @Select({
+        "select",
+        "id, username, password, name, addtime, lasttime, img, mail, qq, wangwang, msn, ",
+        "vippoints, vipcoins, logintimes, money, moneyfreeze, power, sex, phonenumber",
+        "from user",
+    })
+    List<User> selectByuserfindall();
+    
+    //add by lys 1204 end 
 }

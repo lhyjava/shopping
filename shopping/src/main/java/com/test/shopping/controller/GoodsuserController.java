@@ -3,6 +3,7 @@ package com.test.shopping.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class GoodsuserController {
 
 	@Autowired
 	private GoodsuserService userservice;
+	
+	//add by xdx 1204 gegin
 	
 	
 	@RequestMapping("/goodsuserfindall.htm")
@@ -63,6 +66,42 @@ public class GoodsuserController {
 
 		return "goods_user_list";
 	}
+	
+	//add by xdx 1204 end
+	
+	//add by lys 1205 begin
+	
+	@RequestMapping("/userdenglu.htm")
+	public String selectByuserfindall(String username,String password,String power,HttpServletRequest req,HttpSession session)
+	{
+		List<User> userlist = userservice.selectByuserfindall();
+		req.setAttribute("userlist", userlist);
+		for (User user : userlist) {
+			if(username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+				//登陆成功
+				session.setAttribute("currentusername", username);
+				if(user.getPower().equals("0") ) {
+					//管理页面
+					return "index";
+				}else {
+					//用户页面
+					return "redirect:/shangcheng.htm";
+				}
+			}
+		}
+		//登录失败
+		return "login";
+	}
+	
+	@RequestMapping("/logout.htm")
+	public String logoutshow(HttpServletRequest req){
+		//req.getSession().removeAttribute("currentusername");
+		return "login";
+	}
+	
+	//add by lys 1205 end
+	
+	
 	
 }
 

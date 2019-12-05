@@ -5,11 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 
-import com.test.shopping.entity.GoodsDetails;
+import com.test.shopping.entity.Goods;
 import com.test.shopping.entity.Spec;
-import com.test.shopping.entity.Specplus;
 import com.test.shopping.entity.Specval;
 
 public interface ShoppingMapper {
@@ -54,4 +54,49 @@ public interface ShoppingMapper {
 	List<Specval> selectSpecValByClassId(Integer id);
 	
 	//add by lhy 1203 end
+	
+	// add by zhaoyu 1203 begin
+	
+	@Select({ 
+		"select", "id, name, img, number, stock, opice, pice, brandid, typeid, goodsspecid, goodsclassid, ",
+		"recommend, grounding, details", "from goods", "where goodsclassid = #{goodsclassid,jdbcType=INTEGER}" 
+	})
+	List<Goods> selectBygoodsclassid3(Integer goodsclassid);
+	
+	@Select({ 
+		"SELECT g.* ",
+		"from goods g", 
+		"where goodsclassid in (",
+		"SELECT gc.id" , 
+		"FROM goodsclass gc",
+		"where parentid = #{goodsclassid,jdbcType=INTEGER})"
+	})
+	List<Goods> selectBygoodsclassid2(Integer goodsclassid);
+	
+	@Select({ 
+		"select g.*" ,
+		"from goods g",
+		"where goodsclassid in (",
+		"SELECT gc.id",
+		"from goodsclass gc",
+		"where parentid in (",
+		"SELECT c.id",
+		"FROM goodsclass c",
+		"where parentid = #{goodsclassid,jdbcType=INTEGER}))"
+	})
+	List<Goods> selectBygoodsclassid1(Integer goodsclassid);
+	//add by zhaoyu 1203 end
+	
+	//add by zhaoyu 1204 begin
+	
+	@SelectProvider(type=ShoppingsqlProvider.class, method="selectgoods1")
+	List<Goods> selectgoods1(Integer store_price_begin,Integer store_price_end,Integer goodsclassid,String name);
+	
+	@SelectProvider(type=ShoppingsqlProvider.class, method="selectgoods2")
+	List<Goods> selectgoods2(Integer store_price_begin,Integer store_price_end,Integer goodsclassid,String name);
+	
+	@SelectProvider(type=ShoppingsqlProvider.class, method="selectgoods3")
+	List<Goods> selectgoods3(Integer store_price_begin,Integer store_price_end,Integer goodsclassid,String name);
+	
+	//add byg zhaoyu 1204 end
 }

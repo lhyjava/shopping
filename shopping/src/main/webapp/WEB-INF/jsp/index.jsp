@@ -114,7 +114,7 @@
 							<li><a href="goodsfindall.htm" target="main_workspace" class="">商品管理</a></li>
 							<li><a href="goodstypefindall.htm" target="main_workspace" class="">类型管理</a></li>
 							<li><a href="specfindall.htm" target="main_workspace" class="">规格管理</a></li>
-							<li><a href="javascript:void(0);" id="goods_floor_op" onclick="openURL('url','http://localhost:8080/admin/goods_floor_list.htm','main_workspace','goods_floor_op')" class="">首页楼层</a></li>
+							<!-- <li><a href="javascript:void(0);" id="goods_floor_op" onclick="openURL('url','http://localhost:8080/admin/goods_floor_list.htm','main_workspace','goods_floor_op')" class="">首页楼层</a></li> -->
 							<!-- <li><a href="upload" target="main_workspace" class="">文件上传</a></li> -->
 							<li><a href="showimgmgr.htm" target="main_workspace" class="">图片管理</a></li>
 						</ul>

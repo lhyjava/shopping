@@ -417,14 +417,18 @@
 					</ul>
     			</div>
     			<div class="pageleft">
-    				<span>亲，欢迎来到购物网站！</span>
-    				<span class="pxlr">
-    					<a href="http://localhost:8080/user/login.htm" class="lightblue">登录</a>
-    				</span>
-    				<span class="pxlr">或</span>
-    				<span class="pxlr">
-    					<a href="http://localhost:8080/register.htm" class="lightblue">注册</a>
-    				</span>
+    				<c:if test="${sessionScope.currentusername == null }">
+	    				<span>亲，欢迎来到缘来小镇</span>
+	    				<span class="pxlr">
+	    					<a href="http://localhost:8080/user/login.htm" class="lightblue">登录</a>
+	    				</span><span class="pxlr">或</span>
+	    				<span class="pxlr">
+	    					<a href="http://localhost:8080/register.htm" class="lightblue">注册</a>
+	    				</span> 
+    				</c:if>
+    				<c:if test="${sessionScope.currentusername != null }">
+    					<span>${sessionScope.currentusername },欢迎来到缘来小镇</span>
+    				</c:if>
     			</div>
   			</div>
 		</div>

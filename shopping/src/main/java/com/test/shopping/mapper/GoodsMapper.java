@@ -212,4 +212,11 @@ public interface GoodsMapper {
     List<Goodsbrandplus> selectBrandByClassId(Integer classid);
     
     //add by lhy 1128 end
+    
+    //add by lys 1204 begin
+    
+    @SelectProvider(type=GoodsSqlProvider.class, method="selectBygoodsname")
+	List<Goods> selectBygoodsname(String keyword);
+    
+    //add by lys 1204 end
 }

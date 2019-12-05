@@ -160,4 +160,16 @@ public class GoodsSqlProvider {
     }
     
     //add by zhaoyu 1128 end
+    
+    //add by lys 1205 begin
+    
+    public String selectBygoodsname(String keyword) {
+     StringBuffer sql = new StringBuffer();
+     sql.append("select * from goods where name like '%" );
+     sql.append(keyword);
+     sql.append("%'");
+     return sql.toString();
+    }
+    
+    //add by lys 1205 end
 }

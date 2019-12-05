@@ -40,6 +40,13 @@ public class GoodsuserService {
 	public List<User> selectByName(String value){
 		return dao.selectByName(value);
 	}
+	
+	//add by lys
+	public List<User> selectByuserfindall()
+	{
+		return dao.selectByuserfindall();
+	}
+	
 }
 
 

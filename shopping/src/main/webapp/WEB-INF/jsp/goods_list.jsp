@@ -13,28 +13,60 @@
 		<script src="/js/jquery.shop.common.js"></script>
 		<script src="/js/jquery.poshytip.min.js"></script>
 		<script type="text/javascript">
+		
+			//add by lhy 1205 begin
+		
 			//ajax页面修改商品名
-			function ajax_updategoodsname(id, obj){
-				var val = $(obj).val();
-				var secondval = $(obj).attr('cls');
-				if(val != secondval){
-					$.ajax({
-						type:"Post",
-						url:"/goods/updateGoodsName",
-						data:{"id":id, "value":val},
-						success:function(data){
-							if(data == "repeat"){
-								alert("该商品名已存在！");
-								$(obj).attr("value",secondval);
-							}
-							if(data == "namenull"){
-								alert("修改的商品名不能为空！");
-								$(obj).attr("value",secondval);
-							}
-						}		
-					}); 
-				}
+			function ajax_update(id,obj){
+				
+				//变化后的值
+				var val=$(obj).val();
+				
+				$.ajax({
+					type:'post',
+					url:'goodsajaxupdate.htm',
+					data:{
+						"id":id,
+						"value":val
+					},
+					success:function(data){
+			   			if(data == 'success'){
+			   				//啥也不用做
+			   			}else{
+			   				window.location.href='goodsfindall.htm';
+			   			}
+					},
+					error:function(obj){
+						alert("ajax error");
+					}
+					
+			   });
 			}
+			
+			//ajax删除单条
+			function isDelete(obj,id) {
+				var f = confirm('是否确认删除');
+				if (!f) {
+					return ;
+				}
+				
+				$.ajax({
+					url:"deletegoods_ajax.htm",
+					type:"post",
+					async:true,
+					data:{
+						id:id
+					},
+					success:function(data){
+						if(data == "success"){
+							$(obj).parent().parent().remove();
+						}
+					}
+				});
+			}
+			
+			//add by lhy 1205 end
+			
 			//ajax修改商品是否推荐状态
 			function ajax_updategoodsrecommend(id,obj){
 				var val = $(obj).hasClass('yes');
@@ -53,46 +85,6 @@
 					}
 				});	
 			}
-			//ajax删除一个商品
-			function ajax_deletegoodsone(obj){
-				var model = $(obj).parent().parent();
-				if(model.children("input[type='hidden']").length>0){
-					var id = model.find("input[name='ids']")[0].value;
-					if(!confirm("确定删除么")){
-						return;
-					}
-					$.ajax({
-						type:"Post",
-						url:"/goods/deleteGoodsOne",
-						data:{"id":id},
-						success:function(data){
-							if(data == "1"){
-								model.remove();
-							}
-						}
-					});
-					return;
-				}
-			}
-			
-			//by zhaoyu 1127 begin
-			/* $(function(){
-				$("#sortId").change(function(){
-					
-					if($("option:selected").val() == "请选择"){
-						$("option[class=show]").hide();
-					}else{
-						var level = $("option:selected").attr("level");
-						if(level != 2){
-							$("#brandid option:eq(0)").attr("selected",true);
-						}else{
-							var s = $(this).find("option:selected").attr("tid");
-							$("option[class=show]").hide();
-							$("option[typeid="+s+"]").show();
-						}
-					}
-				});
-			}); */
 			
 			//by zhaoyu 1127 begin
 			$(function(){
@@ -203,7 +195,7 @@
 										<tr>
 											<input type="hidden" name="ids" value="${tmp.id }" />
 											<td>
-												<input type="text" id="26" name="26" value="${tmp.name }" cls="vivovoii" title="可编辑" onblur="ajax_updategoodsname('26',this)" />
+												<input type="text" id="26" name="26" value="${tmp.name }" cls="vivovoii" title="可编辑" onchange="ajax_update('${tmp.id }',this)" />
 											</td>
 											<td align="center">  
 												<img src="${tmp.img }" width="55px" height="60px" />	
@@ -228,7 +220,7 @@
 						         			</td>   
 								          	<td class="ac8" align="center">
 										      	<a href="http://localhost:8080/goods/updateGoods?id=26">编辑</a> 
-										        <a href="http://localhost:8080/shangpindel?id=1" onclick="ajax_deletegoodsone(this);">删除</a>	
+										        <a href="javascript:isDelete(this,${tmp.id });">删除</a>	
 								          	</td>
 						        		</tr>
 									</pg:item>
