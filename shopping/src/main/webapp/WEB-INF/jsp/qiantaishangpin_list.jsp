@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0048)http://localhost:8080/jfspliebiao?goodsclassid=5 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title></title>
+		<title>感官认知 - Powered by shopping</title>
 		<meta name="keywords" content="感官认知">
 		<meta name="description" content="感官认知">
 		<meta name="generator" content="shopping 2.0">
@@ -298,7 +299,7 @@
     			</div>
     			<div class="pageleft">
     				<c:if test="${sessionScope.currentusername == null }">
-	    				<span>亲，欢迎来到缘来小镇</span>
+	    				<span>亲，欢迎来到&nbsp;缘来小镇！</span>
 	    				<span class="pxlr">
 	    					<a href="http://localhost:8080/user/login.htm" class="lightblue">登录</a>
 	    				</span><span class="pxlr">或</span>
@@ -307,9 +308,8 @@
 	    				</span> 
     				</c:if>
     				<c:if test="${sessionScope.currentusername != null }">
-    					<span>${sessionScope.currentusername },欢迎来到缘来小镇</span>
+    					<span>${sessionScope.currentusername }&nbsp;欢迎来到&nbsp;缘来小镇！</span>
     				</c:if>
-    				
     			</div>
   			</div>
 		</div>
@@ -463,7 +463,6 @@
 	          				<div class="opclass">  </div>
 	          				<div class="allgoods">
 	          				
-	          				
 	               			<!-- 筛选begin -->
 	            				<div class="brandsort_screen" id="search_bar">
 	              					<div class="brandsort_sort">
@@ -487,12 +486,12 @@
 	     					       				
 	        				<!-- 循环商品begin -->
 						      	<div class="smallgoods">  
-						            <c:forEach items="${requestScope.goodslist }" var="tmp">
+						           <%--  <c:forEach items="${requestScope.goodslist }" var="tmp">
 								  		<ul class="this" id="1">
 										  	<li class="goodsimgs">
 											  	<span class="goods_sp_span">
 												  	<p>
-												  		<a href="commodityDetailsShow.htm?id=${tmp.id }">
+												  		<a href="?goodsid=${tmp.id }" target="_blank">
 												  			<img src="${tmp.img }" width="120" height="120">
 												  		</a>
 												  	</p>
@@ -502,31 +501,80 @@
 										  	<li class="goodslook"><strong>商城价：¥${tmp.pice }</strong></li>
 										  	<li class="goodslook"><span class="marketprice">市场价：¥${tmp.opice }</span></li>
 										</ul>
-									</c:forEach> 
-								</div>
+									</c:forEach>  --%>
+								<!-- 循环商品end -->
 				
-	        				<!-- 循环商品end -->      
-	            
-	             			</div>
-	             			
-	             			
-	             			<!-- pg分页 -->
-										          <div class="fenye">
-										            <div class="fenyes">
-										              <input name="area_id" type="hidden" id="area_id" value="">
-										              <input name="gs_ids" type="hidden" id="gs_ids" value="">
-										              <input name="brand_ids" type="hidden" id="brand_ids" value="">
-										              <input name="properties" type="hidden" id="properties" value="">
-										              <input name="keyword" type="hidden" id="keyword" value="">
-										              <input name="currentPage" type="hidden" id="currentPage" value="1">
-										              <input type="hidden" name="goods_view" id="goods_view" value="thumb">
-										              <input name="orderBy" type="hidden" id="orderBy" value="addTime">
-										              <input name="orderType" type="hidden" id="orderType" value="desc"> 
-										              <input name="all_property_status" type="hidden" id="all_property_status" value="">
-										              <input name="detail_property_status" type="hidden" id="detail_property_status" value=""> 
-										              <a href="javascript:void(0);" onclick="return gotoPage(1)">首页</a> 第　<a class="this" href="javascript:void(0);" onclick="return gotoPage(1)">1</a> 页　<a href="javascript:void(0);" onclick="return gotoPage(1)">末页</a>  </div>
-										          </div>
-	        			</div>
+				
+								<!-- 加分页begin -->
+								
+					    			<pg:pager url="/findallgoods.htm" maxPageItems="6" maxIndexPages="6"
+										export="offset,currentPageNumber=pageNumber" isOffset="false"
+										index="center">
+										<c:set var="m" value="0"></c:set>
+					    				<c:forEach items="${requestScope.goodslist }" var="tmp">
+											<pg:item>
+												<c:set var="m" value="${m+1 }"></c:set>
+												<div>
+										  			<ul class="this" id="1">
+												  		<li class="goodsimgs">
+														  	<span class="goods_sp_span">
+															  	<p>
+															  		<a href="?goodsid=${tmp.id }" target="_blank">
+														  				<img src="${tmp.img }" width="120" height="120">
+														  			</a>
+														 	 	</p>
+													  		</span>
+												  		</li>
+												    	<li class="goodsnames"><a href="?goodsid=${tmp.id }" target="_blank">${tmp.name } </a></li>
+												  		<li class="goodslook"><strong>商城价：¥${tmp.pice }</strong></li>
+												  		<li class="goodslook"><span class="marketprice">市场价：¥${tmp.opice }</span></li>
+													</ul>
+												</div>
+												<c:if test="${m%5==0 }">
+													<br>
+												</c:if>
+											</pg:item>
+										</c:forEach>
+										<div style="clear: both;"></div>
+										<center>
+						    				<pg:index>
+												<pg:first>
+													<a class="pageindex" href="${pageUrl}&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">首页</a>
+												</pg:first>
+												<pg:prev>
+													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">上一页</a>
+												</pg:prev>
+												<pg:pages>
+													<c:choose>
+													
+													<%--当循环页码是当前页码，则该页码不可以导航，并显示为红色--%>
+													
+														<c:when test="${currentPageNumber eq pageNumber}">
+															<font color="red">[${pageNumber }]</font>
+														</c:when>
+								
+													<%-- 当循环页码不是当前页码，则该页码可以导航 --%>
+													
+														<c:otherwise>
+															<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">[${pageNumber }]</a>
+														</c:otherwise>
+													</c:choose>
+												</pg:pages>
+												<pg:next>
+													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">下一页</a>
+												</pg:next>
+												<pg:last>
+													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">尾页</a>
+												</pg:last>
+											</pg:index>
+										</center>
+					    			</pg:pager>
+					    			
+					    			<!-- 加分页end -->
+					    			
+			    				</div>
+			    			</div>
+			    		</div>
 	      			</form>
 	      		</div>
 	  ﻿
