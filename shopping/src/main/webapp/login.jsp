@@ -53,7 +53,7 @@
 <body>
 	<div>
 		<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxx商城登录</h1>
-		<form action="/userdenglu.htm">
+		<form action="userdenglu.htm">
 			<table>
 				<tr class = "line">
 					<td colspan="2" width="80">用户名：</td>

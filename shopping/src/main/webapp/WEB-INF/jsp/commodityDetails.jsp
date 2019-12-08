@@ -414,6 +414,13 @@
 						<li class="menupx" style="background:none;">
 							<a href="http://localhost:8080/articlelist_help.htm">帮助中心</a>
 						</li>
+						<!-- 退出登录 -->
+						<%-- <c:if test="${sessionScope.currentusername != null }">		
+							<li class="menupx" style="background:none;">
+								<a href="logout.htm">退出</a>
+							</li>
+						</c:if> --%>
+						<!-- 退出登录end -->
 					</ul>
     			</div>
     			<div class="pageleft">

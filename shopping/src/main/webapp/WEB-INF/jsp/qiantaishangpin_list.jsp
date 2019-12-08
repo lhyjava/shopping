@@ -295,6 +295,13 @@
 		          			</div>
 	        			</li>
         				<li class="menupx" style="background:none;"><a href="http://localhost:8080/articlelist_help.htm">帮助中心</a></li>
+        				<!-- 退出登录 -->
+						<%-- <c:if test="${sessionScope.currentusername != null }">		
+							<li class="menupx" style="background:none;">
+								<a href="logout.htm">退出</a>
+							</li>
+						</c:if> --%>
+						<!-- 退出登录end -->
         			</ul>
     			</div>
     			<div class="pageleft">
@@ -363,7 +370,7 @@
 			    			</a>  
 			    		</div>
 			    		<div class="searchForm">
-				    		<form action="http://localhost:8080/search.htm" method="post" target="_blank" id="searchForm">
+				    		<form action="http://localhost:8080/search.htm" method="post" id="searchForm">
 					  			<input name="type" type="hidden" id="type" value="goods">
 					    		<div class="toph_bigsearch">
 					      			<div class="toph_sear">
@@ -482,97 +489,28 @@
 										<input type="submit" style="cursor:pointer;" value="确定" class="brandsort_input_btn">
 									</div>
 	            				</div>
-	     					<!-- 筛选end -->
+	     						<!-- 筛选end -->
 	     					       				
-	        				<!-- 循环商品begin -->
+	        					<!-- 循环商品begin -->
 						      	<div class="smallgoods">  
-						           <%--  <c:forEach items="${requestScope.goodslist }" var="tmp">
+						            <c:forEach items="${requestScope.goodslist }" var="tmp">
 								  		<ul class="this" id="1">
 										  	<li class="goodsimgs">
 											  	<span class="goods_sp_span">
 												  	<p>
-												  		<a href="?goodsid=${tmp.id }" target="_blank">
+												  		<a href="commodityDetailsShow.htm?id=${tmp.id }">
 												  			<img src="${tmp.img }" width="120" height="120">
 												  		</a>
 												  	</p>
 											  	</span>
 										  	</li>
-										    <li class="goodsnames"><a href="?goodsid=${tmp.id }" target="_blank">${tmp.name } </a></li>
+										    <li class="goodsnames"><a href="commodityDetailsShow.htm?id=${tmp.id }">${tmp.name } </a></li>
 										  	<li class="goodslook"><strong>商城价：¥${tmp.pice }</strong></li>
 										  	<li class="goodslook"><span class="marketprice">市场价：¥${tmp.opice }</span></li>
 										</ul>
-									</c:forEach>  --%>
-								<!-- 循环商品end -->
-				
-				
-								<!-- 加分页begin -->
-								
-					    			<pg:pager url="/findallgoods.htm" maxPageItems="6" maxIndexPages="6"
-										export="offset,currentPageNumber=pageNumber" isOffset="false"
-										index="center">
-										<c:set var="m" value="0"></c:set>
-					    				<c:forEach items="${requestScope.goodslist }" var="tmp">
-											<pg:item>
-												<c:set var="m" value="${m+1 }"></c:set>
-												<div>
-										  			<ul class="this" id="1">
-												  		<li class="goodsimgs">
-														  	<span class="goods_sp_span">
-															  	<p>
-															  		<a href="?goodsid=${tmp.id }" target="_blank">
-														  				<img src="${tmp.img }" width="120" height="120">
-														  			</a>
-														 	 	</p>
-													  		</span>
-												  		</li>
-												    	<li class="goodsnames"><a href="?goodsid=${tmp.id }" target="_blank">${tmp.name } </a></li>
-												  		<li class="goodslook"><strong>商城价：¥${tmp.pice }</strong></li>
-												  		<li class="goodslook"><span class="marketprice">市场价：¥${tmp.opice }</span></li>
-													</ul>
-												</div>
-												<c:if test="${m%5==0 }">
-													<br>
-												</c:if>
-											</pg:item>
-										</c:forEach>
-										<div style="clear: both;"></div>
-										<center>
-						    				<pg:index>
-												<pg:first>
-													<a class="pageindex" href="${pageUrl}&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">首页</a>
-												</pg:first>
-												<pg:prev>
-													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">上一页</a>
-												</pg:prev>
-												<pg:pages>
-													<c:choose>
-													
-													<%--当循环页码是当前页码，则该页码不可以导航，并显示为红色--%>
-													
-														<c:when test="${currentPageNumber eq pageNumber}">
-															<font color="red">[${pageNumber }]</font>
-														</c:when>
-								
-													<%-- 当循环页码不是当前页码，则该页码可以导航 --%>
-													
-														<c:otherwise>
-															<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">[${pageNumber }]</a>
-														</c:otherwise>
-													</c:choose>
-												</pg:pages>
-												<pg:next>
-													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">下一页</a>
-												</pg:next>
-												<pg:last>
-													<a class="pageindex" href="${pageUrl }&level=${sessionScope.level }&goodsclassid=${sessionScope.goodsclassid }">尾页</a>
-												</pg:last>
-											</pg:index>
-										</center>
-					    			</pg:pager>
-					    			
-					    			<!-- 加分页end -->
-					    			
+									</c:forEach> 
 			    				</div>
+								<!-- 循环商品end -->
 			    			</div>
 			    		</div>
 	      			</form>

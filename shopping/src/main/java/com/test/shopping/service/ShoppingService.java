@@ -61,6 +61,14 @@ public class ShoppingService {
 		return dao.selectgoods3(store_price_begin,store_price_end,goodsclassid, name);
 	}
 	
+	public List<Goods> orderbyasc(){
+		return dao.orderbyasc();
+	}
+	
+	public List<Goods> orderbydesc(){
+		return dao.orderbydesc();
+	}
+	
 	//add by zhaoyu 1204 end
 	
 }

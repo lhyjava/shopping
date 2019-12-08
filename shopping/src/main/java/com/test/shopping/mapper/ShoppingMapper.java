@@ -98,5 +98,19 @@ public interface ShoppingMapper {
 	@SelectProvider(type=ShoppingsqlProvider.class, method="selectgoods3")
 	List<Goods> selectgoods3(Integer store_price_begin,Integer store_price_end,Integer goodsclassid,String name);
 	
+	@Select({ 
+		"select *" ,
+		"FROM goods",
+		"ORDER BY pice ASC"
+	})
+	List<Goods> orderbyasc();
+	
+	@Select({ 
+		"select *" ,
+		"FROM goods",
+		"ORDER BY pice DESC"
+	})
+	List<Goods> orderbydesc();
+	
 	//add byg zhaoyu 1204 end
 }

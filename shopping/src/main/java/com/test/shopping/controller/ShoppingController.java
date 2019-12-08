@@ -163,7 +163,27 @@ public class ShoppingController {
 		req.setAttribute("goodslist", list);
 		
 		return "qiantaishangpin_list";
-		////
+	}
+	
+	/**
+	 * 根据价格高低排序
+	 * @param panduan 判断当前价格排序的状态
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/piceorder.htm")
+	public String piceorder(String panduan,HttpServletRequest req) {
+		List<Goods> list = null;
+		if(panduan.equals("0")) {
+			list = service.orderbydesc();
+			req.getSession().removeAttribute("panduanpice");
+		}else {
+			list = service.orderbyasc();
+			req.getSession().setAttribute("panduanpice", "pice");
+			
+		}
+		req.setAttribute("goodslist", list);
+		return "qiantaishangpin_list";
 	}
 	//add by zhaoyu 1203 end
 }

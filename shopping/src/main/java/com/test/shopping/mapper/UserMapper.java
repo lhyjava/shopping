@@ -111,7 +111,7 @@ public interface UserMapper {
     @Select({
     	"select * ",
         "from user ",
-        "where power=1 and username = #{value,jdbcType=VARCHAR}"       
+        "where username = #{value,jdbcType=VARCHAR}"       
     })
     @Results({
     	 @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),

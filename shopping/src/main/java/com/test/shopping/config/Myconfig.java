@@ -7,15 +7,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.test.shopping.interceptor.DengluInterceptor;
 
-@Configuration
+//@Configuration
 public class Myconfig implements WebMvcConfigurer{
 
-	@Autowired
-	private DengluInterceptor dengluinterceptor;
-	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(dengluinterceptor).addPathPatterns("/**").excludePathPatterns("/shangcheng.htm","/userdenglu.htm","/img/**", "/js/**", "/css/**");
-	}
+	/*
+	 * @Autowired private DengluInterceptor dengluinterceptor;
+	 * 
+	 * @Override public void addInterceptors(InterceptorRegistry registry) {
+	 * registry.addInterceptor(dengluinterceptor).addPathPatterns("/**").
+	 * excludePathPatterns("/shangcheng.htm","/userdenglu.htm","/img/**", "/js/**",
+	 * "/css/**"); }
+	 */
 	
 }
