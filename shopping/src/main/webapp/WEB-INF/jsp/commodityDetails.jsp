@@ -216,17 +216,27 @@
 			var time_id;
 			//加入购物车
 			function spguige(obj){
+				
 				var m = $(obj).html();
+				
 				$("#guigeid").val(m);
 			}
-			function spguige2(obj){
+			/* function spguige2(obj){
 				var n = $(obj).html();
 				$("#guige2id").val(n);
-			}
+			} */
 			function add_cart(){
-				alert(1);
+				/* alert(1);
 				$("#tianjiagouwuche").attr("action", "tianjiagouwuche.htm");
-				$("#tianjiagouwuche").submit();
+				$("#tianjiagouwuche").submit(); */
+				
+				
+				/* var arr = $(".specvals").val();
+				
+				for(var i=0;i<arr.length;i++){
+					console.log(arr[i]);
+				} */
+				
 				
 			}
 			function cart_fadeOut(){
@@ -577,6 +587,7 @@
 								/* 规格点击事件 */
 								function goods_spec_set(obj){
 									var thisclass = $(obj).attr("class");
+									console.log(thisclass);
 								 	$("."+thisclass).css("border", "0px");
 								 	$(obj).css("border", "2px solid red");
 								 	$(obj).parent().parent().find("input").val($(obj).attr("specvalname"));
@@ -603,22 +614,22 @@
 												<span ng-repeat="y in specval">
 													<span ng-if="x.id == y.specid">
 						                          		<b style="font-weight:lighter;">
-						                          			<a specvalname="" class="{{ x.id }}" href="javascript:void(0);" onclick="goods_spec_set(this);" spec="32771" gsp="32798">
+						                          			<a specvalname="{{ y.value }}" class="{{ x.id }}" href="javascript:void(0);" onclick="goods_spec_set(this);" spec="32771" gsp="32798">
 						                          				<span id="gui" onclick="spguige(this)">{{ y.value }}</span>
 						                          			</a>
 						                          		</b>
+						                          		<input type="hidden" name="guigenames" id="guigehidden" class="specvals" />
 						                          	</span>
 					                          	</span>  
-			                              		<input type="hidden" name="guigenames" id="guigehidden" />
 	                             			</span>
                               			</li>
 							  			<li>
 							  				<span class="datespan">&nbsp;</span>
 							  				<span class="addcar">
-												<input name="input" type="button" value="添加到购物车" onclick="add_cart();" style="background-color: blue">
+												<input name="input" type="button" value="添加到购物车" onclick="add_cart();" style="background-color: blue" />
 											</span>
 											<span class="atonce">
-												<input name="input" type="button" value="立刻购买" onclick="buy_goods();" style="background-color: aqua">
+												<input name="input" type="button" value="立刻购买" onclick="buy_goods();" style="background-color: aqua" />
 											</span>
 											<div class="goodscar" style="display:none;z-index:999;">
 								  				<div>

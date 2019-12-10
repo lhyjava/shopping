@@ -61,7 +61,7 @@ public class OrderconfirmController {
 	 */
 	@RequestMapping("/orderconfirm.htm")
 	public String orderconfirm(String[] ids,String userid, HttpServletRequest req) {
-
+		
 		// 将传过来的id数组转为字符串
 		String id = Arrays.toString(ids);
 		id = id.replace("[", "").replace("]", "").substring(0, id.length() - 2);

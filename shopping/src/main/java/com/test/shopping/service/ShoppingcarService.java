@@ -25,4 +25,31 @@ public class ShoppingcarService {
 	}
 	
 	//add by lhy 1207 end
+	
+	//add by xdx 1210 begin
+
+	public List<Shoppingcar> selectByUserid(Integer userid){
+		return dao.selectByUserid(userid);
+	}
+	
+	
+	public int updateById(Integer id,Integer number) {
+		return dao.updateById(id, number);
+	}
+	
+	
+	
+	  public String selectzongjiaByUserid(Integer userid) { 
+		  
+		  return dao.selectzongjiaByUserid(userid); }
+	 
+	 
+	/*
+	 * public int insertShoppngcar(Goods goods,String specname,String
+	 * sparvals,Integer goodscount,Integer userid) { return
+	 * dao.insertShoppngcar(goods, specname,sparvals, goodscount, userid); }
+	 */
+	
+	//add by xdx 1210 end
+	
 }

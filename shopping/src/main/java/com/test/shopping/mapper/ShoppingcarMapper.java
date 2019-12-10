@@ -1,5 +1,6 @@
 package com.test.shopping.mapper;
 
+import com.test.shopping.entity.Goods;
 import com.test.shopping.entity.Shoppingcar;
 
 import java.util.List;
@@ -82,4 +83,51 @@ public interface ShoppingcarMapper {
     String selectTotalPriceByUserId(String id,String userid);
 
     //add by 1207 end
+    
+    //add xdx 12.06 begin
+    
+	/*
+	 * @InsertProvider(type=ShoppingcarSqlProvider.class, method="insertShoppngcar")
+	 * int insertShoppngcar(Goods goods,String specname,String sparvals,Integer
+	 * goodscount,Integer userid);
+	 */
+    @Select({
+        "select",
+        "id, image, name, price, number, url, spec, userid, goodsid",
+        "from shoppingcar",
+        "where userid = #{userid,jdbcType=INTEGER}"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="image", property="image", jdbcType=JdbcType.VARCHAR),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="price", property="price", jdbcType=JdbcType.INTEGER),
+        @Result(column="number", property="number", jdbcType=JdbcType.INTEGER),
+        @Result(column="url", property="url", jdbcType=JdbcType.VARCHAR),
+        @Result(column="spec", property="spec", jdbcType=JdbcType.VARCHAR),
+        @Result(column="userid", property="userid", jdbcType=JdbcType.INTEGER),
+        @Result(column="goodsid", property="goodsid", jdbcType=JdbcType.INTEGER)
+        
+    })
+    List<Shoppingcar> selectByUserid(Integer userid);
+    
+	  @Select({
+		"select", "SUM(s.price*s.number) sum",
+		"from shoppingcar s",
+	  	"where userid = #{userid,jdbcType=INTEGER}" })
+	  
+	  String selectzongjiaByUserid(Integer userid);
+	 
+    //add xdx 12.06 end
+	  
+	//add xdx 12.07 begin
+	    
+    @Update({
+        "update shoppingcar ",
+        "SET number=#{number,jdbcType=INTEGER}",
+        "where id = #{id,jdbcType=INTEGER}"
+    })
+    int updateById(Integer id,Integer number);
+    
+    //add xdx 12.07 end
 }
