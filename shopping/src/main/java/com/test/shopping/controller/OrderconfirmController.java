@@ -1,6 +1,5 @@
 package com.test.shopping.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -102,7 +101,7 @@ public class OrderconfirmController {
 	@RequestMapping("ordersubmit.htm")
 	public String ordersubmit(Integer userid,String[] img,String[] name,String[] specmessage,
 							  Integer[] price,Integer[] number,Integer[] goodsid,String Invoice,String delivery,
-							  String message,String consignee,Integer totalPrice,HttpServletRequest req) {
+							  String message,String consignee,Integer totalPrice) {
 		
 		//订单编号
 		String ordernumber = OrderNo.getOrderIdByUUId();
@@ -125,7 +124,9 @@ public class OrderconfirmController {
 		//订单商品表
 		ordergoodsService.insertGoods(id,img,name,specmessage,price,number,goodsid);
 		
-		return "";
+		
+		
+		return "order_form";
 	}
 	
 	//add by lhy 1207 end

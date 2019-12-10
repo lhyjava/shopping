@@ -505,8 +505,8 @@
 											  	</span>
 										  	</li>
 										    <li class="goodsnames"><a href="commodityDetailsShow.htm?id=${tmp.id }">${tmp.name } </a></li>
-										  	<li class="goodslook"><strong>商城价：¥${tmp.pice }</strong></li>
-										  	<li class="goodslook"><span class="marketprice">市场价：¥${tmp.opice }</span></li>
+										  	<li class="goodslook"><strong>商城价：¥${tmp.opice }</strong></li>
+										  	<li class="goodslook"><span class="marketprice">市场价：¥${tmp.pice }</span></li>
 										</ul>
 									</c:forEach> 
 			    				</div>
