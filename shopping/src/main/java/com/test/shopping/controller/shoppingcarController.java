@@ -1,6 +1,7 @@
 package com.test.shopping.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,45 +18,46 @@ import com.test.shopping.service.ShoppingcarService;
 @Controller
 public class shoppingcarController {
 
+	/**
+	 * 购物车
+	 */
 	@Autowired
 	private ShoppingcarService shopservice;
+
+	//add by lhy 1210 begin
 	
-	@RequestMapping("showaa.htm")
-	public String shiw() {
+	/**
+	 * 
+	 * @Title: tianjiagouwuche
+	 * @Description: 添加到购物车，并在购物车页面显示
+	 * @Author Administrator
+	 * @DateTime 2019年12月10日 下午8:58:13
+	 * @return
+	 */
+	@RequestMapping("/tianjiagouwuche.htm")
+	public String tianjiagouwuche(Integer userid,Integer goodsid,String name,String img,Integer opice,Integer number,
+								  String[] specnames,String[] specvals,HttpServletRequest req) {
+		
+		//添加到购物车
+		shopservice.insertShoppingCar(userid, goodsid, name, img, opice, number, specnames, specvals);
+		//显示到购物车列表
+		List<Shoppingcar> list = shopservice.selectByUserid(userid);
+		String str = shopservice.selectzongjiaByUserid(userid);
+		req.setAttribute("shoppingcarlist", list); req.setAttribute("zongjia", str);
 		return "shoppingcar";
 	}
 	
-	
-	@RequestMapping("/tianjiagouwuche.htm")
-	public String tianjiagouwuche(Goods goods,Integer goodscount,Integer userid,HttpServletRequest req) {
+	//add by lhy 1210 end
 
-		/*
-		 * System.out.println(specname); System.out.println(sparvals);
-		 */
-
-		  //shopservice.insertShoppngcar(goods, specname,sparvals, goodscount, userid);
-		  List<Shoppingcar> list = shopservice.selectByUserid(userid);
-		  String str = shopservice.selectzongjiaByUserid(userid);
-		  req.setAttribute("shoppingcarlist", list); req.setAttribute("zongjia", str);
-		 		 
-		return"shoppingcar"; 
-	}
-	
-	
 	@RequestMapping("/numberupdate.htm")
 	@ResponseBody
-	public String numberupdate(Integer id,Integer number) {
+	public String numberupdate(Integer id, Integer number) {
 		int ret = shopservice.updateById(id, number);
-		if(ret == 1) {
-			return"success";
-		}else {
-			return"error";
+		if (ret == 1) {
+			return "success";
+		} else {
+			return "error";
 		}
 	}
-	
-	
+
 }
-
-
-
-

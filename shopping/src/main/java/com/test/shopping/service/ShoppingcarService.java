@@ -2,6 +2,8 @@ package com.test.shopping.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +53,15 @@ public class ShoppingcarService {
 	 */
 	
 	//add by xdx 1210 end
+	  
+	  //add by lhy 1210 begin
+	  
+	  public int insertShoppingCar(Integer userid,Integer goodsid,String name,String img,Integer opice,Integer number,
+			  					   String[] specnames,String[] specvals) {
+		  
+		  return dao.insertShoppingCar(userid, goodsid, name, img, opice, number, specnames, specvals);
+	  }
+	  
+	  //add by lhy 1210 end
 	
 }

@@ -5,6 +5,8 @@ import com.test.shopping.entity.Shoppingcar;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -111,12 +113,11 @@ public interface ShoppingcarMapper {
     })
     List<Shoppingcar> selectByUserid(Integer userid);
     
-	  @Select({
-		"select", "SUM(s.price*s.number) sum",
-		"from shoppingcar s",
-	  	"where userid = #{userid,jdbcType=INTEGER}" })
-	  
-	  String selectzongjiaByUserid(Integer userid);
+	@Select({
+	"select", "SUM(s.price*s.number) sum",
+	"from shoppingcar s",
+	"where userid = #{userid,jdbcType=INTEGER}" })
+	String selectzongjiaByUserid(Integer userid);
 	 
     //add xdx 12.06 end
 	  
@@ -130,4 +131,12 @@ public interface ShoppingcarMapper {
     int updateById(Integer id,Integer number);
     
     //add xdx 12.07 end
+    
+    //add by lhy 1210 begin
+    
+    @InsertProvider(type=ShoppingcarSqlProvider.class, method="insertShoppingCar")
+    int insertShoppingCar(Integer userid,Integer goodsid,String name,String img,Integer opice,Integer number,
+			   String[] specnames,String[] specvals);
+    
+    //add by lhy 1210 end
 }

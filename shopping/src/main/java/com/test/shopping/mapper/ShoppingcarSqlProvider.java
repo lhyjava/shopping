@@ -1,6 +1,9 @@
 package com.test.shopping.mapper;
 
 import com.test.shopping.entity.Shoppingcar;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.jdbc.SQL;
 
 public class ShoppingcarSqlProvider {
@@ -118,5 +121,45 @@ public class ShoppingcarSqlProvider {
     	return sql.toString();
     }
     
-  //add by lhy 1207 end
+    //add by lhy 1207 end
+    
+    //add by lhy 1210 begin
+    
+    public String insertShoppingCar(Integer userid,Integer goodsid,String name,String img,Integer opice,Integer number,
+			   						String[] specnames,String[] specvals) {
+    	
+    	StringBuffer sql = new StringBuffer();
+    	
+    	String spec = "";
+    	
+    	for (int i = 0; i < specnames.length; i++) {
+			spec += specnames[i] + ":" + specvals[i] + ";";
+		}
+    	
+    	spec = spec.substring(0, spec.length() - 1);
+    	
+    	//INSERT INTO `shoppingcar` (`image`, `name`, `price`, `number`, `spec`, `userid`, `goodsid`) 
+    	//VALUES ('1', '1', '1', '1', '1', '1', '1')
+    	
+    	sql.append("INSERT INTO shoppingcar (image, name, price, number, spec, userid, goodsid) ");
+    	sql.append("VALUES (");
+    	sql.append("'"+img+"'");
+    	sql.append(",");
+    	sql.append("'"+name+"'");
+    	sql.append(",");
+    	sql.append(opice);
+    	sql.append(",");
+    	sql.append(number);
+    	sql.append(",");
+    	sql.append("'"+spec+"'");
+    	sql.append(",");
+    	sql.append(userid);
+    	sql.append(",");
+    	sql.append(goodsid);
+    	sql.append(")");
+    	
+    	return sql.toString();
+    }
+    
+    //add by lhy 1210 end
 }

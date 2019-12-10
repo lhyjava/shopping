@@ -539,12 +539,12 @@ function jian(obj) {
             	<input onclick="goodsshop(this);" type="checkbox" value="${tmp.id }" class="ck" id="cb"/>
             </td>
             <td class="baby"> 
-              <img src="/img/${tmp.image }" width="65" height="65">
+              <img src="${tmp.image }" width="65" height="65">
               <p><a href="http://localhost:8080/showdetails?id=4" target="_blank">${tmp.name }</a>   
               <input type="hidden" name="ids" value="${tmp.id }" />               
               <span style="color:#F00">(特价)</span> <br>
 
-				<c:set value="${fn:split(tmp.spec,',') }" var="arr"></c:set>
+				<c:set value="${fn:split(tmp.spec,';') }" var="arr"></c:set>
               	<span class="color">${arr[0] }</span><br>
               
               	<span class="color">${arr[1] }</span><br>

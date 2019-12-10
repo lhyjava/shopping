@@ -227,8 +227,8 @@
 			} */
 			function add_cart(){
 				/* alert(1);
-				$("#tianjiagouwuche").attr("action", "tianjiagouwuche.htm");
-				$("#tianjiagouwuche").submit(); */
+				$("#tianjiagouwuche").attr("action", "tianjiagouwuche.htm"); */
+				$("#tianjiagouwuche").submit();
 				
 				
 				/* var arr = $(".specvals").val();
@@ -539,11 +539,12 @@
 					  	</ul>
 					</div>
 				</div>
-				<form action="http://localhost:8080/tianjiagouwuche.htm" id="tianjiagouwuche">
-				<input name="id" type="hidden" value="2" />		
-				<input name="name" type="hidden" value="长虹65D2P" />
-				<input name="img" type="hidden" value="changhong.jpg" />
-				<input name="pice" type="hidden" value="333" />
+				<form action="tianjiagouwuche.htm" id="tianjiagouwuche">
+				<input name="userid" type="hidden" value="${sessionScope.currentuserid }" />		
+				<input name="goodsid" type="hidden" value="{{goods.id }}" />
+				<input name="name" type="hidden" value="{{goods.name}}" />
+				<input name="img" type="hidden" value="{{goods.img }}" />
+				<input name="opice" type="hidden" value="{{goods.opice }}"/>	
 				<!-- 商品信息 -->
 				<div class="productdeta">
 					<h1>
@@ -590,7 +591,7 @@
 									console.log(thisclass);
 								 	$("."+thisclass).css("border", "0px");
 								 	$(obj).css("border", "2px solid red");
-								 	$(obj).parent().parent().find("input").val($(obj).attr("specvalname"));
+								 	$(obj).parent().parent().parent().parent().parent().find("input[name='specvals']").val($(obj).attr("specvalname"));
 								}
 						  	</script>
 							<div class="detail_solid"></div>
@@ -600,7 +601,7 @@
 							  			<li id="goods_spec_chose" class="detail_chose" style="display:none;">请选择商品属性</li>
 										<li class="stockdate"><span class="datespan">数量：</span>
 											<span class="stock">
-												<input name="goodscount" type="text" id="goodscount" value="1" />
+												<input name="number" type="text" id="goodscount" value="1" />
 											</span>                     
 											<span class="stockparts">
 												件（库存<b id="goods_inventory" style="font-weight:normal;">{{ goods.stock }}</b>件）
@@ -618,10 +619,11 @@
 						                          				<span id="gui" onclick="spguige(this)">{{ y.value }}</span>
 						                          			</a>
 						                          		</b>
-						                          		<input type="hidden" name="guigenames" id="guigehidden" class="specvals" />
 						                          	</span>
 					                          	</span>  
 	                             			</span>
+	                             			<input type="hidden" name="specnames" value="{{ x.name }}" />
+						                    <input type="hidden" name="specvals" id="guigehidden" class="specvals" />
                               			</li>
 							  			<li>
 							  				<span class="datespan">&nbsp;</span>
