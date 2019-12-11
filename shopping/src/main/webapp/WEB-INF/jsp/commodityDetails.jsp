@@ -226,18 +226,7 @@
 				$("#guige2id").val(n);
 			} */
 			function add_cart(){
-				/* alert(1);
-				$("#tianjiagouwuche").attr("action", "tianjiagouwuche.htm"); */
 				$("#tianjiagouwuche").submit();
-				
-				
-				/* var arr = $(".specvals").val();
-				
-				for(var i=0;i<arr.length;i++){
-					console.log(arr[i]);
-				} */
-				
-				
 			}
 			function cart_fadeOut(){
 				time++;
@@ -247,7 +236,7 @@
 					window.clearInterval(time_id);
 			  	}
 			}
-			//立刻购买
+			//立刻购买，点击后进入订单提交页
 			function buy_goods(){
 				var add=true
 				var gsp="";

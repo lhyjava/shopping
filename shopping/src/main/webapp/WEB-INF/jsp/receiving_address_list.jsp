@@ -1296,7 +1296,7 @@ function ajaxPage(url,page,obj){
 							      	<td align="right" valign="top"><span class="hui_table">联系电话</span>：</td>
 							      	<td align="left" id="other_reason2">
 							      		<span class="dia_txt">
-							        		<input name="receiptphone" type="text" id="receiptphone" value="" size="35">
+							        		<input name="receiptnumber" type="text" id="receiptnumber" value="" size="35">
 							      		</span>
 							      	</td>
 							    </tr>
@@ -1304,7 +1304,7 @@ function ajaxPage(url,page,obj){
 							      	<td align="right" valign="top">	<span class="hui_table">手机号码</span>：</td>
 							      	<td align="left">
 							      		<span class="dia_txt">
-							        		<input name="receiptnumber" type="text" id="receiptnumber" value="" size="35">
+							        		<input name="receiptphone" type="text" id="receiptphone" value="" size="35">
 							      		</span>
 							      	</td>
 							    </tr>
