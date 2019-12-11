@@ -242,7 +242,7 @@ function changenumber(obj){
 		var dj = $(obj).parent().prev().html();
 		var xj =n*dj; 
 		var xjint = parseInt(xj);
-		$(obj).parent().parent().next().children().html(xjint);
+		$(obj).parent().next().children().html(xjint);
 		var arr = $(".xj");
 		for(var i=0;i<arr.length;i++){
 			var b = $(arr[i]).html();
@@ -250,11 +250,11 @@ function changenumber(obj){
 			zongjia = zongjia + xx;				
 		}
 		$("#total_price").html(zongjia);
-	}
+	} 
 
 
 function jia(obj) {
-	var cid = $("#cb").val();
+	var cid = $(obj).parent().parent().prev().prev().prev().children().val();
 	var n = $(obj).parent().next().val();
 	var val = parseInt(n);
 	var num = val+1; 
@@ -284,7 +284,7 @@ function jia(obj) {
 
 
 function jian(obj) {
-	var cid = $("#cb").val();
+	var cid = $(obj).parent().parent().prev().prev().prev().children().val();
 	var n = $(obj).parent().prev().val();
 	var val = parseInt(n);
 	var num = val-1; 
@@ -309,10 +309,11 @@ function jian(obj) {
 			}
 		}
 	});
-	
+
 	if($(obj).parent().prev().val() == 1){
 		$(obj).attr("disabled",true);
 	}else{
+		//alert(1);
 		$(".but").attr("disabled",false);
 	}
 }
@@ -383,7 +384,7 @@ function goodsshop(obj){
         <li class="last">5.评价</li>
       </ul>
     </div>
-    <form status="no_submit" method="post" name="cart_32816" target="_blank" id="cart_32816" action="http://localhost:8080/goods_cart2.htm">
+    <form method="post" name="cart_32816" target="_blank" id="cart_32816" action="orderconfirm.htm">
       <input name="userid" type="hidden" id="type" value="${sessionScope.currentuserid }">
       <div class="table">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -398,10 +399,10 @@ function goodsshop(obj){
           <c:forEach items="${requestScope.shoppingcarlist }" var="tmp">
             <tr goods_list="goods_info_231914" id="231914">
             <td>
-            	<input onclick="goodsshop(this);" type="checkbox" value="${tmp.id }" class="ck" id="cb" checked="checked"/>
+            	<input onclick="goodsshop(this);" type="checkbox" value="${tmp.id }" name="ids" class="ck" id="cb" checked="checked"/>
             </td>
             <td class="baby"> 
-              <img src="/img/${tmp.image }" width="65" height="65">
+              <img src="${tmp.image }" width="65" height="65">
               <p><a href="http://localhost:8080/showdetails?id=4" target="_blank">${tmp.name }</a>                  
               <span style="color:#F00">(特价)</span> <br>
 
@@ -433,7 +434,8 @@ function goodsshop(obj){
       </div>
       <div class="h2"> <span class="h2_r"><em>商品总价(不含运费)：</em><b>¥<strong class="orange" id="total_price">${requestScope.zongjia }</strong></b>
         <input name="store_id" type="hidden" id="store_id" value="32816">
-        <a href="http://localhost:8080/querendingdan.htm" style="background-color:indigo;">结算</a></span> </div>
+        <!-- <a href="http://localhost:8080/querendingdan.htm" style="background-color:indigo;">结算</a> -->
+        <input type="submit" value="结算"  /></span> </div>
     </form>
         <div class="car_nogoods" style="display:none;">
       <div class="shopcar">
