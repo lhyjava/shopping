@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.shopping.entity.Addorder;
+import com.test.shopping.entity.Ordergoods;
 import com.test.shopping.entity.Receiptaddress;
 import com.test.shopping.entity.Shoppingcar;
 import com.test.shopping.service.AddOrderService;
@@ -101,7 +102,7 @@ public class OrderconfirmController {
 	@RequestMapping("ordersubmit.htm")
 	public String ordersubmit(Integer userid,String[] img,String[] name,String[] specmessage,
 							  Integer[] price,Integer[] number,Integer[] goodsid,String Invoice,String delivery,
-							  String message,String consignee,Integer totalPrice) {
+							  String message,String consignee,Integer totalPrice,HttpServletRequest req) {
 		
 		//订单编号
 		String ordernumber = OrderNo.getOrderIdByUUId();
@@ -124,8 +125,12 @@ public class OrderconfirmController {
 		//订单商品表
 		ordergoodsService.insertGoods(id,img,name,specmessage,price,number,goodsid);
 		
-		
-		
+		//订单列表展示
+		List<Addorder> list = addOrderService.selectByaddorderfindAll(userid);
+		req.setAttribute("addorderlist", list);
+		List<Ordergoods> list1 = ordergoodsService.selectByfindall();
+		req.setAttribute("ordergoodslist", list1);
+			
 		return "order_form";
 	}
 	

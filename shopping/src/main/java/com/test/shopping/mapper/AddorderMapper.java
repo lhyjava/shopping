@@ -1,15 +1,19 @@
 package com.test.shopping.mapper;
 
-import com.test.shopping.entity.Addorder;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
+
+import com.test.shopping.entity.Addorder;
 
 public interface AddorderMapper {
     @Delete({
@@ -85,4 +89,20 @@ public interface AddorderMapper {
     int selectIdByOrdernumber(String ordernumber);
     
     //add by lhy 1208 end
+    
+    //add by lys 1209 begin
+    
+    @Select({
+        "select *",
+        "from addorder",
+        "where userid = #{userid,jdbcType=INTEGER}"
+    })
+    List<Addorder>selectByaddorderfindAll(Integer userid);
+    
+    //add by lys 1209 end 
+   
+    @SelectProvider(type=AddorderSqlProvider.class, method="selectByaddorder")
+    List<Addorder> selectByaddorder(String ordernumber,String begintime,String endtime,String delivery);
+    
+    //add by lys 1210 end
 }

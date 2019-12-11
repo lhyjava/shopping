@@ -89,4 +89,15 @@ public interface ReceiptaddressMapper {
     List<Receiptaddress> AddressFindByUserId(String userid);
     
     //add by lhy 1206 end
+    
+    //add by zhaoyu 1206 begin
+    
+    @Select({
+        "select *",
+        "from receiptaddress",
+        "where userid = #{currid,jdbcType=INTEGER}"
+    })
+    List<Receiptaddress> selectByuserid(Integer currid);
+    
+    //add by zhaoyu 1206 end
 }

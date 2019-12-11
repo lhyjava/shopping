@@ -138,9 +138,6 @@ public class ShoppingcarSqlProvider {
     	
     	spec = spec.substring(0, spec.length() - 1);
     	
-    	//INSERT INTO `shoppingcar` (`image`, `name`, `price`, `number`, `spec`, `userid`, `goodsid`) 
-    	//VALUES ('1', '1', '1', '1', '1', '1', '1')
-    	
     	sql.append("INSERT INTO shoppingcar (image, name, price, number, spec, userid, goodsid) ");
     	sql.append("VALUES (");
     	sql.append("'"+img+"'");

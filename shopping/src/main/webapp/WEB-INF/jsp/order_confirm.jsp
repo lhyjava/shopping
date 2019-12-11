@@ -424,7 +424,7 @@
         				<h1>
           					<div class="sendhright">	
           	 					<span class="sendperbtn">
-          	 						<a href="http://localhost:8080/showaddressmgr.htm" target="_self">管理收货地址</a>
+          	 						<a href="findaddres.htm">管理收货地址</a>
           	 					</span>
 		  					</div>
          	 				<span class="sendperadr">收货人地址</span> 

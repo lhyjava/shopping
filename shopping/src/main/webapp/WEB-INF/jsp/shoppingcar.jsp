@@ -20,134 +20,7 @@
 <script src="/js/jquery.shop.common.js"></script>
 <script>
 
-	/* function jia(obj) {
-		var cid = $(obj).attr("cart_id");
-		var id = "#goods_count_"+cid;
-		var val = $(id).val();
-		var valint = parseInt(val);
-		var num = $(id).val(valint+1);
-		
-		$.ajax({
-			url:'gengxinshangpinshu.htm',
-			type:'post',
-			data:{
-				id:cid,
-				number:num
-			},
-			success:function(data){
-				
-			}
-		});
-		
-		var danjiaid = "#danjia_"+cid;
-		var danjia = $(danjiaid).html();
-		var zongjia = (valint+1)*danjia;
-		
-		var sumid = "#goods_total_price_"+cid;
-		$(sumid).html(zongjia);
-		
-		var tp = $("#total_price").html();
-		var tpint = parseInt(tp);
-		var danjiaint = parseInt(danjia);
-		$("#total_price").html(tpint+danjiaint);
-		
-	} */
 	
-	
-	/* function jian(obj) {
-		var cid = $(obj).attr("cart_id");
-		var id = "#goods_count_"+cid;
-		var val = $(id).val();
-		var valint = parseInt(val);
-		$(id).val(valint-1);
-		
-		var danjiaid = "#danjia_"+cid;
-		var danjia = $(danjiaid).html();
-		
-		if(valint-1 > 0)//ajax更新数据库
-		{
-			$.ajax({
-				url:'gengxinshangpinshu.htm',
-				type:'post',
-				data:{
-					id:cid,
-					num:valint-1
-				},
-				success:function(data){
-					
-				}
-			});
-			
-			
-			var tp = $("#total_price").html();
-			var tpint = parseInt(tp);
-			var danjiaint = parseInt(danjia);
-			$("#total_price").html(tpint-danjiaint);
-			
-			
-		}
-		else//删除当前条目数据
-		{
-			window.location.href = 'gouwucheshanchu.htm?id='+cid;
-		}
-		
-		
-		var zongjia = (valint-1)*danjia;
-		
-		var sumid = "#goods_total_price_"+cid;
-		$(sumid).html(zongjia);
-		
-		
-
-	} */
-
-	
-	/*  function goodsshop(obj){
-		
-		if($(obj).attr("checked",true)){
-			var zj = $("#total_price").html();
-			var xj = $(".xj").html();
-			alert(zj+" "+xj);
-			var zjint = parseInt(zj);
-			var xjint = parseInt(xj);
-			//alert(zjint+" "+xjint);
-			var zongjia = (zjint)+(xjint);
-			alert(zongjia);
-			$("#total_price").html(zongjia);
-		}
-		if($(obj).attr("checked",false)){
-			var zj = $("#total_price").html();
-			var xj = $(".xj").html();
-			var zjint = parseInt(zj);
-			var xjint = parseInt(xj);
-			var zongjia = (zjint)-(xjint);
-			$("#total_price").html(zongjia);
-		}
-	}  */
-	
-	
-	
-		
-
- /*  function goods_count_adjust(cart_id,store_id,count){
-   	  jQuery.post("http://localhost:8080/goods_count_adjust.htm",{"cart_id":cart_id,"store_id":store_id,"count":count},function(data){
-		 if(data.error=="100"){																										
-	       jQuery("#goods_count_"+cart_id).val(count);
-		   jQuery("#goods_count_"+cart_id).attr("goods_count",count)
-		   jQuery("#goods_total_price_"+cart_id).html("¥"+data.goods_total_price);
-		   jQuery("#total_price_"+store_id).html(data.sc_total_price);
-		   jQuery("#top_total_price_"+store_id).html(data.sc_total_price);
-		 }
-		 if(data.error=="200"){
-		   alert("库存不足，请重新选择数量！");
-		   jQuery("#goods_count_"+cart_id).val(jQuery("#goods_count_"+cart_id).attr("goods_count"));
-		 }
-		 if(data.error=="300"){
-		   alert("团购库存不足，请重新选择数量！");
-		   jQuery("#goods_count_"+cart_id).val(jQuery("#goods_count_"+cart_id).attr("goods_count"));
-		 }
-	   },"json");
-  } */
   function confirm_cart(sc_id){
     jQuery("#cart_"+sc_id).hide();
 	jQuery("#cart_"+sc_id).attr("status","submit");
@@ -157,17 +30,7 @@
 	jQuery("#cart_"+sc_id).submit();
   }  
   
-  
-	function changenumber(obj){
-		var n = $(obj).val();
-		var dj = $(obj).parent().prev().html();
-		var xj =n*dj; 
-		var xjint = parseInt(xj);
-		$(obj).parent().next().html(xjint);
-		var arr = $(".xj").html();
-		alert(arr);
-	}
-  
+
   
 jQuery(document).ready(function(){
   jQuery("a[id^=favorite_]").click(function(){
@@ -181,24 +44,7 @@ jQuery(document).ready(function(){
 		 }
 	  },"text");
 	    });
-/*   jQuery("a[id^=count_down]").click(function(){
-	var cart_id=jQuery(this).attr("cart_id");
-	var count=jQuery("#goods_count_"+cart_id).val();
-	var store_id=jQuery(this).attr("store_id");
-	if(count>1){
-	  count--;
-      goods_count_adjust(cart_id,store_id,count)
-	}
-  }); */
-/*   jQuery("a[id^=count_up]").click(function(){
-	var cart_id=jQuery(this).attr("cart_id");
-	var count=jQuery("#goods_count_"+cart_id).val();
-	var store_id=jQuery(this).attr("store_id");
-	if(count>0){
-	  count++;
-	  goods_count_adjust(cart_id,store_id,count);
-	}									 
-  }); */
+
   jQuery("input[id^=goods_count_]").keyup(function(){
   	var cart_id=jQuery(this).attr("cart_id");
 	var count=jQuery("#goods_count_"+cart_id).val().replace(/\D/g,'');
@@ -225,31 +71,6 @@ jQuery(document).ready(function(){
 
 <script>
 jQuery(document).ready(function(){
-	
-	//add by xdx 12.09 begin
-	
-	$(".ck").attr("checked",true);
-	
-	
-	$(".ck").toggle(function(){
-		var zj = $("#total_price").html();
-		var xj = $(".xj").html();
-		var zjint = parseInt(zj);
-		var xjint = parseInt(xj);
-		var zongjia = (zjint)-(xjint);
-		$("#total_price").html(zongjia);
-	},function(){
-		var zj = $("#total_price").html();
-		var xj = $(".xj").html();
-		var zjint = parseInt(zj);
-		var xjint = parseInt(xj);
-		var zongjia = (zjint)+(xjint);
-		$("#total_price").html(zongjia);
-	});
-	
-
-
-	//add by xdx 12.09 end
 	
 			//滚动条滚动事件
 	jQuery(window).scroll(function(){
@@ -414,6 +235,24 @@ jQuery(document).ready(function(){
 
 //add by xdx 12.09 begin
 
+
+function changenumber(obj){
+		var zongjia=0;
+		var n = $(obj).val();
+		var dj = $(obj).parent().prev().html();
+		var xj =n*dj; 
+		var xjint = parseInt(xj);
+		$(obj).parent().parent().next().children().html(xjint);
+		var arr = $(".xj");
+		for(var i=0;i<arr.length;i++){
+			var b = $(arr[i]).html();
+			var xx = parseInt(b);
+			zongjia = zongjia + xx;				
+		}
+		$("#total_price").html(zongjia);
+	}
+
+
 function jia(obj) {
 	var cid = $("#cb").val();
 	var n = $(obj).parent().next().val();
@@ -431,11 +270,12 @@ function jia(obj) {
 			if(data=="success"){
 				var danjia = $(obj).parent().parent().prev().html();		
 				var sum = num*danjia;
-				$(obj).parent().parent().next().html(sum);
+				$(obj).parent().parent().next().children().html(sum);
 				var tp = $("#total_price").html();
 				var tpint = parseInt(tp);
 				var dj = parseInt(danjia);
-				$("#total_price").html(tpint+dj);					
+				var tj = parseInt(tpint+dj);
+				$("#total_price").html(tj);
 			}
 		}
 	});
@@ -460,11 +300,12 @@ function jian(obj) {
 			if(data=="success"){
 				var danjia = $(obj).parent().parent().prev().html();		
 				var sum = num*danjia;
-				$(obj).parent().parent().next().html(sum);
+				$(obj).parent().parent().next().children().html(sum);
 				var tp = $("#total_price").html();
 				var tpint = parseInt(tp);
 				var dj = parseInt(danjia);
-				$("#total_price").html(tpint-dj);					
+				var tj = parseInt(tpint-dj);
+				$("#total_price").html(tj);					
 			}
 		}
 	});
@@ -475,6 +316,27 @@ function jian(obj) {
 		$(".but").attr("disabled",false);
 	}
 }
+
+
+function goodsshop(obj){
+	var zj = $("#total_price").html();
+	var check = $(obj).attr("checked");		
+	if(check == "checked"){
+		var xj = $(obj).parent().next().next().next().next().children().html();		
+		var zjint = parseInt(zj);
+		var xjint = parseInt(xj);
+		var zongjia = (zjint)+(xjint);
+		$("#total_price").html(zongjia);
+	}else{
+		var xj = $(obj).parent().next().next().next().next().children().html();
+		var zjint = parseInt(zj);
+		var xjint = parseInt(xj);
+		var zongjia = (zjint)-(xjint);
+		$("#total_price").html(zongjia);
+		
+	}
+} 
+
 
 //add by xdx 12.09 end
 </script>
@@ -521,7 +383,7 @@ function jian(obj) {
         <li class="last">5.评价</li>
       </ul>
     </div>
-    <form status="no_submit" method="post" name="cart_32816" target="_blank" id="cart_32816" action="orderconfirm.htm">
+    <form method="post" name="cart_32816" target="_blank" id="cart_32816" action="orderconfirm.htm">
       <input name="userid" type="hidden" id="type" value="${sessionScope.currentuserid }">
       <div class="table">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -536,31 +398,33 @@ function jian(obj) {
           <c:forEach items="${requestScope.shoppingcarlist }" var="tmp">
             <tr goods_list="goods_info_231914" id="231914">
             <td>
-            	<input onclick="goodsshop(this);" type="checkbox" value="${tmp.id }" class="ck" id="cb"/>
+            	<input onclick="goodsshop(this);" type="checkbox" value="${tmp.id }" name="ids" class="ck" id="cb" checked="checked"/>
             </td>
             <td class="baby"> 
               <img src="${tmp.image }" width="65" height="65">
-              <p><a href="http://localhost:8080/showdetails?id=4" target="_blank">${tmp.name }</a>   
-              <input type="hidden" name="ids" value="${tmp.id }" />               
+              <p><a href="http://localhost:8080/showdetails?id=4" target="_blank">${tmp.name }</a>                  
               <span style="color:#F00">(特价)</span> <br>
 
-				<c:set value="${fn:split(tmp.spec,';') }" var="arr"></c:set>
-              	<span class="color">${arr[0] }</span><br>
-              
-              	<span class="color">${arr[1] }</span><br>
-                      
+           		<c:set value="${fn:split(tmp.spec, ',') }" var="arr" />
+            	<c:forEach items="${arr }" var="s">
+             		<span class="color">${s }</span>
+             		<br />
+           		 </c:forEach>
+           		
               <!-- <span class="color">参考身高: 85cm</span><br> -->
               </p></td>
             <td id="danjia" align="center">${tmp.price }</td>
-            <td class="input" align="center"><span>
-        		<button type="button" onclick="jia(this);" href="javascript:void(0);" id="count_down_65" cart_id="65" store_id="32816">
-				<img src="/img/jian.jpg" width="12" height="12"></button>
+            <td class="input" align="center">
+            	<span>
+	        		<button type="button" onclick="jia(this);" href="javascript:void(0);" id="count_down_65" cart_id="65" store_id="32816">
+					<img src="/img/jian.jpg" width="12" height="12"></button>
             	</span>
-        		<input name="goods_count_65" type="text" value="${tmp.number }"  onchange="changenumber(this);" id="number" cart_id="231914" store_id="32816" goods_count="2">
+        			<input name="goods_count_65" type="text" value="${tmp.number }"  onchange="changenumber(this);" id="number" cart_id="231914" store_id="32816" goods_count="2">
               	<span>
-        		<button type="button" class="but" onclick="jian(this);" href="javascript:void(0);" id="count_up_65" cart_id="65" store_id="32816">
-				<img src="/img/add.jpg"  width="12" height="12"></button>
-              	</span></td>
+        			<button type="button" class="but" onclick="jian(this);" href="javascript:void(0);" id="count_up_65" cart_id="65" store_id="32816">
+					<img src="/img/add.jpg"  width="12" height="12"></button>
+              	</span>
+             </td>
             <td id="gp" align="center"><strong class="xj" id="goodsprice">${tmp.price*tmp.number }</strong></td>
             <td align="center"> <a href="http://localhost:8080/gouwucheshanchu.htm?id=65" class="cart_common">删除</a></td>
           </tr>
@@ -569,8 +433,8 @@ function jian(obj) {
       </div>
       <div class="h2"> <span class="h2_r"><em>商品总价(不含运费)：</em><b>¥<strong class="orange" id="total_price">${requestScope.zongjia }</strong></b>
         <input name="store_id" type="hidden" id="store_id" value="32816">
-        <a href="orderconfirm.htm?ids=" style="background-color:indigo;">结算</a></span> </div>
-        <input type="submit" value="结算" ></input>
+        <!-- <a href="http://localhost:8080/querendingdan.htm" style="background-color:indigo;">结算</a> -->
+        <input type="submit" value="结算" style="background-color:indigo;" /></span> </div>
     </form>
         <div class="car_nogoods" style="display:none;">
       <div class="shopcar">

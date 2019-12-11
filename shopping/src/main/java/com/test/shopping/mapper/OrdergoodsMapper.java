@@ -1,6 +1,7 @@
 package com.test.shopping.mapper;
 
-import com.test.shopping.entity.Ordergoods;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -10,6 +11,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
+
+import com.test.shopping.entity.Ordergoods;
 
 public interface OrdergoodsMapper {
     @Delete({
@@ -76,4 +79,15 @@ public interface OrdergoodsMapper {
 			  		Integer[] price,Integer[] number,Integer[] goodsid);
     
     //add bu 1208 end
+    
+    //add by lys 1209 begin
+    
+    @Select({
+        "select",
+        "id, orderid, goodsid, name, img, specmessage, url, price, number",
+        "from ordergoods",
+    })
+    List<Ordergoods> selectByfindall();
+    
+    //add by lys 1209 end
 }
