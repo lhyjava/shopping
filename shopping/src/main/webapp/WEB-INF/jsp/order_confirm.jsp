@@ -392,7 +392,7 @@
 												<!-- 商品名 -->
 												<a href="http://localhost:8080/shangpinxiangqing.htm?id=2">${tmp.name }</a> 
 												<br />
-												<c:set value="${fn:split(tmp.spec, ',') }" var="arr" />
+												<c:set value="${fn:split(tmp.spec, ';') }" var="arr" />
 												<c:forEach items="${arr }" var="s">
 													<span class="color">${s }</span>
 													<br />

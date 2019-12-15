@@ -190,7 +190,10 @@ jQuery(document).ready(function(){
         		        <li class="menupx" style="background:none;"><a href="http://localhost:8080/articlelist_help.htm">帮助中心</a></li>
         		      </ul>
     </div>
-    <div class="pageleft"><span>${sessionScope.currentusername },欢迎来到缘来小镇！</span><a href="http://localhost:8080/shopping_logout.htm" class="lightblue">[退出]</a>  </div>
+    <div class="pageleft">
+    	<span>${sessionScope.currentusername },欢迎来到缘来小镇！</span>
+    	<!-- <a href="http://localhost:8080/shopping_logout.htm" class="lightblue">[退出]</a> -->
+    </div>
   </div>
 </div>
 
@@ -354,7 +357,7 @@ function goodsshop(obj){
   <script src="./我的购物车 - Powered by shopping_files/jquery.cookie.js.下载"></script>
   <div id="head_h" class="head_width">
 	  <div class="head clearFix">
-	    <div class="logo">  <a href="http://localhost:8080/index.htm"> <img src="./我的购物车 - Powered by shopping_files/ff2232cb-7a55-47b2-b0b4-cd90793e5ea1.jpg" border="0"> </a>  </div>
+	    <div class="logo">  <a href="http://localhost:8080/index.htm"> <img src="/img/ff2232cb-7a55-47b2-b0b4-cd90793e5ea1.jpg" border="0"> </a>  </div>
 	    <div class="searchForm">
 		    <form action="searchshoppingcar.htm" method="post" >			  	
 			    <div class="toph_bigsearch">
@@ -384,7 +387,7 @@ function goodsshop(obj){
         <li class="last">5.评价</li>
       </ul>
     </div>
-    <form method="post" name="cart_32816" target="_blank" id="cart_32816" action="orderconfirm.htm">
+    <form method="post" name="cart_32816" id="cart_32816" action="orderconfirm.htm">
       <input name="userid" type="hidden" id="type" value="${sessionScope.currentuserid }">
       <div class="table">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -406,7 +409,7 @@ function goodsshop(obj){
               <p><a href="http://localhost:8080/showdetails?id=4" target="_blank">${tmp.name }</a>                  
               <span style="color:#F00">(特价)</span> <br>
 
-           		<c:set value="${fn:split(tmp.spec, ',') }" var="arr" />
+           		<c:set value="${fn:split(tmp.spec, ';') }" var="arr" />
             	<c:forEach items="${arr }" var="s">
              		<span class="color">${s }</span>
              		<br />

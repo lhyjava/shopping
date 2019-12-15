@@ -241,7 +241,7 @@ function switch_recommend_goods(){
 		   jQuery("#cart_goods_top_menu").mouseover(function(){
 			  jQuery.ajax({type:'POST',url:'http://localhost:8080/cart_menu_detail.htm',data:'',
 						   beforeSend:function(){
-							     jQuery("#cart_goods_top_info").empty().html('<div class="menu-bd-panel"><div style="text-align:center;"><img src="http://localhost:8080/resources/style/common/images/loader.gif" /></div></div>');
+							     jQuery("#cart_goods_top_info").empty().html('<div class="menu-bd-panel"><div style="text-align:center;"><img src="/img/loader.gif" /></div></div>');
 							     jQuery("#cart_goods_top_info").show();
 							   },
 						  success:function(data){
@@ -257,7 +257,7 @@ function switch_recommend_goods(){
 	</script>
 	        <li class="search menu-item menupx">
 	          <div class="menu" id="cart_menu"><span class="menu-hd" id="cart_goods_top_menu"><s></s>购物车<span id="cart_goods_count_top" class="top_car">0</span>种商品<b></b></span>
-	            <div class="menu-bd" id="cart_goods_top_info" style="display: none;">
+	          	<div class="menu-bd" id="cart_goods_top_info" style="display: none;">
 	            	<div class="menu-bd-panel">
 	            		<div style="text-align:center;"><img src="/img/loader.gif">
 	            		</div>

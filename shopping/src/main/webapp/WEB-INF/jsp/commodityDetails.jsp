@@ -528,7 +528,7 @@
 					  	</ul>
 					</div>
 				</div>
-				<form action="tianjiagouwuche.htm" id="tianjiagouwuche">
+				<form action="tianjiagouwuche.htm" id="tianjiagouwuche" method="post">
 				<input name="userid" type="hidden" value="${sessionScope.currentuserid }" />		
 				<input name="goodsid" type="hidden" value="{{goods.id }}" />
 				<input name="name" type="hidden" value="{{goods.name}}" />
