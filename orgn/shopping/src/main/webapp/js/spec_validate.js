@@ -1,0 +1,53 @@
+$(function(){
+	$("#specform").validate({
+		rules:{
+			name:{
+				required:true,
+				remote:{
+					url:'specvalidate.htm',
+					type:'post',
+					data:{
+						name:function(){
+							var u = $("#specname").val();
+							return u;
+						}
+					}
+				}
+			},
+			sort:{
+				required:true,
+				digits:true
+			}
+		},
+		messages:{
+			name:{
+				required:'规格名不能为空',
+				remote:'规格名重复'
+			},
+			sort:{
+				required:'排序不能为空',
+				digits:'只能是整数'
+			}
+		}
+	});
+	$("#valform").validate({
+		rules:{
+			valsort:{
+				required:true,
+				digits:true
+			},
+			valname:{
+				required:true
+			}
+		},
+		messages:{
+			valsort:{
+				required:'排序不能为空',
+				digits:'只能是整数'
+			},
+			valname:{
+				required:'规格值不能为空'
+			}
+		}
+	});
+});
